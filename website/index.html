@@ -38,24 +38,36 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      background-color: #fefefe;
-      padding: 30px 40px;
-      border: 1px solid #888;
-      width: 80%; /* Could be more specific */
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      background-color: var(--white, white); /* Use site variable, fallback to white */
+      padding: 40px 50px; /* Increased padding */
+      border: 1px solid #ccc; /* Slightly softer border */
+      width: 90%; /* Adjust width for responsiveness */
+      max-width: 550px; /* Slightly narrower max-width */
+      border-radius: 8px; /* Consistent radius */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-family: Inter, sans-serif; /* Apply base font */
+    }
+    .modal h2 {
+        font-family: Gilda Display, sans-serif; /* Heading font */
+        color: var(--blue, #22293e); /* Heading color */
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-size: 28px; /* Adjust size as needed */
+        line-height: 1.3;
     }
     .close-button {
       color: #aaa;
       position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
+      top: 15px;
+      right: 15px;
+      font-size: 32px;
       font-weight: bold;
+      line-height: 1;
       background: none;
       border: none;
       cursor: pointer;
+      padding: 0;
     }
     .close-button:hover,
     .close-button:focus {
@@ -63,24 +75,66 @@
       text-decoration: none;
       cursor: pointer;
     }
-    /* Style for modal form fields - can inherit from existing .w-input etc. or add specifics */
+    /* Style for modal form fields - inheriting from .w-input and .field-label */
     .modal .field-label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-weight: 500; /* Slightly bolder */
+      color: var(--blue, #22293e);
+      font-size: 14px;
     }
     .modal .text-field,
     .modal .text-area {
       margin-bottom: 15px;
       width: 100%; /* Ensure they take full width */
+      min-height: 48px; /* Match original */
+      border: 1px solid #d1d5db; /* Match original */
+      border-radius: 4px; /* Match original */
+      padding: 8px 12px; /* Standard padding */
+      font-size: 16px; /* Standard font size */
+      color: #333;
+      box-sizing: border-box; /* Include padding/border in width */
     }
+    .modal .text-area {
+        min-height: 100px; /* Give textarea more height */
+        resize: vertical; /* Allow vertical resize */
+    }
+    /* Match .submit-button style */
     .modal .submit-button {
-        margin-top: 15px;
+        margin-top: 20px;
+        width: 100%; /* Make button full width */
+        background-color: #1f2937;
+        border: 1px solid #1f2937;
+        border-radius: 4px;
+        min-height: 48px;
+        padding: 12px 24px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
     }
+    .modal .submit-button:hover {
+        background-color: #374151; /* Slightly lighter on hover */
+        border-color: #374151;
+    }
+
     /* Prevent body scroll when modal is open */
     body.modal-open {
         overflow: hidden;
     }
+    /* Responsive adjustments if needed */
+    @media (max-width: 600px) {
+        .modal {
+            width: 90%;
+            padding: 30px 25px;
+        }
+        .modal h2 {
+            font-size: 24px;
+        }
+    }
+
   </style>
 </head>
 <body class="body">
