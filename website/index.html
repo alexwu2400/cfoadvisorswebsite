@@ -18,6 +18,70 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-B0LY120F9V"></script>
   <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('set', 'developer_id.dZGVlNj', true);gtag('config', 'G-B0LY120F9V');</script>
+  <!-- Modal Styles -->
+  <style>
+    .modal-overlay {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    }
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1001; /* Sit on top of overlay */
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fefefe;
+      padding: 30px 40px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more specific */
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .close-button {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* Style for modal form fields - can inherit from existing .w-input etc. or add specifics */
+    .modal .field-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .modal .text-field,
+    .modal .text-area {
+      margin-bottom: 15px;
+      width: 100%; /* Ensure they take full width */
+    }
+    .modal .submit-button {
+        margin-top: 15px;
+    }
+    /* Prevent body scroll when modal is open */
+    body.modal-open {
+        overflow: hidden;
+    }
+  </style>
 </head>
 <body class="body">
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
@@ -43,24 +107,9 @@
             <h1 data-w-id="b8f007c5-8d0e-9270-dc25-cfeb608da906" style="opacity:0" class="heading hero-heading">Redefining How Great Startups Operate</h1>
             <p data-w-id="b8f007c5-8d0e-9270-dc25-cfeb608da908" style="opacity:0" class="header-text">Building best-in-class operational frameworks for the fastest-growing startups backed by visionary leaders.</p>
             <div class="w-form">
-              <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" data-wf-page-id="680500ee770c6262790205b7" data-wf-element-id="693baf0d-192c-1f37-f85b-b01675bd6358"><label for="email-3" class="field-label">Name</label><input class="text-field w-input" maxlength="256" name="email-3" data-name="Email 3" placeholder="" type="text" id="email-3" required=""><label for="email-4" class="field-label-3">Title</label><input class="text-field w-input" maxlength="256" name="email-4" data-name="Email 4" placeholder="" type="text" id="email-4" required=""><label for="email-5" class="field-label-2">Company Name</label><input class="text-field w-input" maxlength="256" name="email-5" data-name="Email 5" placeholder="" type="text" id="email-5" required=""><label for="email" class="field-label-2">Email</label><input class="text-field w-input" maxlength="256" name="email" data-name="Email" placeholder="" type="email" id="email" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Connect with a CFO"></form>
-              <div class="w-form-done">
-                <div>Thank you! Your submission has been received!</div>
-              </div>
-              <div class="w-form-fail">
-                <div>Oops! Something went wrong while submitting the form.</div>
-              </div>
-            </div>
-            <div class="w-form">
-              <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="680500ee770c6262790205b7" data-wf-element-id="b8f007c5-8d0e-9270-dc25-cfeb608da90b">
-                <div data-w-id="b8f007c5-8d0e-9270-dc25-cfeb608da90c" style="opacity:0" class="w-layout-blockcontainer container w-container"></div>
+              <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" data-wf-page-id="680500ee770c6262790205b7" data-wf-element-id="693baf0d-192c-1f37-f85b-b01675bd6358">
+                <button type="button" id="openContactModalBtn" class="submit-button w-button">Connect with CFO Advisors</button>
               </form>
-              <div class="success-message w-form-done">
-                <div class="text-block-2">Thank you! Your submission has been received!</div>
-              </div>
-              <div class="w-form-fail">
-                <div>Oops! Something went wrong while submitting the form.</div>
-              </div>
             </div>
           </div>
         </div>
@@ -434,7 +483,115 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
   </section>
+  <!-- Contact Modal Structure -->
+  <div id="contactModalOverlay" class="modal-overlay"></div>
+  <div id="contactModal" class="modal">
+    <button id="closeContactModalBtn" class="close-button">&times;</button>
+    <h2>Connect with CFO Advisors</h2>
+    <div class="w-form">
+      <form id="contact-modal-form" name="contact-modal-form" data-name="Contact Modal Form" method="post">
+        <label for="modal-name" class="field-label">Name</label>
+        <input class="text-field w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" type="text" id="modal-name" required="">
+
+        <label for="modal-title" class="field-label">Title</label>
+        <input class="text-field w-input" maxlength="256" name="title" data-name="Title" placeholder="Enter your title" type="text" id="modal-title" required="">
+
+        <label for="modal-company" class="field-label">Company Name</label>
+        <input class="text-field w-input" maxlength="256" name="company" data-name="Company" placeholder="Enter your company name" type="text" id="modal-company" required="">
+
+        <label for="modal-email" class="field-label">Email</label>
+        <input class="text-field w-input" maxlength="256" name="email" data-name="Email" placeholder="Enter your email" type="email" id="modal-email" required="">
+
+        <label for="modal-help" class="field-label">What would you like help with?</label>
+        <textarea placeholder="Describe your needs..." maxlength="5000" id="modal-help" name="help" data-name="Help" required="" class="text-area w-input"></textarea>
+
+        <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Submit Request">
+      </form>
+      <div class="w-form-done">
+        <div>Thank you! Your submission has been received!</div>
+      </div>
+      <div class="w-form-fail">
+        <div>Oops! Something went wrong while submitting the form.</div>
+      </div>
+    </div>
+  </div>
+  <!-- End Contact Modal Structure -->
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=680500ee770c6262790205b6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
+
+  <!-- Modal Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('contactModal');
+      const overlay = document.getElementById('contactModalOverlay');
+      const openBtn = document.getElementById('openContactModalBtn');
+      const closeBtn = document.getElementById('closeContactModalBtn');
+
+      function openModal() {
+        if (modal && overlay) {
+          modal.style.display = 'block';
+          overlay.style.display = 'block';
+          document.body.classList.add('modal-open');
+        }
+      }
+
+      function closeModal() {
+        if (modal && overlay) {
+          modal.style.display = 'none';
+          overlay.style.display = 'none';
+          document.body.classList.remove('modal-open');
+        }
+      }
+
+      if (openBtn) {
+        openBtn.addEventListener('click', openModal);
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      if (overlay) {
+        // Close modal if overlay is clicked
+        overlay.addEventListener('click', function(event) {
+          // Make sure click is on overlay itself and not on modal content
+          if (event.target === overlay) {
+             closeModal();
+          }
+        });
+      }
+
+      // Optional: Close modal on Escape key press
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal && modal.style.display === 'block') {
+          closeModal();
+        }
+      });
+
+      // Handle form submission (Placeholder - will need actual submission logic later)
+      const modalForm = document.getElementById('contact-modal-form');
+      if (modalForm) {
+        modalForm.addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent default form submission for now
+          console.log('Form submitted (placeholder)');
+          // TODO: Implement actual form submission (e.g., AJAX, Formspree)
+
+          // Optionally show success message and close modal after delay
+          const successMessage = modal.querySelector('.w-form-done');
+          const failMessage = modal.querySelector('.w-form-fail');
+          const submitButton = modalForm.querySelector('input[type="submit"]');
+
+          // Hide form elements, show success message
+          // This requires structure change or more complex selection
+          // For now, just log and maybe close
+
+          alert('Thank you! Your submission has been received (Placeholder)');
+          // setTimeout(closeModal, 2000); // Close after 2 seconds
+
+        });
+      }
+
+    });
+  </script>
 </body>
 </html>
