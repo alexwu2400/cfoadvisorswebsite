@@ -201,9 +201,211 @@
   </section>
   <section class="section beige-section">
     <div data-w-id="f6c13e9b-21e1-f132-7f1e-4887430e70b2" style="opacity:0" class="w-layout-blockcontainer w-container">
-      <div id="testimonialCarouselPlaceholder">
-        <p style="text-align:center; padding: 40px; color: #888;">Testimonial Carousel Coming Soon...</p> 
-      </div>
+      <div class="w-embed w-script">
+        <div style="overflow: hidden;">
+          <style>
+/* Carousel Styles */
+.carousel-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+}
+.carousel-viewport {
+    overflow: visible;
+    padding-bottom: 40px;
+}
+.carousel-track {
+    display: flex;
+    width: max-content;
+}
+/* Define the scrolling animation */
+@keyframes continuousScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(var(--scroll-end-translate)); }
+}
+.carousel-item {
+    width: 400px;
+    margin-right: 2rem;
+    flex-shrink: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+/* Custom styling */
+.testimonial-card {
+    background-color: white;
+    border-radius: 28px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 36px 32px;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 40px;
+}
+.quote-mark {
+    font-size: 64px;
+    line-height: 1;
+    color: #111827;
+    font-family: 'Georgia', serif;
+    margin-bottom: 12px;
+    display: block;
+    height: 40px;
+}
+.testimonial-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4A5568;
+    flex-grow: 1;
+    margin-bottom: 32px;
+}
+.person-container {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #F0F4F8;
+    margin-bottom: 10px;
+}
+.initials {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: #4A5568;
+    background-color: #EDF2F7;
+    margin-right: 16px;
+}
+.person-name {
+    font-weight: 600;
+    color: #2D3748;
+    font-size: 1rem;
+}
+.person-title {
+    color: #718096;
+    font-size: 0.875rem;
+}
+/* Media queries */
+@media (max-width: 767px) {
+    .carousel-item {
+        width: calc(90vw - 1.5rem);
+        margin-right: 1rem;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .carousel-item {
+        width: calc(50vw - 2rem);
+        margin-right: 1rem;
+    }
+}
+</style>
+          <div class="carousel-container">
+            <div class="carousel-viewport">
+              <div id="carouselTrack" class="carousel-track">
+                <div class="carousel-item">
+                  <div class="testimonial-card">
+                    <div class="quote-mark">&#8220;</div>
+                    <div class="testimonial-text">
+                      The strategic clarity and operational efficiency CFO Advisors brought to our finance function was game-changing. They didn't just fix our processes - they transformed our entire approach to financial management.
+                    </div>
+                    <div class="person-container">
+                      <div class="initials">MR</div>
+                      <div>
+                        <div class="person-name">Michael Rodriguez</div>
+                        <div class="person-title">Founder, CloudScale Solutions</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="testimonial-card">
+                    <div class="quote-mark">&#8220;</div>
+                    <div class="testimonial-text">
+                      CFO Advisors has been a game-changer. I haven't looked back and can't believe we didn't sign up sooner. The team is amazing and the work they deliver helps us with things like planning for growth, expenses, fundraising, and more.
+                    </div>
+                    <div class="person-container">
+                      <div class="initials">CH</div>
+                      <div>
+                        <div class="person-name">Chandan</div>
+                        <div class="person-title">Co-Founder, CoinTracker</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="testimonial-card">
+                    <div class="quote-mark">&#8220;</div>
+                    <div class="testimonial-text">
+                      We know we have the back office covered with CFO Advisors. They are hands on and make our accounting and bookkeeping easy. You get a team who provides guidance on best practices in the tax and accounting world.
+                    </div>
+                    <div class="person-container">
+                      <div class="initials">JN</div>
+                      <div>
+                        <div class="person-name">Jen</div>
+                        <div class="person-title">COO & Founder, Modjoul</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--  Additional testimonials can be added by duplicating the carousel-item structure  -->
+              </div>
+            </div>
+          </div>
+          <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carouselTrack');
+    const items = Array.from(track.children);
+    const totalOriginalItems = items.length;
+    if (totalOriginalItems === 0) return; // Exit if no items
+    // --- 1. Duplicate items for seamless loop ---
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+    });
+    // --- 2. Calculate total width and animation parameters ---
+    function setupAnimation() {
+        const allItems = Array.from(track.children);
+        if (allItems.length === 0) return;
+        // Calculate the width of the original set of items
+        let originalSetWidth = 0;
+        for(let i = 0; i < totalOriginalItems; i++) {
+            const itemStyle = window.getComputedStyle(allItems[i]);
+            const itemMarginRight = parseFloat(itemStyle.marginRight);
+            originalSetWidth += allItems[i].offsetWidth + itemMarginRight;
+        }
+        // Ensure width is calculated correctly
+        if (originalSetWidth <= 0) {
+            setTimeout(setupAnimation, 100);
+            return;
+        }
+        // Set the CSS variable for the animation endpoint
+        track.style.setProperty('--scroll-end-translate', `-${originalSetWidth}px`);
+        // --- 3. Apply the animation ---
+        const scrollSpeed = 12; // pixels per second
+        const duration = originalSetWidth / scrollSpeed; // seconds
+        // Apply animation properties
+        track.style.animation = `continuousScroll ${duration}s linear infinite`;
+        track.style.animationPlayState = 'running';
+    }
+    // Use setTimeout to delay initial calculation
+    setTimeout(setupAnimation, 150);
+    // Recalculate on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            track.style.animation = 'none';
+            setTimeout(setupAnimation, 50);
+        }, 250);
+    });
+});
+</script>
+        </div>
     </div>
   </section>
   <section class="section beige-section">
