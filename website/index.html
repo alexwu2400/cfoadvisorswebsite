@@ -136,6 +136,70 @@
     }
 
   </style>
+  <!-- Added Core Offerings Styles -->
+  <style>
+    .core-offerings-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+        gap: 30px; /* Space between columns */
+        margin-top: 40px; /* Space above the offerings */
+    }
+    .offering-block {
+        /* background-color: rgba(255, 255, 255, 0.05); Optional: slight background differentiation */
+        /* border: 1px solid rgba(255, 255, 255, 0.1); Optional: subtle border */
+        /* border-radius: 8px; */
+        padding: 20px;
+        text-align: center; /* Center icon and title */
+    }
+    .offering-icon svg {
+        width: 48px;
+        height: 48px;
+        stroke: var(--white, white); /* Icon color */
+        margin-bottom: 20px;
+    }
+    .offering-title {
+        font-family: Inter, sans-serif; /* Using Inter for consistency here */
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--white, white);
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    .offering-description {
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.6;
+        color: #e5e7eb; /* Light gray for description */
+        text-align: left; /* Keep description text left-aligned */
+    }
+
+    /* Responsive adjustments for offerings */
+    @media (max-width: 991px) {
+        .core-offerings-container {
+            grid-template-columns: 1fr; /* Stack columns on tablet */
+            gap: 40px; /* Increase gap when stacked */
+        }
+        .offering-block {
+            text-align: left; /* Align icon/title left when stacked */
+        }
+        .offering-icon svg {
+           margin-bottom: 15px;
+        } 
+    }
+    @media (max-width: 767px) {
+        .core-offerings-container {
+            margin-top: 30px;
+            gap: 30px;
+        }
+        .offering-title {
+            font-size: 18px;
+        }
+        .offering-description {
+            font-size: 15px;
+        }
+    }
+  </style>
 </head>
 <body class="body">
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
@@ -418,64 +482,33 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="w-node-a4e5fcdb-4be0-62df-3b64-59d5ba62d2e5-790205b7" data-w-id="a4e5fcdb-4be0-62df-3b64-59d5ba62d2e5" style="opacity:0" class="w-layout-layout quick-stack wf-layout-layout">
       <div class="w-layout-cell cell-2">
         <div class="w-layout-blockcontainer container-10 w-container">
-          <h3 class="heading white-heading heading-2">Financial strategies designed for your industry</h3>
-          <p class="dark-paragraph">We've crafted financial strategies that are tuned to the specific needs and nuances of your sector. Let's navigate the future together, with financial solutions as unique as your business.<br></p>
+          <h2 class="heading white-heading heading-2">Core Offerings: Redefining Startup Operations</h2> 
+          <p class="dark-paragraph">We install operational frameworks and provide strategic guidance across the three pillars critical for startup success.<br></p>
         </div>
       </div>
       <div class="w-layout-cell cell">
-        <div data-hover="false" data-delay="0" data-w-id="80adf741-c9d9-ee43-e2b2-53fafed9590c" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">Financial Modeling</div>
+        <div class="core-offerings-container">
+          <div class="offering-block">
+            <div class="offering-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            </div>
+            <h4 class="offering-title">Financial & Strategic Planning</h4>
+            <p class="offering-description">Architect dynamic operating models and financial roadmaps using proven frameworks. We align your strategic vision with financial execution, ensuring investor readiness and a clear path for sustainable growth.</p>
           </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">Architecting dynamic financial models using proven frameworks to drive strategic decisions and investor readiness. Leveraging our experience from pre-seed to IPO, we ensure these models position your business for success.</span></a>
-          </nav>
-        </div>
-        <div data-hover="false" data-delay="0" data-w-id="3e81dda1-b851-e8d2-73b8-b075ebc36331" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">Fundraising Support</div>
+          <div class="offering-block">
+            <div class="offering-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <h4 class="offering-title">Investor Relations & Fundraising</h4>
+            <p class="offering-description">Navigate the full fundraising lifecycle with confidence. We help craft compelling investor narratives, manage reporting, prepare board materials, and build strong stakeholder relationships.</p>
           </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">We support fundraising efforts end-to-end. From Pitch Deck preparation, to leveraging our network for investor introductions and navigating the diligence process, we partner with you to secure the best possible outcome.</span>‍</a>
-          </nav>
-        </div>
-        <div data-hover="false" data-delay="0" data-w-id="970c2cd4-47d4-56ee-2b32-71ee3c1961db" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">Ongoing Operations</div>
+          <div class="offering-block">
+            <div class="offering-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h4 class="offering-title">Scalable Financial Operations</h4>
+            <p class="offering-description">Implement robust, automated financial systems. From streamlining Quote-to-Cash to providing Live P&L visibility and operationalizing budgets, we install the velocity needed to scale effectively.</p>
           </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">Implementing best-in-class operational frameworks for G&A and finance, instilling velocity and freeing founders to focus on core innovation. This ensures operational transparency while allowing you to build.</span></a>
-          </nav>
-        </div>
-        <div data-hover="false" data-delay="0" data-w-id="5ca0e0b8-0091-6647-0e50-6d9cfb973d7a" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">Liquidity Events</div>
-          </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">We have broad experience preparing and guiding early-stage companies across a variety of industries through transformative events including mergers, acquisitions and corporate wind-downs.</span>‍</a>
-          </nav>
-        </div>
-        <div data-hover="false" data-delay="0" data-w-id="7f0c9570-19db-e6c1-65e1-fb37181703c6" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">Strategic Projects</div>
-          </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">Executing high-impact strategic projects – from cost rationalization to funnel analysis – that install efficiency and drive measurable results. We tackle neglected "obvious" opportunities to tighten the ship.</span>‍</a>
-          </nav>
-        </div>
-        <div data-hover="false" data-delay="0" data-w-id="0a5bc45a-697b-d81d-e07f-9dc6e0e94e7a" style="width:100%;height:64px" class="accordion-item w-dropdown">
-          <div class="accordion-toggle w-dropdown-toggle">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="accordion-icon w-icon-dropdown-toggle"></div>
-            <div class="accordion-text">General Advisory</div>
-          </div>
-          <nav class="dropdown-list w-dropdown-list">
-            <a href="#" class="dropdown-link w-dropdown-link"><span class="text-span">Providing strategic guidance based on operational frameworks proven across today's category-defining leaders. Partner with advisors who stand beside the valley's finest.</span></a>
-          </nav>
         </div>
       </div>
     </div>
