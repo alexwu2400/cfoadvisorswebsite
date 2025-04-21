@@ -1,0 +1,78 @@
+<context>
+# Overview  
+**Mission:** To halve startup failure rates and double the pace of innovation by redefining how great companies operate.
+
+**Company Overview:** CFO Advisors is redefining how venture-backed startups operate by building best-in-class operational frameworks that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. Our clients trust CFO Advisors to help them create a sustainable competitive advantage by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's category defining leaders.
+
+**Value Proposition:** Provides startups with operational frameworks and AI-enabled tools to achieve sustainable competitive advantage through enhanced operational efficiency and strategic financial management.
+
+# Core Features  
+1.  **Self-Hosting:** Host the exported Webflow site (from `/website` folder) independently.
+2.  **Form Modification:** Replace the existing form layout with a pop-up modal triggered by the "Connect with CFO Advisors" button. The modal will include fields for Name, Title, Company Name, Email, and "What would you like help with?".
+3.  **Content Update:** Revise website text and content to align with the company's mission, overview, and positioning as described.
+4.  **Testimonial Carousel:** Implement a rotating carousel to display client testimonials (code to be provided).
+
+# User Experience  
+-   **User Personas:** Startup founders, executives, and operational leaders seeking financial/operational expertise.
+-   **Key User Flows:**
+    -   User lands on the self-hosted website.
+    -   User reads updated content reflecting CFO Advisors' mission and value proposition.
+    -   User clicks the "Connect with CFO Advisors" button.
+    -   A modal form appears, prompting for contact and request details.
+    -   User fills out and submits the form (submission mechanism TBD).
+    -   User interacts with a rotating carousel showcasing client testimonials.
+-   **UI/UX Considerations:** Ensure the pop-up form is seamless, intuitive, and visually consistent with the site's design. The testimonial carousel should be engaging but not distracting. Content updates must be clear, concise, and compelling.
+</context>
+<PRD>
+# Technical Architecture  
+-   **System Components:**
+    -   Static web server (e.g., Nginx, Apache, or cloud service like Netlify/Vercel) to host exported Webflow files (HTML, CSS, JS).
+    -   Frontend JavaScript to handle the form pop-up logic (event listeners, modal display) and the testimonial carousel functionality.
+    -   Potential backend/third-party service for form submission handling (e.g., Formspree, Netlify Forms, serverless function sending email).
+-   **Data Models:**
+    -   Form Submission: { name: string, title: string, companyName: string, email: string, helpRequest: string }
+    -   Testimonial: { quote: string, author: string, titleCompany: string } (Structure TBD based on provided code)
+-   **APIs and Integrations:** TBD based on the chosen form submission solution.
+-   **Infrastructure Requirements:** Hosting environment capable of serving static files and potentially running serverless functions if needed for form handling.
+
+# Development Roadmap  
+-   **Phase 1 (MVP):**
+    -   Set up basic self-hosting for the site exported to `/website`.
+    -   Implement the "Connect with CFO Advisors" button click event to trigger a basic pop-up modal.
+    -   Add the required form fields (Name, Title, Company, Email, Help Request) to the modal without final styling.
+    -   Update critical website text (e.g., hero section, mission statement) based on the provided content.
+    -   Identify all sections requiring content updates.
+-   **Phase 2 (Enhancements):**
+    -   Integrate the provided testimonial carousel code and populate it with sample data.
+    -   Style the pop-up form to match the website's aesthetic.
+    -   Implement the chosen form submission mechanism (requires decision: email, webhook, etc.).
+    -   Complete the content update across all identified sections, incorporating the provided Role Summary where appropriate.
+    -   Ensure responsiveness of the new form modal and testimonial carousel.
+
+# Logical Dependency Chain
+1.  **Setup Hosting:** Configure the environment to serve the static site from `/website`. (Foundation)
+2.  **Core Content Update:** Modify key text elements (hero, mission) for immediate impact. (Quick Visibility)
+3.  **Form Trigger & Structure:** Implement the button click handler and the basic HTML structure for the pop-up modal.
+4.  **Form Fields:** Add input fields to the modal.
+5.  **Carousel Structure:** Add the placeholder/structure for the testimonial carousel.
+6.  **Form Submission Logic:** Implement the backend or third-party integration for form data handling.
+7.  **Styling:** Apply CSS to the form modal and carousel to match the site design.
+8.  **Carousel Integration:** Integrate provided code and finalize carousel functionality.
+9.  **Full Content Update:** Revise remaining website content sections.
+10. **Testing & Refinement:** End-to-end testing and responsive checks.
+
+# Risks and Mitigations  
+-   **Risk:** Complexity of modifying exported Webflow code (potentially obfuscated CSS/JS).
+    *   **Mitigation:** Carefully inspect exported code. Isolate custom JS/CSS changes. Prioritize clean, maintainable additions over modifying obfuscated code directly.
+-   **Risk:** Defining and implementing a reliable form submission process.
+    *   **Mitigation:** Clearly define requirements (where does data go?). Start with a simple third-party service (e.g., Netlify Forms, Formspree) before building custom solutions.
+-   **Risk:** Ensuring consistent styling and responsiveness for new elements (modal, carousel).
+    *   **Mitigation:** Reuse existing site styles/classes where possible. Perform thorough testing across different browsers and screen sizes.
+-   **Risk:** Accurately reflecting the brand's positioning in the content update.
+    *   **Mitigation:** Iteratively review content changes with stakeholders. Use the provided mission/overview/role text as a direct source.
+
+# Appendix  
+-   Testimonial carousel sample code will be provided by the stakeholder at a later stage.
+-   The exact mechanism for handling form submissions needs to be decided (e.g., send to specific email, integrate with CRM, store in database).
+-   The source Webflow export files are located in the `/website` directory.
+</PRD> 

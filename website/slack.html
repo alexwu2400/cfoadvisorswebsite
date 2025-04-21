@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slack Notification - Marketing Pipeline Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light background for standalone page */
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Color Variables (from index.html for consistency) */
+        :root {
+            --accent-highlight: #67e8f9;
+            --blue: #22293e;
+            --dark-blue: #141c25;
+            --white: #ffffff;
+            --light-outline: #e5e7eb;
+            --slack-dark-bg: #1d1c1d;
+            --slack-light-text: #d1d2d3;
+            --slack-border: #4a4a4a;
+            --slack-attachment-bar: #7a5b7a; /* Adjusted slightly */
+            --slack-green-button: #007a5a;
+            --warning-color: #facc15; /* Yellow for alert text */
+            --warning-border-color: #daa520; /* Darker yellow for border */
+            --resource-bg: rgba(74, 74, 74, 0.2); /* Subtle background for resource section */
+        }
+
+        /* Slackbot Visual Representation */
+        .slackbot-visual-container {
+             max-width: 600px; /* Limit width */
+             width: 100%;
+             opacity: 0; /* Start hidden for animation */
+             animation: fadeIn 1.0s ease-out forwards; /* Slower fade-in */
+             animation-delay: 0.2s; /* Slight delay for overall container */
+        }
+
+        .slackbot-visual {
+            font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Slack uses Lato */
+            background-color: var(--slack-dark-bg);
+            border: 1px solid var(--slack-border);
+            border-radius: 8px; /* Slightly larger radius */
+            padding: 18px 20px; /* Adjusted padding */
+            color: var(--slack-light-text);
+            font-size: 15px; /* Slightly larger base font */
+            line-height: 1.45;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Header */
+        .slackbot-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px; /* Increased spacing */
+        }
+        .slackbot-app-icon {
+            width: 24px; /* Larger icon */
+            height: 24px;
+            background-color: var(--blue); /* Using CFO Blue */
+            border-radius: 5px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Simple placeholder initials */
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+        }
+        .slackbot-app-icon::before {
+            content: "CFO"; /* Placeholder */
+        }
+        .slackbot-app-name {
+            font-weight: 700;
+            color: var(--white);
+            margin-right: 5px;
+            font-size: 16px; /* Larger app name */
+        }
+        .slackbot-app-label {
+            background-color: #2e2e2e;
+            color: #b4b4b4;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-right: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .slackbot-time {
+            font-size: 12px;
+            color: #a8a8a8;
+            margin-left: auto; /* Push time to the right */
+        }
+
+        /* Attachment */
+        .slackbot-attachment {
+            border-left: 4px solid var(--warning-border-color); /* Use darker yellow for border */
+            padding-left: 15px; /* Increased padding */
+            margin-top: 8px;
+        }
+        .slackbot-title {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 17px; /* Larger title */
+            margin-bottom: 4px;
+            display: flex; /* Align icon */
+            align-items: center; /* Align icon */
+        }
+        .slackbot-title .warning-icon {
+            margin-right: 6px; /* Space between icon and text */
+            font-size: 1em; /* Match text size */
+            line-height: 1; /* Prevent extra height */
+        }
+         .slackbot-recipient {
+            font-size: 13px;
+            color: #a8a8a8;
+            margin-bottom: 16px; /* Increased space below recipient */
+        }
+        .slackbot-message-content {
+            margin-bottom: 20px; /* Increased Space before resources */
+        }
+        .slackbot-message-content p {
+            margin: 0 0 10px 0; /* Spacing between paragraphs */
+            color: var(--slack-light-text);
+        }
+        /* Updated highlighting style */
+        .highlight-warning {
+           color: var(--warning-color);
+           font-weight: 600;
+        }
+
+        /* Resources Section */
+        .slackbot-resources {
+            margin-top: 18px; /* Adjusted spacing */
+            padding: 18px 15px; /* Add padding for background */
+            border-top: 1px solid transparent; /* Transparent border initially */
+            position: relative; /* Needed for pseudo-element */
+            background-color: var(--resource-bg); /* Subtle background */
+            border-radius: 4px; /* Rounded corners for the section */
+            overflow: hidden; /* Hide overflow during animation */
+        }
+        /* Animated Separator Line */
+        .slackbot-resources::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            width: 0; /* Start hidden */
+            background-color: rgba(74, 74, 74, 0.5);
+            animation: drawLineAcross 0.8s ease-out forwards; /* Slower draw */
+            animation-delay: 0.6s; /* Delay after main fade-in */
+        }
+
+        .slackbot-resources-title {
+            font-size: 12px; /* Slightly smaller title */
+            font-weight: 700; /* Bolder */
+            color: #a8a8a8; /* Match recipient color */
+            margin-bottom: 10px; /* More space below title */
+            text-transform: uppercase;
+            letter-spacing: 0.8px; /* More letter spacing */
+            padding-left: 0; /* Align with content */
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 0.8s ease-out forwards; /* Slower fade-in */
+            animation-delay: 1.4s; /* Adjusted delay */
+        }
+        .slackbot-resources p { /* Style resource paragraphs */
+             margin: 0 0 8px 0; /* Space between resource lines */
+             display: flex;
+             align-items: center;
+             font-size: 15px; /* Slightly larger font size for resources */
+             color: var(--slack-light-text);
+             opacity: 0; /* Start hidden for animation */
+             animation: fadeInResource 0.8s ease-out forwards; /* Slower fade-in */
+        }
+        /* Stagger delays for resource lines */
+        .slackbot-resources p:nth-of-type(1) { animation-delay: 1.7s; } /* Adjusted delay */
+        .slackbot-resources p:nth-of-type(2) { animation-delay: 2.0s; } /* Adjusted delay */
+
+        /* Use ::before for icons instead of bullet */
+        .slackbot-resources p::before {
+            content: '' ; /* Reset content */
+            display: inline-block;
+            width: 1.2em; /* Width for icon */
+            height: 1em; /* Match line height */
+            margin-right: 8px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            vertical-align: middle; /* Align icon vertically */
+            opacity: 0.8;
+            position: relative;
+            top: -0.05em; /* Fine-tune vertical alignment */
+        }
+        /* Headcount Icon */
+        .slackbot-resources p.headcount::before {
+            content: '🧑‍💼'; /* Updated icon: Office Worker */
+            /* Optional: Adjust color if needed */
+            /* color: var(--blue); */
+        }
+        /* Budget Icon */
+        .slackbot-resources p.budget::before {
+            content: '💰'; /* Money bag icon */
+        }
+
+        /* Specific styling for resource highlights */
+        .resource-highlight {
+            color: var(--white);
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* Button */
+        .slackbot-button {
+            display: inline-block;
+            background-color: var(--slack-green-button);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 0.8s ease-out forwards; /* Slower fade-in */
+            animation-delay: 2.3s; /* Adjusted delay */
+        }
+        .slackbot-button:hover {
+            background-color: #148567; /* Darker green on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes drawLineAcross {
+            to { width: 100%; }
+        }
+        @keyframes fadeInResource {
+             from { opacity: 0; transform: translateY(5px); }
+             to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slackbot-visual-container">
+        <div class="slackbot-visual">
+            <div class="slackbot-header">
+                <div class="slackbot-app-icon"></div> <!-- Placeholder Icon -->
+                <span class="slackbot-app-name">CFO Advisors</span>
+                <span class="slackbot-app-label">APP</span>
+                <span class="slackbot-time" id="slackbot-current-time">9:15 AM EST</span>
+            </div>
+            <div class="slackbot-attachment">
+                <div class="slackbot-title"><span class="warning-icon">⚠️</span> Marketing Pipeline Alert</div>
+                <div class="slackbot-recipient">To: Head of Marketing</div>
+                <div class="slackbot-message-content">
+                    <!-- Updated Text Boldness -->
+                    <p><strong>QTD Pipeline Update:</strong> Pacing <span class="highlight-warning">$250K Behind</span> <span class="highlight-warning">Target</span></p>
+                 </div>
+                <div class="slackbot-resources">
+                    <div class="slackbot-resources-title">Available Resources</div>
+                    <!-- Updated icons and spacing -->
+                    <p class="headcount">Headcount: <span class="resource-highlight">  2 Open Roles</span></p>
+                    <p class="budget">Budget: <span class="resource-highlight">  $120K Remaining in the Quarter</span></p>
+                </div>
+                <a href="#" class="slackbot-button">Review Resourcing Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to set the time dynamically (optional)
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeElement = document.getElementById('slackbot-current-time');
+            if (timeElement) {
+                const now = new Date();
+                const options = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
+                // Attempt to replace timezone abbreviation if needed, otherwise keep as is
+                const formattedTime = now.toLocaleTimeString('en-US', options).replace(' EDT', ' EST');
+                timeElement.textContent = formattedTime;
+            }
+        });
+    </script>
+
+</body>
+</html> 

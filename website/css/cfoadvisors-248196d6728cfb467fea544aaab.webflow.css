@@ -186,6 +186,7 @@ h1 {
   background-color: #141c25;
   display: block;
   position: relative;
+  z-index: 1000;
 }
 
 .nav-link {
