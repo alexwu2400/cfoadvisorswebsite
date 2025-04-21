@@ -280,16 +280,17 @@
 
     /* Example: Subtle moving vertical lines */
     .hero-section-interactive::before {
-        background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.01) 1px, transparent 1px,
-            transparent 20px /* Adjust spacing */
-        );
-        background-size: 21px 100%;
-        animation: moveLines 30s linear infinite;
+        /* Replaced animated gradient with solid color */
+        /* background: linear-gradient(...) */
+        background-color: #141c25; /* Set solid dark blue */
+        /* background-size: 400% 400%; */ /* Removed size */
+        /* animation: gradientShift 15s ease infinite; */ /* Removed animation */
     }
     /* Example: Fading particles/dots (optional second layer) */
     /* .hero-section-interactive::after { ... Add another animation if desired ... } */
+
+    /* Keyframe for gradient animation (No longer used) */
+    /* @keyframes gradientShift { ... } */
 
     /* Define accent color variable (can be added to :root if used elsewhere) */
     :root { --accent-highlight: #67e8f9; }
@@ -405,7 +406,8 @@
         left: 0;
         width: 100%;
         height: 100%; /* Reinstated height */
-        background: rgba(31, 41, 55, 0.3); /* Darker translucent background */
+        /* background: rgba(31, 41, 55, 0.3); */ /* Darker translucent background - Updated alpha below */
+        background: rgba(31, 41, 55, 0.9); /* Made background more transparent */
         border-radius: 0.5rem;
         border: 1px solid rgba(255, 255, 255, 0.05);
         padding: 1.5rem 2.5rem; /* Reduced vertical padding */
@@ -476,15 +478,27 @@
     .slackbot-app-icon {
         width: 20px;
         height: 20px;
-        background-color: #3f0f40; /* Placeholder color */
+        /* background-color: #3f0f40; /* Placeholder color */
+        background-color: var(--blue, #22293e); /* Use CFO blue */
         border-radius: 4px;
         margin-right: 6px;
-        /* TODO: Add actual CFO Advisors icon if available */
+        /* Added styles to match Autonomy icon container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white, #fff);
+        font-size: 10px;
+        font-weight: 700;
+    }
+    /* Added ::before for Accountability icon */
+    .slackbot-app-icon::before {
+        content: "CFO";
     }
     .slackbot-app-name {
         font-weight: 700;
         color: #fff;
         margin-right: 4px;
+        /* Note: Font size is implicitly set by .slackbot-visual */
     }
     .slackbot-app-label {
         background-color: #2e2e2e;
@@ -731,9 +745,22 @@
 
     /* Added style for larger CTA button */
     #openContactModalBtn.submit-button.w-button {
-        padding: 16px 32px; /* Increased padding */
-        font-size: 18px; /* Increased font size */
-        min-height: 56px; /* Increased min height */
+        padding: 21px 42px; /* Increased padding by ~30% */
+        font-size: 23px; /* Increased font size by ~30% */
+        min-height: 73px; /* Increased min height by ~30% */
+        /* Added new color styles */
+        background-color: #F8F7F5; /* Light beige background */
+        color: #1f2937; /* Dark blue/grey text */
+        border: 1px solid #1f2937; /* Dark blue/grey border */
+        border-radius: 50px; /* Added large border-radius for rounded shape */
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; /* Add transition */
+    }
+
+    /* Added hover state for the button */
+    #openContactModalBtn.submit-button.w-button:hover {
+        background-color: #F0EDE9; /* Slightly darker beige on hover */
+        color: #1f2937; /* Keep text color */
+        border-color: #1f2937; /* Keep border color */
     }
   </style>
   <!-- Added Animated ARR Chart Styles -->
@@ -836,29 +863,7 @@
         stroke-dasharray: 2, 2; /* Dotted line */
         opacity: 0.8;
     }
-    /* Individual callout animations with delays */
-    /* Removed ID-based static animations */
-    /* #transparency-chart-container #callout-line-2, #transparency-chart-container #callout-2 {
-        animation: fadeIn 0.5s ease-in forwards;
-        animation-delay: 0.4s;
-    } */
-    /* #transparency-chart-container #callout-line-6, #transparency-chart-container #callout-6 {
-        animation: fadeIn 0.5s ease-in forwards;
-        animation-delay: 1.1s;
-    } */
-    /* #transparency-chart-container #callout-line-9, #transparency-chart-container #callout-9 {
-        animation: fadeIn 0.5s ease-in forwards;
-        animation-delay: 1.6s;
-    } */
-    /* Specific animation for the lines to draw */
-    /* #transparency-chart-container #callout-line-2, #transparency-chart-container #callout-line-6, #transparency-chart-container #callout-line-9 {
-         animation: drawLine 0.4s ease-out forwards, fadeIn 0.3s ease-in forwards;
-    } */
-    /* Update delays for specific lines */
-    /* #transparency-chart-container #callout-line-2 { animation-delay: 0.4s; }
-    #transparency-chart-container #callout-line-6 { animation-delay: 1.1s; }
-    #transparency-chart-container #callout-line-9 { animation-delay: 1.6s; } */
-
+    
     /* Define the drawLine keyframes specifically for this chart */
     @keyframes drawLine {
         to {
@@ -878,129 +883,77 @@
   <style>
       /* Target the specific card */
       .attribute-card[data-attribute="autonomy"] .slackbot-visual-container {
-          max-width: 100%; /* Allow full width within the card */
+          max-width: 100%;
           width: 100%;
-          opacity: 0; /* Start hidden */
-          animation: fadeIn 1.0s ease-out forwards;
-          animation-delay: 0.2s; /* Match original delay */
-          /* Adjust layout for card */
-          flex-grow: 1;
+          opacity: 0;
+          animation: fadeIn 1.0s ease-out forwards 0.2s;
+          /* flex-grow: 1; Removed to prevent extra height */
           display: flex;
           flex-direction: column;
-          margin-bottom: 1.5rem; /* Match spacing */
-          min-height: 380px; /* Consistent height with other visuals */
+          margin-bottom: 1.5rem;
+          /* min-height: 380px; /* REMOVED to allow shrinking */
+          /* Adjusted height: Let content dictate, but ensure flex works */
+          /* Consider adding max-height if needed */
       }
 
-      /* Apply base slackbot styles only within the Autonomy card */
+      /* Autonomy Specific Overrides / Additions */
       .attribute-card[data-attribute="autonomy"] .slackbot-visual {
-          font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-          background-color: var(--slack-dark-bg, #1d1c1d); /* Added fallback */
-          border: 1px solid var(--slack-border, #4a4a4a);
-          border-radius: 8px;
-          padding: 18px 20px;
-          color: var(--slack-light-text, #d1d2d3);
-          font-size: 15px;
-          line-height: 1.45;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
+          /* Inherits most styles from general .slackbot-visual */
           box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-          flex-grow: 1; /* Fill available space */
-          box-sizing: border-box;
+          /* min-height: 270px; /* REMOVED - Let content determine height */ 
+          /* flex-grow: 1; Removed to prevent extra height */
+          display: flex; /* Ensure flex works for internal elements */
+          flex-direction: column; /* Stack header/attachment */
       }
 
-      /* Header */
-      .attribute-card[data-attribute="autonomy"] .slackbot-header {
-          display: flex;
-          align-items: center;
-          margin-bottom: 12px;
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-app-icon {
-          width: 24px;
-          height: 24px;
-          background-color: var(--blue);
-          border-radius: 5px;
-          margin-right: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--white);
-          font-size: 10px;
-          font-weight: 700;
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-app-icon::before {
-          content: "CFO"; /* Placeholder */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-app-name {
-          font-weight: 700;
-          color: var(--white);
-          margin-right: 5px;
-          font-size: 16px;
-      }
+      /* Header uses default styles */
       .attribute-card[data-attribute="autonomy"] .slackbot-app-label {
-          background-color: #2e2e2e;
-          color: #b4b4b4;
-          font-size: 10px;
-          padding: 2px 5px;
-          border-radius: 3px;
-          margin-right: 8px;
-          text-transform: uppercase;
-          font-weight: 600;
+           font-weight: 600; /* Slightly bolder label */
       }
       .attribute-card[data-attribute="autonomy"] .slackbot-time {
-          font-size: 12px;
-          color: #a8a8a8;
-          margin-left: auto;
+          font-size: 12px; /* Match Accountability */
+          color: #a8a8a8; /* Match Accountability */
+          /* margin-left: auto; /* Removed to place time next to APP label */
+          margin-left: 8px; /* Add some space after the APP label */
       }
 
       /* Attachment */
       .attribute-card[data-attribute="autonomy"] .slackbot-attachment {
-          border-left: 4px solid var(--warning-border-color, #daa520); /* Added fallback */
-          padding-left: 15px;
-          margin-top: 8px;
+          border-left-color: var(--warning-border-color, #daa520); /* Use warning color */
+          /* Inherits padding/margin from base */
           flex-grow: 1; /* Allow attachment to fill space */
-          display: flex;
-          flex-direction: column;
+          display: flex; /* Enable flex for child elements */
+          flex-direction: column; /* Stack elements vertically */
       }
-      .attribute-card[data-attribute="autonomy"] .slackbot-title {
-          font-weight: 700;
-          color: var(--white);
-          font-size: 17px;
-          margin-bottom: 4px;
-          display: flex;
-          align-items: center;
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-title .warning-icon {
-          margin-right: 6px;
-          font-size: 1em;
-          line-height: 1;
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-recipient {
-          font-size: 13px;
-          color: #a8a8a8;
-          margin-bottom: 16px;
-      }
+      /* ... other attachment styles ... */
       .attribute-card[data-attribute="autonomy"] .slackbot-message-content {
-          margin-bottom: 20px;
+          margin-bottom: 15px; /* Adjusted margin */
       }
-      .attribute-card[data-attribute="autonomy"] .slackbot-message-content p {
-          margin: 0 0 10px 0;
-          color: var(--slack-light-text, #d1d2d3);
+      
+      /* Added rule for QTD paragraph size */
+       .attribute-card[data-attribute="autonomy"] .slackbot-message-content p {
+          font-size: 18px; /* Increased by 20% from 15px */
+          margin-top: 10px; /* Added top margin */
       }
+      
+
+      
+      /* Added rule for highlight styling */
       .attribute-card[data-attribute="autonomy"] .highlight-warning {
-         color: var(--warning-color, #facc15); /* Added fallback */
-         font-weight: 600;
+          color: #facc15; /* Match warning color variable */
+          font-weight: 600; /* Make bold */
       }
 
-      /* Resources Section */
+      /* Resources Section Styling (Match slack.html) */
       .attribute-card[data-attribute="autonomy"] .slackbot-resources {
           margin-top: 18px;
-          padding: 18px 15px;
-          border-top: 1px solid transparent;
+          padding: 18px 15px; /* Match slack.html */
+          border-top: 1px solid transparent; /* For animation */
           position: relative;
-          background-color: var(--resource-bg, rgba(74, 74, 74, 0.2)); /* Added fallback */
+          background-color: var(--resource-bg, rgba(74, 74, 74, 0.2));
           border-radius: 4px;
           overflow: hidden;
+          /* Removed animation from base style */
       }
       .attribute-card[data-attribute="autonomy"] .slackbot-resources::before {
           content: '';
@@ -1008,50 +961,44 @@
           top: 0;
           left: 0;
           height: 1px;
-          width: 0;
+          width: 0; /* Start at 0 width */
           background-color: rgba(74, 74, 74, 0.5);
-          animation: drawLineAcross 0.8s ease-out forwards;
-          animation-delay: 0.6s; /* Match original */
+          /* animation applied via class */
       }
       .attribute-card[data-attribute="autonomy"] .slackbot-resources-title {
-          font-size: 12px;
-          font-weight: 700;
-          color: #a8a8a8;
-          margin-bottom: 10px;
-          text-transform: uppercase;
-          letter-spacing: 0.8px;
-          padding-left: 0;
+          font-size: 12px; /* Match slack.html */
+          font-weight: 700; /* Match slack.html */
+          color: #a8a8a8; /* Match slack.html */
+          margin-bottom: 10px; /* Match slack.html */
+          text-transform: uppercase; /* Match slack.html */
+          letter-spacing: 0.8px; /* Match slack.html */
+          padding-left: 0; /* Match slack.html */
           opacity: 0;
-          animation: fadeIn 0.8s ease-out forwards;
-          animation-delay: 1.4s; /* Match original */
+          /* animation applied via class */
       }
       .attribute-card[data-attribute="autonomy"] .slackbot-resources p {
-           margin: 0 0 8px 0;
+           margin: 0 0 8px 0; /* Match slack.html */
            display: flex;
            align-items: center;
-           font-size: 15px;
+           font-size: 15px; /* Match slack.html */
            color: var(--slack-light-text, #d1d2d3);
            opacity: 0;
-           animation: fadeInResource 0.8s ease-out forwards;
+           /* animation applied via class */
       }
-      /* Stagger delays */
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p:nth-of-type(1) { animation-delay: 1.7s; }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p:nth-of-type(2) { animation-delay: 2.0s; }
-
-      /* Resource Icons */
+      /* Resource Icons (Ensure these are correct) */
       .attribute-card[data-attribute="autonomy"] .slackbot-resources p::before {
-          content: '';
+          content: '' ; /* Reset content */
           display: inline-block;
-          width: 1.2em;
-          height: 1em;
+          width: 1.2em; /* Width for icon */
+          height: 1em; /* Match line height */
           margin-right: 8px;
           background-repeat: no-repeat;
           background-position: center center;
           background-size: contain;
-          vertical-align: middle;
+          vertical-align: middle; /* Align icon vertically */
           opacity: 0.8;
           position: relative;
-          top: -0.05em;
+          top: -0.05em; /* Fine-tune vertical alignment */
       }
       .attribute-card[data-attribute="autonomy"] .slackbot-resources p.headcount::before { content: '🧑‍💼'; }
       .attribute-card[data-attribute="autonomy"] .slackbot-resources p.budget::before { content: '💰'; }
@@ -1059,58 +1006,67 @@
       .attribute-card[data-attribute="autonomy"] .resource-highlight {
           color: var(--white);
           font-weight: 700;
-          display: inline-block; /* Keeps it from breaking line */
-          margin-left: 0.5em; /* Add space before highlight */
+          display: inline-block;
+          margin-left: 0.5em; /* Match slack.html */
       }
 
-      /* Button */
+      /* Button inherits styles, animation applied via class */
       .attribute-card[data-attribute="autonomy"] .slackbot-button {
+          /* Styles inherited or set in base */
+          /* Added styles from slack.html */
           display: inline-block;
-          background-color: var(--slack-green-button, #007a5a); /* Added fallback */
-          color: var(--white);
+          background-color: var(--slack-green-button, #007a5a);
+          color: var(--white, #ffffff);
           padding: 8px 15px;
           border-radius: 5px;
           font-size: 14px;
           font-weight: 600;
           text-decoration: none;
-          margin-top: auto; /* Push button to bottom */
           border: none;
           cursor: pointer;
           transition: background-color 0.2s ease;
-          opacity: 0;
-          animation: fadeIn 0.8s ease-out forwards;
-          animation-delay: 2.3s; /* Match original */
-          align-self: flex-start; /* Align button left */
+          margin-top: 20px;
+          /* opacity: 0; */ /* Changed to 1 for static visibility */
+          opacity: 1;
+          margin-bottom: 0;
+          align-self: flex-start;
+          /* animation: fadeIn 0.8s ease-out forwards 1.9s !important; */ /* REMOVED Animation */
       }
+
       .attribute-card[data-attribute="autonomy"] .slackbot-button:hover {
-          background-color: #148567;
+           background-color: #148567; /* Darker green on hover */
       }
 
-      /* Add specific variables needed for this component if not already global */
-      .attribute-card[data-attribute="autonomy"] {
-          --slack-dark-bg: #1d1c1d;
-          --slack-light-text: #d1d2d3;
-          --slack-border: #4a4a4a;
-          --warning-color: #facc15;
-          --warning-border-color: #daa520;
-          --resource-bg: rgba(74, 74, 74, 0.2);
-          --slack-green-button: #007a5a;
+      /* --- Animation Triggers (Remain the same) --- */
+      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation::before {
+          animation: drawLineAcross 0.8s ease-out forwards 0.5s; /* Start sooner */
       }
+      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation .slackbot-resources-title {
+          animation: fadeIn 0.8s ease-out forwards 0.7s; /* 0.2s after line */
+      }
+      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p {
+          animation: fadeInResource 0.8s ease-out forwards;
+          /* Removed opacity: 1 failsafe */ /* <-- Remove this line */
+      }
+      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(1) { animation-delay: 1.1s; } /* 0.4s after title */
+      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(2) { animation-delay: 1.5s; } /* 0.4s after headcount */
+      /* Removed :has() selector for button animation */
+      /* --- End animation triggers --- */
 
-      /* Keyframes (assuming fadeIn is already defined globally, add others if needed) */
-      /* Ensure these don't conflict - perhaps prefix them if necessary */
-      @keyframes drawLineAcross {
-          to { width: 100%; }
-      }
-      @keyframes fadeInResource {
+      /* Variables (Remain the same) */
+      /* Keyframes (Remain the same) */
+      /* --- Added missing keyframes --- */
+       @keyframes fadeInResource {
            from { opacity: 0; transform: translateY(5px); }
            to { opacity: 1; transform: translateY(0); }
-      }
-      /* Add animation trigger class */
-      .attribute-card[data-attribute="autonomy"].start-animation .slackbot-visual-container {
-          opacity: 1; /* Override initial opacity */
-          /* Add any other specific start triggers here if needed */
-      }
+       }
+      /* Container animation trigger (Remains the same) */
+
+      /* Trigger button fade-in after budget line */
+      /* REMOVED Rule below that triggers button animation */
+      /* .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation + .slackbot-button {
+          animation: fadeIn 0.8s ease-out forwards 1.9s;
+      } */
 
   </style>
 </head>
@@ -1132,6 +1088,7 @@
   </div>
   <!-- New Hero Section based on example header.html -->
   <section class="section hero-section-interactive" style="padding-top: 2vh; padding-bottom: 2vh;">
+    <canvas id="plexus-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas> <!-- Added Canvas for Plexus Effect -->
     <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1;">
       <h1 class="hero-headline fade-in" style="font-family: 'Gilda Display', serif; font-size: clamp(2.7rem, 5.4vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--white, #fff); margin-bottom: 2rem;">
         Most finance functions create an <span class="operational-tax">operational tax</span>
@@ -1206,11 +1163,11 @@
                   <div class="slackbot-app-icon"></div> <!-- Placeholder Icon -->
                   <span class="slackbot-app-name">CFO Advisors</span>
                   <span class="slackbot-app-label">APP</span>
-                  <span class="slackbot-time" id="slackbot-current-time">6:00 AM EST</span>
+                  <span class="slackbot-time" id="slackbot-current-time">6:00 AM</span>
                 </div>
                 <div class="slackbot-attachment">
                   <div class="slackbot-title">📊 Live Pied Piper AI Departmental Budget</div>
-                  <div class="slackbot-timestamp">Data as of 2025-04-14 01:02:58 EST</div>
+                  <div class="slackbot-timestamp">Data as of 2025-04-14 01:02:58</div>
                   <button class="slackbot-button">View Full Dashboard</button>
                   <div>Departmental Budget Summary (42 KB) ▼</div>
                   <div class="slackbot-chart-area">
@@ -1244,33 +1201,36 @@ Date        Amount   Vendor                     Department              Account
              </p>
           </div>
           <div class="attribute-card" data-attribute="autonomy">
-             <!-- Inserted Slack Message Visual -->
+             <!-- Content replaced with slack.html body -->
              <div class="slackbot-visual-container">
                  <div class="slackbot-visual">
                      <div class="slackbot-header">
                          <div class="slackbot-app-icon"></div> <!-- Placeholder Icon -->
                          <span class="slackbot-app-name">CFO Advisors</span>
                          <span class="slackbot-app-label">APP</span>
-                         <span class="slackbot-time" id="slackbot-autonomy-time">9:15 AM EST</span> <!-- Unique ID -->
+                         <span class="slackbot-time" id="slackbot-current-time">9:15 AM</span>
                      </div>
                      <div class="slackbot-attachment">
                          <div class="slackbot-title"><span class="warning-icon">⚠️</span> Marketing Pipeline Alert</div>
                          <div class="slackbot-recipient">To: Head of Marketing</div>
                          <div class="slackbot-message-content">
-                             <p><strong>QTD Pipeline Update:</strong> Pacing <span class="highlight-warning">$250K Behind</span> <span class="highlight-warning">Target</span></p>
-                         </div>
+                             <!-- Updated Text Boldness -->
+                             <p>QTD Pipeline Update: Pacing <strong><span class="highlight-warning">$250K Behind Target</span></strong></p>
+                          </div>
                          <div class="slackbot-resources">
                              <div class="slackbot-resources-title">Available Resources</div>
-                             <p class="headcount">Headcount: <span class="resource-highlight">2 Open Roles</span></p>
-                             <p class="budget">Budget: <span class="resource-highlight">$120K Remaining in the Quarter</span></p>
+                             <!-- Updated icons and spacing -->
+                             <p class="headcount">Headcount: <span class="resource-highlight">  2 Open Roles</span></p>
+                             <p class="budget">Budget: <span class="resource-highlight">  $120K Remaining in the Quarter</span></p>
                          </div>
                          <a href="#" class="slackbot-button">Review Resourcing Dashboard</a>
                      </div>
                  </div>
              </div>
-             <!-- End Inserted Slack Message Visual -->
+             <!-- Re-added Title and Description -->
              <h4 class="attribute-card-title">Empowered Leaders</h4>
              <p class="attribute-card-description">Equip leaders with clear goals, necessary resources, and the authority to proactively address gaps and drive results.</p>
+             <!-- Removed redundant script from slack.html -->
           </div>
           <div class="attribute-card" data-attribute="velocity">
              <div class="attribute-card-chart-placeholder">Chart: Velocity</div>
@@ -1608,7 +1568,7 @@ Date        Amount   Vendor                     Department              Account
         if (element) {
             const now = new Date();
             const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
-            const formattedTime = now.toLocaleTimeString('en-US', timeOptions).replace(" EDT", " EST");
+            const formattedTime = now.toLocaleTimeString('en-US', options).replace(" EDT", " EST");
             element.textContent = formattedTime;
         }
       }
@@ -1632,7 +1592,7 @@ Date        Amount   Vendor                     Department              Account
         const hours = estNow.getHours().toString().padStart(2, '0');
         const minutes = estNow.getMinutes().toString().padStart(2, '0');
         const seconds = estNow.getSeconds().toString().padStart(2, '0');
-        const formattedTimestamp = `Data as of ${year}-${month}-${day} ${hours}:${minutes}:${seconds} EST`;
+        const formattedTimestamp = `Data as of ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         timestampElement.textContent = formattedTimestamp;
       }
@@ -1736,41 +1696,43 @@ Date        Amount   Vendor                     Department              Account
                 slideShowIntervalId = null;
             }
 
-            // --- Reset Specific Animations ---
-            // Deactivate all items and cards
-            console.log('Deactivating all items and resetting alignment slides');
+            // --- Reset Specific Animations --- //
+            console.log('Deactivating all items and resetting animations');
             attributeItems.forEach(item => item.classList.remove('active'));
             attributeCards.forEach(card => card.classList.remove('active'));
-            
+
             // Reset Transparency line animation
             if (actualLine) {
                 actualLine.classList.remove('start-line-animation');
             }
- 
+
             // Reset Accountability slackbot animation
             const accountabilityCard = document.querySelector('.attribute-card[data-attribute="accountability"]');
             if (accountabilityCard) {
-                const slackbotVisual = accountabilityCard.querySelector('.slackbot-visual');
-                if (slackbotVisual) slackbotVisual.classList.remove('start-animation');
+                const slackbotVisualAcc = accountabilityCard.querySelector('.slackbot-visual');
+                if (slackbotVisualAcc) slackbotVisualAcc.classList.remove('start-animation');
             }
- 
-            // Reset Autonomy slackbot animation
-            const autonomyCard = document.querySelector('.attribute-card[data-attribute="autonomy"]');
-            if (autonomyCard) {
-                autonomyCard.classList.remove('start-animation'); // Remove class from card itself
-            }
-             // --- End Reset Specific Animations ---
 
-            // Reset Alignment slides to default state (Slide 1) before activating the new section
+            // --- Reset Autonomy Resource Animations --- //
+            const autonomyCardReset = document.querySelector('.attribute-card[data-attribute="autonomy"]');
+            const resourcesElementReset = autonomyCardReset?.querySelector('.slackbot-resources');
+            // No need to reset button class here if targetting based on resource class
+            if (resourcesElementReset) {
+                resourcesElementReset.classList.remove('start-resources-animation');
+                console.log('Reset Autonomy resource animations.');
+            }
+            // --- End Reset Autonomy Resource Animations --- //
+
+
+            // Reset Alignment slides to default state (Slide 1)
             if (slideElements.length > 0) {
                 slideElements.forEach((slide, index) => {
                     slide.classList.remove('active', 'previous');
                     if (index === 0) {
-                        slide.classList.add('active'); // Ensure slide 1 is visually active by default
+                        slide.classList.add('active');
                     }
                 });
-                 // Reset index here too for consistency when leaving alignment
-                 currentSlideIndex = 0; 
+                 currentSlideIndex = 0;
             }
 
             // Activate selected
@@ -1781,7 +1743,7 @@ Date        Amount   Vendor                     Department              Account
                 selectedItem.classList.add('active');
                 selectedCard.classList.add('active');
 
-                // --- Trigger Specific Animations ---
+                // --- Trigger Specific Animations --- //
                 if (attribute === 'transparency' && actualLine) {
                     actualLine.classList.remove('start-line-animation');
                     void actualLine.offsetWidth; // Trigger reflow
@@ -1794,26 +1756,29 @@ Date        Amount   Vendor                     Department              Account
                         slackbotVisual.classList.add('start-animation');
                     }
                 } else if (attribute === 'autonomy') {
-                    // Trigger Autonomy Slack message animation by adding class to the card
-                    selectedCard.classList.remove('start-animation');
-                    void selectedCard.offsetWidth; // Trigger reflow
-                    selectedCard.classList.add('start-animation');
+                    // --- Trigger Autonomy Resource Animations --- //
+                    const resourcesElement = selectedCard.querySelector('.slackbot-resources');
+                    if (resourcesElement) {
+                        // ClassList remove is already done above during reset
+                        void resourcesElement.offsetWidth; // Trigger reflow
+                        resourcesElement.classList.add('start-resources-animation');
+                        console.log('Added start-resources-animation to resources element');
+                    }
+                    // --- End Trigger Autonomy Resource Animations --- //
+
                     // Update time for this specific slackbot
-                    const autonomyTimeElement = document.getElementById('slackbot-autonomy-time');
+                    const autonomyTimeElement = document.getElementById('slackbot-current-time'); // Corrected ID
                     setTime(autonomyTimeElement); // Call the global setTime function
                 } else if (attribute === 'alignment' && slideElements.length > 0) {
-                    // --- Start/Reset Alignment Slideshow ---
-                    currentSlideIndex = 0; // Reset to first slide
-                    // Slide 1 is already active due to the reset logic above
-                    setContainerHeight(); // Ensure height is set for the first slide
-
-                    // Calculate interval and start slideshow
+                    // --- Start/Reset Alignment Slideshow --- //
+                    currentSlideIndex = 0;
+                    setContainerHeight();
                     const singleSlideDuration = totalRotationTime / slideElements.length;
                     slideShowIntervalId = setInterval(showNextSlide, singleSlideDuration);
                     console.log('Started new slide interval:', slideShowIntervalId, 'Duration:', singleSlideDuration);
-                    // --- End Alignment Slideshow --- 
+                    // --- End Alignment Slideshow --- //
                 }
-                 // --- End Trigger Specific Animations ---
+                 // --- End Trigger Specific Animations --- //
             }
         }
 
@@ -1863,7 +1828,7 @@ Date        Amount   Vendor                     Department              Account
             if (element) {
                 const now = new Date();
                 const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
-                const formattedTime = now.toLocaleTimeString('en-US', timeOptions).replace(' EDT', ' EST');
+                const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
                 element.textContent = formattedTime;
             }
         }
@@ -1872,7 +1837,7 @@ Date        Amount   Vendor                     Department              Account
         // activateAttribute(attributes[currentIndex]); 
 
         // Start auto-rotation
-        // startRotation(); // Commented out to disable auto-rotation
+        startRotation(); // Re-enabled auto-rotation
     });
   </script>
 
@@ -2333,6 +2298,104 @@ Date        Amount   Vendor                     Department              Account
         margin-bottom: 15px; /* Increased space below category */
     }
   </style>
+
+  <!-- Plexus Network Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('plexus-canvas');
+      if (!canvas) {
+        console.error('Plexus canvas not found!');
+        return;
+      }
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const particleCount = 150; // Increased density from 80
+      const maxDistance = 100; // Max distance to draw lines
+      const particleSpeed = 0.2; // Reduced speed for smoother movement
+      const flowBiasX = 0.1; // Added subtle horizontal flow
+      const particleColor = 'rgba(229, 231, 235, 0.6)'; // Light grey, semi-transparent
+      const lineColor = 'rgba(229, 231, 235, 0.1)'; // Very faint lines
+
+      function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        createParticles(); // Recreate particles on resize
+      }
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * particleSpeed + flowBiasX; // Added flow bias
+          this.vy = (Math.random() - 0.5) * particleSpeed;
+          this.radius = Math.random() * 1.5 + 0.5; // Particle size
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Boundary check (wrap around)
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = particleColor;
+          ctx.fill();
+        }
+      }
+
+      function createParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < maxDistance) {
+              const opacity = 1 - (distance / maxDistance);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(229, 231, 235, ${opacity * 0.1})`; // Fainter lines based on distance
+              ctx.lineWidth = 0.5; // Thin lines
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+
+        connectParticles();
+
+        requestAnimationFrame(animate);
+      }
+
+      // Initialization
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas(); // Initial setup
+      animate();
+    });
+  </script>
 
 </body>
 </html>
