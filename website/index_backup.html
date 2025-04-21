@@ -280,17 +280,16 @@
 
     /* Example: Subtle moving vertical lines */
     .hero-section-interactive::before {
-        /* Replaced animated gradient with solid color */
-        /* background: linear-gradient(...) */
-        background-color: #141c25; /* Set solid dark blue */
-        /* background-size: 400% 400%; */ /* Removed size */
-        /* animation: gradientShift 15s ease infinite; */ /* Removed animation */
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.01) 1px, transparent 1px,
+            transparent 20px /* Adjust spacing */
+        );
+        background-size: 21px 100%;
+        animation: moveLines 30s linear infinite;
     }
     /* Example: Fading particles/dots (optional second layer) */
     /* .hero-section-interactive::after { ... Add another animation if desired ... } */
-
-    /* Keyframe for gradient animation (No longer used) */
-    /* @keyframes gradientShift { ... } */
 
     /* Define accent color variable (can be added to :root if used elsewhere) */
     :root { --accent-highlight: #67e8f9; }
@@ -299,45 +298,26 @@
         position: relative;
         font-weight: inherit;
         /* Use new accent color */
-        /* color: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
+        color: var(--accent-highlight, #67e8f9);
     }
     /* Removed duplicate color definitions */
-    .operational-tax {
-        /* color: #ff8c42; */ /* Original orange - Updated below */
-        color: #D95F0E; /* Darker complementary orange */
-    }
-    .operational-excellence {
-        color: var(--accent-highlight, #67e8f9); /* Keep text color cyan */
-    }
+    /* .operational-tax { color: var(--blue, #22293e); } */
+    /* .operational-excellence { color: var(--blue, #22293e); } */
 
-    /* Removed Underline/Animation Rules Below */
-    /* .operational-tax::after, .operational-excellence::after {
+    .operational-tax::after, .operational-excellence::after {
         content: '';
         position: absolute;
         left: 0;
-        /* bottom: -0.4rem; */ /* Old underline position */
-    /*    width: 0;
+        bottom: -0.4rem;
+        width: 0;
         height: 2px;
         /* Use new accent color for underline */
-    /*    /* background: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
-    /* } */
-    /* .operational-tax::after {
-        /* bottom: 0.7rem; */ /* Position for strike-through - Reverted below */
-    /*    /* bottom: -0.4rem; */ /* Position for underline - Updated below */
-    /*    bottom: -2px; /* Adjusted bottom position */
-    /*    /* background: #9ca3af; */ /* Muted grey color - Changed below */
-    /*    background: #ff8c42; /* Complementary orange color */
-    /*    animation: drawLine 1s forwards 0.5s;
-    } */
-    /* .operational-excellence::after {
-        /* bottom: -0.4rem; */ /* Position for underline - Updated below */
-    /*    bottom: -2px; /* Adjusted bottom position */
-    /*    background: var(--accent-highlight, #67e8f9); /* Bright accent color */
-    /*    animation: drawLine 1s forwards 1.2s;
-    } */
+        background: var(--accent-highlight, #67e8f9);
+    }
+    .operational-tax::after { animation: drawLine 1s forwards 0.5s; }
+    .operational-excellence::after { animation: drawLine 1s forwards 1.2s; }
 
-    /* @keyframes drawLine { to { width: 100%; } } */ /* REMOVED */
-
+    @keyframes drawLine { to { width: 100%; } }
     @keyframes moveLines { /* Added animation for vertical lines */
         from { background-position: 0 0; }
         to { background-position: 0 -1000px; } /* Adjust distance for speed */
@@ -348,13 +328,10 @@
     .attributes-column::before {
         content: '';
         position: absolute;
-        left: -0.025rem;
-        /* top: 0; */
-        top: 2.5rem; /* Moved further down */
-        /* height: 100%; */
-        height: 56%; /* Reduced height by another 20% */
-        /* width: 3px; */
-        width: 2px; /* Reduced width */
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
         background: linear-gradient(to bottom, var(--blue, #22293e), var(--dark-blue, #141c25));
         border-radius: 1.5px;
     }
@@ -428,8 +405,7 @@
         left: 0;
         width: 100%;
         height: 100%; /* Reinstated height */
-        /* background: rgba(31, 41, 55, 0.3); */ /* Darker translucent background - Updated alpha below */
-        background: rgba(31, 41, 55, 0.2); /* Made background more transparent */
+        background: rgba(31, 41, 55, 0.3); /* Darker translucent background */
         border-radius: 0.5rem;
         border: 1px solid rgba(255, 255, 255, 0.05);
         padding: 1.5rem 2.5rem; /* Reduced vertical padding */
@@ -767,26 +743,9 @@
 
     /* Added style for larger CTA button */
     #openContactModalBtn.submit-button.w-button {
-        padding: 21px 42px; /* Increased padding by ~30% */
-        font-size: 23px; /* Increased font size by ~30% */
-        min-height: 73px; /* Increased min height by ~30% */
-        /* Added new color styles */
-        background-color: #F8F7F5; /* Light beige background */
-        color: #1f2937; /* Dark blue/grey text */
-        /* border: 1px solid #1f2937; */ /* Dark blue/grey border - Updated below */
-        border: 2px solid #1f2937; /* Increased border width */
-        border-radius: 50px; /* Added large border-radius for rounded shape */
-        margin-top: 2.4rem; /* Increased margin to move button down */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Added subtle shadow */
-        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Added transform to transition */
-    }
-
-    /* Added hover state for the button */
-    #openContactModalBtn.submit-button.w-button:hover {
-        background-color: #F0EDE9; /* Slightly darker beige on hover */
-        color: #1f2937; /* Keep text color */
-        border-color: #1f2937; /* Keep border color */
-        transform: scale(1.03); /* Added scale effect on hover */
+        padding: 16px 32px; /* Increased padding */
+        font-size: 18px; /* Increased font size */
+        min-height: 56px; /* Increased min height */
     }
   </style>
   <!-- Added Animated ARR Chart Styles -->
@@ -1052,11 +1011,10 @@
           cursor: pointer;
           transition: background-color 0.2s ease;
           margin-top: 20px;
-          /* opacity: 0; */ /* Changed to 1 for static visibility */
-          opacity: 1;
+          opacity: 0;
           margin-bottom: 0;
           align-self: flex-start;
-          /* animation: fadeIn 0.8s ease-out forwards 1.9s !important; */ /* REMOVED Animation */
+          animation: fadeIn 0.8s ease-out forwards 1.9s !important;
       }
 
       .attribute-card[data-attribute="autonomy"] .slackbot-button:hover {
@@ -1088,12 +1046,6 @@
        }
       /* Container animation trigger (Remains the same) */
 
-      /* Trigger button fade-in after budget line */
-      /* REMOVED Rule below that triggers button animation */
-      /* .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation + .slackbot-button {
-          animation: fadeIn 0.8s ease-out forwards 1.9s;
-      } */
-
   </style>
 </head>
 <body class="body">
@@ -1113,11 +1065,10 @@
     </div>
   </div>
   <!-- New Hero Section based on example header.html -->
-  <section class="section hero-section-interactive" style="margin-bottom: 0; padding: 0;">
-    <canvas id="plexus-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas> <!-- Added Canvas for Plexus Effect -->
+  <section class="section hero-section-interactive" style="padding-top: 2vh; padding-bottom: 2vh;">
     <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1;">
       <h1 class="hero-headline fade-in" style="font-family: 'Gilda Display', serif; font-size: clamp(2.7rem, 5.4vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--white, #fff); margin-bottom: 2rem;">
-        Most finance functions create <span class="operational-tax">operational tax</span>
+        Most finance functions create an <span class="operational-tax">operational tax</span>
       </h1>
 
       <h2 class="hero-subheadline fade-in-delay-1" style="font-family: 'Gilda Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; color: var(--light-outline, #e5e7eb); margin-bottom: 4.5rem;">
@@ -1148,12 +1099,8 @@
               <h3 class="attribute-title">Velocity</h3>
               <p class="attribute-description">How quickly are good decisions surfaced, made, and implemented?</p>
             </div>
-            <!-- Moved Button Here -->
-            <!-- <button type="button" id="openContactModalBtn" class="submit-button w-button fade-in-delay-2" style="margin-top: 2rem;">Connect with CFO Advisors →</button> -->
-          </div> <!-- End attributes-list -->
-          <!-- Moved Button Here: Outside list, inside column -->
-          <!-- <button type="button" id="openContactModalBtn" class="submit-button w-button" style="margin-top: 5rem;">Connect with CFO Advisors →</button> --> <!-- Removed fade-in class -->
-        </div> <!-- End attributes-column -->
+          </div>
+        </div>
 
         <div class="visualization-column" style="position: relative;">
           <!-- Visualization Cards -->
@@ -1270,21 +1217,21 @@ Date        Amount   Vendor                     Department              Account
         </div>
       </div>
 
-      <!-- Moved Button Here: Outside main-content, inside hero container -->
-      <div style="text-align: center;"> <!-- Added centering div -->
-        <button type="button" id="openContactModalBtn" class="submit-button w-button" style="margin-top: 2.4rem;">Connect with CFO Advisors →</button> <!-- Reduced margin-top -->
+      <div style="text-align: center;">
+         <!-- Reusing existing button style and adding ID for modal -->
+        <button type="button" id="openContactModalBtn" class="submit-button w-button fade-in-delay-2">Connect with CFO Advisors</button>
       </div>
     </div>
   </section>
   <!-- End New Hero Section -->
 
-  <section class="section header-section" style="margin-bottom: 0; padding-top: 30px;"> <!-- Increased padding-top -->
+  <section class="section header-section" style="margin-bottom: 0; padding-top: 15px;">
     <div data-w-id="6da26c89-e38f-0451-4bac-3c07e9039af2" style="opacity:0" class="w-layout-blockcontainer w-container">
       <h2 class="heading">Company Overview</h2>
       <p class="paragraph">CFO Advisors is redefining how venture-backed startups operate by building best-in-class operational frameworks that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. <br><br>Our clients trust CFO Advisors to help them create a sustainable competitive advantage by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's category defining leaders.</p>
     </div>
     <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:0" class="w-layout-blockcontainer container-7 w-container">
-      <!-- <div class="line"></div> --> <!-- REMOVED Divider Line -->
+      <div class="line"></div>
       <div class="w-row">
         <div class="column w-col w-col-6">
           <p class="paragraph">We work with founders backed by the best </p>
@@ -1867,7 +1814,7 @@ Date        Amount   Vendor                     Department              Account
         // activateAttribute(attributes[currentIndex]); 
 
         // Start auto-rotation
-        startRotation(); // Re-enabled auto-rotation
+        // startRotation(); // Commented out to disable auto-rotation
     });
   </script>
 
@@ -2223,5 +2170,111 @@ Date        Amount   Vendor                     Department              Account
 
   });
   </script>
+  <!-- Styles for individual testimonial cards (kept from original embed) -->
+  <style>
+    /* Custom styling for the cards themselves */
+    .carousel-parent-container {
+      /* max-width: none !important; /* Removed override */
+      width: 100%; /* Ensure it spans width */
+      padding: 0 120px; /* Increased horizontal padding for wider margins */
+      box-sizing: border-box; /* Include padding in width */
+    }
+    /* Removed .carousel-container rule as width is now controlled by parent */
+    
+    .testimonial-card {
+        background-color: white;
+        border-radius: 28px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        padding: 36px 40px; /* Increased horizontal padding for thinner content */
+        height: auto; /* Let Swiper handle height */
+        min-height: 220px; /* Increased min-height by 10% */
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-bottom: 40px; /* Add space below cards for pagination */
+    }
+    .quote-mark {
+        font-size: 56px; /* Slightly smaller quote mark */
+        line-height: 1;
+        color: #111827;
+        font-family: 'Georgia', serif;
+        margin-bottom: 2px; /* Very close to text */
+        margin-top: 0; /* Ensure no top margin */
+        display: block;
+        height: 40px;
+    }
+    .testimonial-text {
+        font-size: 1.125rem;
+        line-height: 1.65;
+        color: #4A5568;
+        flex-grow: 1;
+        margin-bottom: 32px;
+    }
+    .person-container {
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid #F0F4F8;
+        margin-bottom: 10px;
+    }
+    .initials {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 16px;
+        color: #4A5568;
+        background-color: #EDF2F7;
+        margin-right: 16px;
+    }
+    .person-name {
+        font-weight: 600;
+        color: #2D3748;
+        font-size: 1rem;
+    }
+    .person-title {
+        color: #718096;
+        font-size: 0.875rem;
+    }
+    /* Style pagination dots */
+    .testimonial-pagination {
+        position: relative; /* Position below the swiper */
+        bottom: 10px; /* Adjust as needed */
+        margin-top: 20px; /* Space above dots */
+    }
+    .swiper-pagination-bullet {
+        background-color: #ccc; /* Inactive dot color */
+        opacity: 0.7;
+    }
+    .swiper-pagination-bullet-active {
+        background-color: var(--blue, #22293e); /* Active dot color - use site variable */
+        opacity: 1;
+    }
+    /* Ensure swiper slides have appropriate styling */
+    .swiper-slide {
+      height: auto; /* Allow slides to determine height based on content */
+      display: flex; /* Helps with vertical alignment if needed */
+      align-items: stretch; /* Make slides stretch to same height if desired */
+    }
+    .testimonial-swiper {
+        padding-bottom: 50px; /* Ensure space for pagination dots */
+    }
+    /* Added styles for category header */
+    .testimonial-category {
+        font-family: Inter, sans-serif;
+        font-size: 16px; /* Adjusted size */
+        font-weight: 700; /* Bolder */
+        color: #adb5bd; /* Lighter grey color */
+        text-transform: uppercase; /* Uppercase for distinction */
+        letter-spacing: 1px; /* More spacing */
+        margin-top: 0; /* Remove default h4 margin */
+        margin-bottom: 15px; /* Increased space below category */
+    }
+  </style>
+
 </body>
 </html>
