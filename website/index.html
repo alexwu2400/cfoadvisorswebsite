@@ -777,6 +777,7 @@
         border: 2px solid #1f2937; /* Increased border width */
         border-radius: 50px; /* Added large border-radius for rounded shape */
         margin-top: 2.4rem; /* Increased margin to move button down */
+        margin-bottom: 2.4rem; /* ADDED margin-bottom */
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Added subtle shadow */
         transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Added transform to transition */
     }
@@ -1095,6 +1096,115 @@
       } */
 
   </style>
+  <!-- Styles for individual testimonial cards (kept from original embed) -->
+  <style>
+    /* Custom styling for the cards themselves */
+    .carousel-parent-container {
+      /* max-width: none !important; /* Removed override */
+      /* width: 100%; /* Ensure it spans width */ /* REMOVED */
+      /* padding: 0 120px; /* Increased horizontal padding for wider margins */ /* REMOVED */
+      box-sizing: border-box; /* Include padding in width */
+      /* ADDED */
+      max-width: 1400px; /* Match hero section width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Removed .carousel-container rule as width is now controlled by parent */
+    
+    .testimonial-card {
+        background-color: white;
+        border-radius: 28px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        padding: 36px 40px; /* Increased horizontal padding for thinner content */
+        height: auto; /* Let Swiper handle height */
+        min-height: 220px; /* Increased min-height by 10% */
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-bottom: 40px; /* Add space below cards for pagination */
+    }
+    .quote-mark {
+        font-size: 56px; /* Slightly smaller quote mark */
+        line-height: 1;
+        color: #111827;
+        font-family: 'Georgia', serif;
+        margin-bottom: 2px; /* Very close to text */
+        margin-top: 0; /* Ensure no top margin */
+        display: block;
+        height: 40px;
+    }
+    .testimonial-text {
+        font-size: 1.125rem;
+        line-height: 1.65;
+        color: #4A5568;
+        flex-grow: 1;
+        margin-bottom: 32px;
+    }
+    .person-container {
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid #F0F4F8;
+        margin-bottom: 10px;
+    }
+    .initials {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 16px;
+        color: #4A5568;
+        background-color: #EDF2F7;
+        margin-right: 16px;
+    }
+    .person-name {
+        font-weight: 600;
+        color: #2D3748;
+        font-size: 1rem;
+    }
+    .person-title {
+        color: #718096;
+        font-size: 0.875rem;
+    }
+    /* Style pagination dots */
+    .testimonial-pagination {
+        position: relative; /* Position below the swiper */
+        bottom: 10px; /* Adjust as needed */
+        margin-top: 20px; /* Space above dots */
+    }
+    .swiper-pagination-bullet {
+        background-color: #ccc; /* Inactive dot color */
+        opacity: 0.7;
+    }
+    .swiper-pagination-bullet-active {
+        background-color: var(--blue, #22293e); /* Active dot color - use site variable */
+        opacity: 1;
+    }
+    /* Ensure swiper slides have appropriate styling */
+    .swiper-slide {
+      height: auto; /* Allow slides to determine height based on content */
+      display: flex; /* Helps with vertical alignment if needed */
+      align-items: stretch; /* Make slides stretch to same height if desired */
+    }
+    .testimonial-swiper {
+        padding-bottom: 50px; /* Ensure space for pagination dots */
+    }
+    /* Added styles for category header */
+    .testimonial-category {
+        font-family: Inter, sans-serif;
+        font-size: 16px; /* Adjusted size */
+        font-weight: 700; /* Bolder */
+        color: #adb5bd; /* Lighter grey color */
+        text-transform: uppercase; /* Uppercase for distinction */
+        letter-spacing: 1px; /* More spacing */
+        margin-top: 0; /* Remove default h4 margin */
+        margin-bottom: 15px; /* Increased space below category */
+    }
+  </style>
 </head>
 <body class="body">
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
@@ -1306,7 +1416,7 @@ Date        Amount   Vendor                     Department              Account
     </div>
   </section>
   <section class="section beige-section">
-    <div data-w-id="f6c13e9b-21e1-f132-7f1e-4887430e70b2" style="opacity:0" class="carousel-parent-container">
+    <div class="carousel-parent-container">
       <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
       <div class="swiper testimonial-swiper">
         <div class="swiper-wrapper">
