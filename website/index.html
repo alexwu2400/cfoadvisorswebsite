@@ -2,7 +2,7 @@
 <html data-wf-page="680500ee770c6262790205b7" data-wf-site="680500ee770c6262790205b6">
 <head>
   <meta charset="utf-8">
-  <title>Fractional CFO Services for AI &amp; Tech Startups | CFO Advisors</title>
+  <title>CFO Advisors | Operational Excellence</title>
   <meta content="CFO Advisors provides expert fractional CFO services, financial modeling, and fundraising support tailored for AI and technology startups. Elevate your financial strategy." name="description">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
@@ -429,7 +429,7 @@
         width: 100%;
         height: 100%; /* Reinstated height */
         /* background: rgba(31, 41, 55, 0.3); */ /* Darker translucent background - Updated alpha below */
-        background: rgba(31, 41, 55, 0.2); /* Made background more transparent */
+        background: rgba(31, 41, 55, 0.4); /* Made background less transparent (was 0.2) */
         border-radius: 0.5rem;
         border: 1px solid rgba(255, 255, 255, 0.05);
         padding: 1.5rem 2.5rem; /* Reduced vertical padding */
@@ -1205,6 +1205,236 @@
         margin-bottom: 15px; /* Increased space below category */
     }
   </style>
+
+    <!-- Added Stacked Advantage Widget Styles -->
+    <style>
+        #stacked-advantage-widget {
+            /* --- Configuration Variables --- */
+            --dark-background: #0d1117;
+            --text-blue: #67e8f9;
+            --arrow-gradient-start: #1F7A8C;
+            --arrow-gradient-end: #67e8f9;
+            --text-light: #e5e7eb;
+            --arrow-animation-duration: 1.5s;
+            --arrow-delay-compete: 0.5s; /* Start delay for first arrow */
+            --arrow-delay-innovate: 0.8s; /* Delay for second, relative to first */
+            --arrow-delay-hire: 0.8s; /* Delay for third, relative to second */
+            --initial-delay: 0.2s; /* Overall delay before first animation starts */
+            
+            /* --- Container Styles --- */
+            font-family: 'Inter', sans-serif;
+            /* background-color: var(--dark-background); */ /* Removed - inherits from card */
+            border-radius: 12px;
+            /* padding: 40px 50px; */ /* Removed - inherits from card */
+            padding: 0; /* Reset padding, rely on card padding */
+            width: 100%; /* Take full width of card */
+            /* max-width: 450px; */ /* Removed max-width */
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */ /* Removed shadow */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box; /* Include padding/border in element's total width and height */
+            margin-bottom: 1.5rem; /* Add space below widget */
+        }
+
+        #stacked-advantage-widget .advantage-visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 100%;
+            min-height: 280px; /* Adjusted height */
+            position: relative;
+            margin-top: 10px; /* Added top margin */
+        }
+
+        #stacked-advantage-widget .advantage-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+        }
+
+        #stacked-advantage-widget .advantage-step.compete {
+            left: calc(50% - 71.2px); /* Adjusted for 80px width */
+            z-index: 3;
+        }
+        #stacked-advantage-widget .advantage-step.innovate {
+            left: calc(50% - 40px); /* Adjusted for 80px width */
+            z-index: 2;
+         }
+        #stacked-advantage-widget .advantage-step.hire {
+            left: calc(50% - 8px); /* Adjusted for 80px width */
+            z-index: 1;
+        }
+
+        #stacked-advantage-widget .advantage-arrow {
+            width: 80px; /* Adjusted arrow width */
+            margin-bottom: 0px;
+            position: relative;
+            transform-origin: bottom center;
+            opacity: 0;
+            transition: bottom 1.5s ease-out;
+        }
+        
+        #stacked-advantage-widget .advantage-arrow svg {
+            display: block;
+        }
+        
+        @keyframes growFromBottom {
+            0% {
+                transform: scaleY(0.12); 
+                opacity: 1;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        /* Apply animations - Adjusted delays */
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-arrow {
+            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
+            fill: url(#stacked-advantage-competeGradient);
+        }
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-arrow {
+            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
+            fill: url(#stacked-advantage-innovateGradient);
+        }
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-arrow {
+            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
+            fill: url(#stacked-advantage-hireGradient);
+        }
+
+        #stacked-advantage-widget .advantage-label {
+            display: block;
+            color: white;
+            font-size: 14px; /* Adjusted font size */
+            font-weight: 500; /* Slightly lighter weight */
+            position: absolute;
+            z-index: 10;
+            white-space: nowrap;
+            opacity: 0;
+            transition: bottom 1.5s ease-out;
+        }
+
+        /* Adjusted Initial Label Positioning */
+        #stacked-advantage-widget .advantage-step.compete .advantage-label {
+            left: -55px; /* Adjusted */
+            bottom: 0px;
+        }
+        #stacked-advantage-widget .advantage-step.innovate .advantage-label {
+            left: -80px; /* Adjusted */
+            bottom: 0px;
+        }
+        #stacked-advantage-widget .advantage-step.hire .advantage-label {
+            left: -85px; /* Adjusted */
+            bottom: 0px;
+        }
+
+        /* Adjusted Label Animations */
+        @keyframes moveLabelCompete {
+            0% { opacity: 0; bottom: 0px; }
+            100% { opacity: 1; bottom: 40px; /* Adjusted final position */ }
+        }
+        @keyframes moveLabelInnovate {
+            0% { opacity: 0; bottom: 0px; }
+            100% { opacity: 1; bottom: 100px; /* Adjusted final position */ }
+        }
+        @keyframes moveLabelHire {
+            0% { opacity: 0; bottom: 0px; }
+            100% { opacity: 1; bottom: 180px; /* Adjusted final position */ }
+        }
+
+        /* Apply label animations - Adjusted delays */
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
+            animation: moveLabelCompete var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
+        }
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
+            animation: moveLabelInnovate var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
+        }
+        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
+            animation: moveLabelHire var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
+        }
+        
+        #stacked-advantage-widget .foundation-label {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            color: var(--text-blue);
+            font-weight: 500; /* Slightly lighter */
+            font-size: 15px; /* Adjusted size */
+            padding: 8px 0 0 0; /* Adjusted padding */
+            z-index: 4;
+        }
+
+        #stacked-advantage-widget .foundation-line {
+            position: relative;
+            height: 1px; /* Thinner line */
+            width: 85%; /* Slightly narrower line */
+            background-color: var(--text-blue);
+            z-index: 4;
+            margin-bottom: 5px; /* Adjusted margin */
+        }
+
+        /* Simplified Responsive Adjustments for integration */
+        @media (max-width: 480px) {
+            #stacked-advantage-widget .advantage-visual {
+                 min-height: 200px;
+            }
+            #stacked-advantage-widget .advantage-arrow {
+                 width: 60px; /* Smaller arrows on mobile */
+            }
+             #stacked-advantage-widget .advantage-label {
+                 font-size: 12px;
+             }
+
+             /* Adjust mobile positioning */
+             #stacked-advantage-widget .advantage-step.compete {
+                 left: calc(50% - 60px);
+             }
+             #stacked-advantage-widget .advantage-step.innovate {
+                 left: calc(50% - 30px);
+             }
+             #stacked-advantage-widget .advantage-step.hire {
+                 left: calc(50% - 0px);
+             }
+
+             /* Mobile label keyframes (adjust final position) */
+             @keyframes moveLabelCompeteMobile {
+                0% { opacity: 0; bottom: 0px; }
+                100% { opacity: 1; bottom: 20px; }
+             }
+             @keyframes moveLabelInnovateMobile {
+                0% { opacity: 0; bottom: 0px; }
+                100% { opacity: 1; bottom: 65px; }
+             }
+             @keyframes moveLabelHireMobile {
+                0% { opacity: 0; bottom: 0px; }
+                100% { opacity: 1; bottom: 115px; }
+             }
+             
+             /* Apply mobile label animations */
+             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
+                 animation-name: moveLabelCompeteMobile;
+                 left: -50px; /* Adjust label position */
+             }
+             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
+                 animation-name: moveLabelInnovateMobile;
+                 left: -70px; /* Adjust label position */
+             }
+             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
+                 animation-name: moveLabelHireMobile;
+                 left: -70px; /* Adjust label position */
+             }
+             
+             #stacked-advantage-widget .foundation-label {
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body class="body">
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
@@ -1212,10 +1442,10 @@
       <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="images/CFO-ADVISORS.svg" loading="lazy" alt="CFO Advisors Logo
 " class="image"></a>
       <nav role="navigation" class="nav-menu-2 w-nav-menu">
-        <a href="https://chat.openai.com/g/g-8Bjacdkah-cfo-advisors-ai-beta" target="_blank" class="nav-link w-nav-link">Try Our GPT</a>
-        <a href="content.html" class="nav-link w-nav-link">Research</a>
+        <a href="#company-overview" class="nav-link w-nav-link">Company</a>
+        <a href="#services" class="nav-link w-nav-link">Services</a>
+        <a href="#testimonials-section" class="nav-link w-nav-link">Testimonials</a>
         <a href="careers.html" class="nav-link w-nav-link">Careers</a>
-        <a href="mailto:startups@cfoadvisors.com" class="nav-link w-nav-link">Contact</a>
       </nav>
       <div class="menu-button w-nav-button">
         <div class="icon w-icon-nav-menu"></div>
@@ -1373,7 +1603,54 @@ Date        Amount   Vendor                     Department              Account
              <!-- Removed redundant script from slack.html -->
           </div>
           <div class="attribute-card" data-attribute="velocity">
-             <div class="attribute-card-chart-placeholder">Chart: Velocity</div>
+             <!-- Start of Stacked Advantage Widget -->
+            <div id="stacked-advantage-widget">
+                <div class="advantage-visual">
+                    <!-- Scoped SVG Definitions -->
+                    <svg width="0" height="0" style="position:absolute;">
+                        <defs>
+                            <!-- Added prefix to gradient IDs to ensure uniqueness -->
+                            <linearGradient id="stacked-advantage-competeGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#08263D;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#072E49;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="stacked-advantage-innovateGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#093450;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#098BB3;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="stacked-advantage-hireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#0B3955;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3DDBEA;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <!-- Steps with Arrows and Labels -->
+                    <div class="advantage-step compete">
+                         <svg class="advantage-arrow" viewBox="0 0 100 120" preserveAspectRatio="xMidYMax meet">
+                             <path d="M50 0 L100 40 L75 40 L75 120 L25 120 L25 40 L0 40 Z" />
+                         </svg>
+                         <span class="advantage-label">Out Hire</span>
+                    </div>
+                    <div class="advantage-step innovate">
+                        <svg class="advantage-arrow" viewBox="0 0 100 210" preserveAspectRatio="xMidYMax meet">
+                             <path d="M50 0 L100 40 L75 40 L75 210 L25 210 L25 40 L0 40 Z" />
+                        </svg>
+                        <span class="advantage-label">Out Innovate</span>
+                    </div>
+                    <div class="advantage-step hire">
+                        <svg class="advantage-arrow" viewBox="0 0 100 330" preserveAspectRatio="xMidYMax meet">
+                            <path d="M50 0 L100 40 L75 40 L75 330 L25 330 L25 40 L0 40 Z" />
+                        </svg>
+                        <span class="advantage-label">Out Compete</span>
+                    </div>
+                </div>
+                    
+                <!-- Foundation elements below the arrows -->
+                <div class="foundation-line"></div>
+                <div class="foundation-label">OPERATIONAL EXCELLENCE</div>
+            </div>
+            <!-- End of Stacked Advantage Widget -->
              <h4 class="attribute-card-title">Accelerated Execution</h4>
              <p class="attribute-card-description">Increase the speed at which quality decisions are surfaced, made, and implemented across the organization.</p>
           </div>
@@ -1388,10 +1665,10 @@ Date        Amount   Vendor                     Department              Account
   </section>
   <!-- End New Hero Section -->
 
-  <section class="section header-section" style="margin-bottom: 0; padding-top: 30px;"> <!-- Increased padding-top -->
+  <section id="company-overview" class="section header-section" style="margin-bottom: 0; padding-top: 30px;"> <!-- Increased padding-top -->
     <div data-w-id="6da26c89-e38f-0451-4bac-3c07e9039af2" style="opacity:0" class="w-layout-blockcontainer w-container">
       <h2 class="heading">Company Overview</h2>
-      <p class="paragraph">CFO Advisors is redefining how venture-backed startups operate by building best-in-class operational frameworks that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. <br><br>Our clients trust CFO Advisors to help them create a sustainable competitive advantage by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's category defining leaders.</p>
+      <p class="paragraph">CFO Advisors is redefining how venture-backed startups operate by building <strong>best-in-class operational frameworks</strong> that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. <br><br>Our clients trust CFO Advisors to help them create a <strong>sustainable competitive advantage</strong> by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's <strong>category defining leaders</strong>.</p>
     </div>
     <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:0" class="w-layout-blockcontainer container-7 w-container">
       <!-- <div class="line"></div> --> <!-- REMOVED Divider Line -->
@@ -1415,7 +1692,38 @@ Date        Amount   Vendor                     Department              Account
       </div>
     </div>
   </section>
-  <section class="section beige-section">
+  <!-- Added Services Section -->
+  <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 60px; padding-bottom: 60px;">
+    <div class="w-container">
+      <h2 class="heading" style="color: white; text-align: center;">Services</h2>
+      <!-- Service content will go here -->
+      <div class="core-offerings-container">
+        <div class="offering-block">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Financial Model & Strategic Planning</h3>
+          <p class="offering-description">Managing investor-ready financial models and facilitating strategic planning alignment.</p>
+          <!-- Visualization placeholder -->
+          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+        </div>
+        <div class="offering-block">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Fundraising & Investor Relations</h3>
+          <p class="offering-description">Assisting with board decks, fundraising support, due diligence, and investor-ready financials.</p>
+          <!-- Visualization placeholder -->
+          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+        </div>
+        <div class="offering-block">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Financial Operations</h3>
+          <p class="offering-description">Operationalizing finance via dashboards, headcount planning, ARR tracking, and spend management.</p>
+          <!-- Visualization placeholder -->
+          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Added Services Section -->
+  <section id="testimonials-section" class="section beige-section">
     <div class="carousel-parent-container">
       <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
       <div class="swiper testimonial-swiper">
@@ -1559,10 +1867,10 @@ Date        Amount   Vendor                     Department              Account
           <div class="w-layout-cell cell-6">
             <div class="div-block-2">
               <a href="https://www.linkedin.com/company/cfo-advisors-com/about/" target="_blank" class="nav-link w-nav-link">LinkedIn</a>
-              <a href="https://chat.openai.com/g/g-8Bjacdkah-cfo-advisors-ai-beta" target="_blank" class="nav-link w-nav-link"><span>Try Our GPT</span></a>
-              <a href="content.html" class="nav-link w-nav-link"><span>Research</span></a>
-              <a href="careers.html" class="nav-link w-nav-link"><span>Careers</span></a>
-              <a href="mailto:startups@cfoadvisors.com" class="nav-link w-nav-link">Contact</a>
+              <a href="#company-overview" class="nav-link w-nav-link">Company</a>
+              <a href="#services" class="nav-link w-nav-link">Services</a>
+              <a href="#testimonials-section" class="nav-link w-nav-link">Testimonials</a>
+              <a href="careers.html" class="nav-link w-nav-link">Careers</a>
             </div>
           </div>
         </div>
@@ -1959,7 +2267,7 @@ Date        Amount   Vendor                     Department              Account
                 const attribute = this.getAttribute('data-attribute');
                 currentAttributeIndex = attributes.indexOf(attribute);
                 activateAttribute(attribute);
-                // startRotation(); // Reset timer on manual click // Commented out to disable restart on click
+                startRotation(); // Reset timer on manual click
             });
         });
 
@@ -2350,15 +2658,15 @@ Date        Amount   Vendor                     Department              Account
         // --- Configuration ---
         const baseParticleColor = '255, 255, 255'; // Base RGB for particles
         const baseLineColor = '103, 232, 249'; // Base RGB for lines (cyan)
-        const baseParticleRadius = 1.2; // Slightly smaller base size
+        const baseParticleRadius = 2.0; // Slightly smaller base size
         const connectionDistance = 110; // Slightly reduced connection distance
         const baseParticleSpeed = 0.25; // Slightly slower base speed (WAS 0.25)
         const depthFactor = 0.6; // How much depth affects size/speed (0-1)
         const edgeFadeDistance = 50; // How far from edge fading starts
         const mouseEffectStrength = 0.03; // Very subtle mouse interaction
         const baseParticleOpacity = 0.15; // Dim base brightness for particles
-        const brightnessBoostFactor = 0.8; // How much close connections boost brightness
-        const baseLineOpacityFactor = 0.1; // Base opacity factor for lines (as per user edit)
+        const brightnessBoostFactor = 0.5; // How much close connections boost brightness
+        const baseLineOpacityFactor = 0.3; // Base opacity factor for lines (Increased from 0.1)
         let particleCount = 100; // Initial estimate
 
         function resizeCanvas() {
