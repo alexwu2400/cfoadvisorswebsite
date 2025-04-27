@@ -2333,5 +2333,196 @@ Date        Amount   Vendor                     Department              Account
 
   });
   </script>
+
+  <!-- Plexus Background Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const canvas = document.getElementById('plexus-canvas');
+        if (!canvas) {
+            console.error("Plexus canvas not found!");
+            return;
+        }
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrameId;
+        let mouse = { x: null, y: null, radius: 80 }; // Increased radius slightly
+
+        // --- Configuration ---
+        const baseParticleColor = '255, 255, 255'; // Base RGB for particles
+        const baseLineColor = '103, 232, 249'; // Base RGB for lines (cyan)
+        const baseParticleRadius = 1.2; // Slightly smaller base size
+        const connectionDistance = 110; // Slightly reduced connection distance
+        const baseParticleSpeed = 0.25; // Slightly slower base speed (WAS 0.25)
+        const depthFactor = 0.6; // How much depth affects size/speed (0-1)
+        const edgeFadeDistance = 50; // How far from edge fading starts
+        const mouseEffectStrength = 0.03; // Very subtle mouse interaction
+        const baseParticleOpacity = 0.15; // Dim base brightness for particles
+        const brightnessBoostFactor = 0.8; // How much close connections boost brightness
+        const baseLineOpacityFactor = 0.1; // Base opacity factor for lines (as per user edit)
+        let particleCount = 100; // Initial estimate
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            // Adjust particle count - 20% reduction
+            particleCount = Math.max(48, Math.min(144, Math.floor((canvas.width * canvas.height) / 12000 * 0.8))); 
+            initParticles();
+            if (animationFrameId) {
+                startAnimation();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                const yRatio = Math.random(); // Use for depth simulation (0=top, 1=bottom)
+                const speedMultiplier = (1 - yRatio * depthFactor * 0.5); // Slower at bottom
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: yRatio * canvas.height,
+                    baseYRatio: yRatio, // Store original ratio for consistent depth effect
+                    vx: (Math.random() - 0.5) * baseParticleSpeed * speedMultiplier,
+                    vy: (Math.random() - 0.5) * baseParticleSpeed * speedMultiplier,
+                    radius: baseParticleRadius * (1 - yRatio * depthFactor), // Smaller at bottom
+                    opacity: 0, // Base opacity for edge fade calculation
+                    totalDistOpacityBoost: 0 // Accumulator for brightness boost
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Reset brightness boost for this frame
+            particles.forEach(p => p.totalDistOpacityBoost = 0);
+
+            // First pass: Calculate connections and brightness boost, draw lines
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        const distOpacity = 1 - (dist / connectionDistance); // Brighter for shorter lines
+
+                        // Accumulate boost for connected particles
+                        p.totalDistOpacityBoost += distOpacity;
+                        p2.totalDistOpacityBoost += distOpacity;
+
+                        // --- Draw Lines ---
+                        // Calculate edge fade opacity for *this pair* of particles
+                        let p1EdgeOpacity = 1.0;
+                        if (p.x < edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, p.x / edgeFadeDistance);
+                        else if (p.x > canvas.width - edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, (canvas.width - p.x) / edgeFadeDistance);
+                        if (p.y < edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, p.y / edgeFadeDistance);
+                        else if (p.y > canvas.height - edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, (canvas.height - p.y) / edgeFadeDistance);
+                        
+                        let p2EdgeOpacity = 1.0;
+                        if (p2.x < edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, p2.x / edgeFadeDistance);
+                        else if (p2.x > canvas.width - edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, (canvas.width - p2.x) / edgeFadeDistance);
+                        if (p2.y < edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, p2.y / edgeFadeDistance);
+                        else if (p2.y > canvas.height - edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, (canvas.height - p2.y) / edgeFadeDistance);
+                        
+                        const avgEdgeOpacity = (p1EdgeOpacity + p2EdgeOpacity) / 2;
+
+                        const avgDepth = (p.baseYRatio + p2.baseYRatio) / 2;
+                        const depthOpacity = (1 - avgDepth * depthFactor * 0.5); // Fade lines in background
+                        const finalLineOpacity = distOpacity * avgEdgeOpacity * depthOpacity * baseLineOpacityFactor; // Use user's base factor
+
+                        if (finalLineOpacity > 0.01) { // Only draw if reasonably visible
+                            ctx.strokeStyle = `rgba(${baseLineColor}, ${finalLineOpacity})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            // Second pass: Update positions and draw particles with calculated brightness
+            particles.forEach(p => {
+                 // --- Update Position & Mouse Interaction ---
+                 let influenceX = 0;
+                 let influenceY = 0;
+                 if (mouse.x !== null) {
+                     const dxMouse = p.x - mouse.x;
+                     const dyMouse = p.y - mouse.y;
+                     const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                     if (distMouse < mouse.radius) {
+                         const force = (mouse.radius - distMouse) / mouse.radius; // Gentle push
+                         influenceX = (dxMouse / distMouse) * force * mouseEffectStrength;
+                         influenceY = (dyMouse / distMouse) * force * mouseEffectStrength;
+                     }
+                 }
+                 p.x += p.vx + influenceX;
+                 p.y += p.vy + influenceY;
+ 
+                 // --- Calculate Particle Edge Fade Opacity ---
+                 let edgeOpacity = 1.0;
+                 if (p.x < edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, p.x / edgeFadeDistance);
+                 else if (p.x > canvas.width - edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, (canvas.width - p.x) / edgeFadeDistance);
+                 if (p.y < edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, p.y / edgeFadeDistance);
+                 else if (p.y > canvas.height - edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, (canvas.height - p.y) / edgeFadeDistance);
+                 p.opacity = edgeOpacity; // Store edge fade for line calculations potentially, though calculated inline now
+ 
+                 // Wrap around
+                 if (p.x < 0) p.x = canvas.width;
+                 if (p.x > canvas.width) p.x = 0;
+                 if (p.y < 0) p.y = canvas.height;
+                 if (p.y > canvas.height) p.y = 0;
+ 
+                 // --- Calculate Final Particle Opacity ---
+                 // Normalize boost slightly by typical number of connections expected (heuristic)
+                 const averageConnections = connectionDistance / 20; // Rough guess
+                 const boost = (p.totalDistOpacityBoost / averageConnections) * brightnessBoostFactor;
+                 const finalParticleOpacity = Math.min(1, baseParticleOpacity + boost) * p.opacity;
+
+                 // --- Draw Particle ---
+                 ctx.fillStyle = `rgba(${baseParticleColor}, ${finalParticleOpacity})`;
+                 ctx.beginPath();
+                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                 ctx.fill();
+            });
+
+            animationFrameId = requestAnimationFrame(draw);
+        }
+
+        function startAnimation() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            animationFrameId = requestAnimationFrame(draw);
+            // console.log("Refined Plexus animation started.");
+        }
+
+        // --- Event Listeners ---
+        window.addEventListener('mousemove', (event) => {
+            // Adjust mouse coordinates relative to the canvas position
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = event.clientX - rect.left;
+            mouse.y = event.clientY - rect.top;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 250);
+        });
+
+        // Initial setup
+        resizeCanvas();
+        startAnimation();
+    });
+  </script>
 </body>
 </html>
