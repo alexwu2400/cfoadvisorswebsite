@@ -136,6 +136,15 @@
     }
 
   </style>
+  <!-- Added Style for Navbar Distinction -->
+  <style>
+    .navbar {
+        background-color: rgba(20, 28, 37, 0.5); /* Slightly lighter, semi-transparent dark blue */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Faint white border */
+        backdrop-filter: blur(5px); /* Optional: Add a blur effect */
+        -webkit-backdrop-filter: blur(5px); /* For Safari */
+    }
+  </style>
   <!-- Added Core Offerings Styles -->
   <style>
     .core-offerings-container {
@@ -1435,6 +1444,87 @@
             }
         }
     </style>
+    <!-- Styles for Interactive Services Section -->
+    <style>
+        #service-selectors .offering-block {
+            cursor: pointer;
+            opacity: 0.6; /* Dimmed further */
+            transition: opacity 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease; /* Added border transition */
+            border-radius: 6px; /* Added for background */
+            padding: 20px; /* Ensure padding for background */
+            border-bottom: 2px solid transparent; /* Re-add transparent border for spacing */
+        }
+        #service-selectors .offering-block:hover {
+            opacity: 0.8; /* Adjusted hover opacity */
+        }
+        #service-selectors .offering-block.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-highlight, #67e8f9); /* Re-add active border */
+            background-color: rgba(46, 58, 74, 0.7); /* More contrast background (lighter, more opaque) */
+            padding-bottom: 18px; /* Adjust padding slightly for border */
+        }
+        /* Added: Highlight active title */
+        #service-selectors .offering-block.active .offering-title {
+            color: var(--white, #fff);
+        }
+        #service-visualization-area {
+            margin-top: 40px;
+            min-height: 350px; /* Adjusted height */
+            position: relative; /* For positioning content */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            background-color: rgba(31, 41, 55, 0.2); /* Slight background tint for container */
+            overflow: hidden; /* Ensure content background doesn't bleed out */
+        }
+        .service-visualization-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            top: 30px; left: 30px; right: 30px; bottom: 30px; /* Match padding */
+            /* Optional: Add flex for centering if needed */
+            /* display: flex; align-items: center; justify-content: center; */
+            color: var(--white, #fff); /* Text color for placeholders */
+            font-size: 1.2rem;
+        }
+        .service-visualization-content.active {
+            display: block; /* Changed from flex if not using centering */
+            opacity: 1;
+            background-color: rgba(31, 41, 55, 0.4); /* Slightly more opaque background for active content */
+            /* Match container padding and positioning exactly */
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            padding: 30px; /* Re-apply padding inside the absolute positioned element */
+            border-radius: 8px; /* Match container radius */
+        }
+        /* Responsive adjustments for services */
+        @media (max-width: 991px) {
+            #service-visualization-area {
+                min-height: 300px; /* Reduce height on tablet */
+            }
+             /* Stack selectors vertically if needed */
+            /* #service-selectors {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+             } */
+        }
+         @media (max-width: 767px) {
+             #service-visualization-area {
+                min-height: 250px; /* Further reduce height */
+                padding: 20px;
+            }
+             .service-visualization-content {
+                 top: 20px; left: 20px; right: 20px; bottom: 20px;
+                 font-size: 1rem;
+            }
+             #service-selectors .offering-block {
+                 padding-bottom: 10px;
+                 padding: 15px; /* Adjust padding for mobile */
+             }
+         }
+    </style>
 </head>
 <body class="body">
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
@@ -1697,27 +1787,42 @@ Date        Amount   Vendor                     Department              Account
     <div class="w-container">
       <h2 class="heading" style="color: white; text-align: center;">Services</h2>
       <!-- Service content will go here -->
-      <div class="core-offerings-container">
-        <div class="offering-block">
+      <div class="core-offerings-container" id="service-selectors">
+        <div class="offering-block active" data-service="planning">
           <!-- Placeholder Icon SVG can go here -->
           <h3 class="offering-title">Financial Model & Strategic Planning</h3>
           <p class="offering-description">Managing investor-ready financial models and facilitating strategic planning alignment.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+          <!-- Visualization placeholder REMOVED -->
         </div>
-        <div class="offering-block">
+        <div class="offering-block" data-service="fundraising">
           <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Fundraising & Investor Relations</h3>
+          <h3 class="offering-title">Fundraising &<br>Investor Relations</h3>
           <p class="offering-description">Assisting with board decks, fundraising support, due diligence, and investor-ready financials.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+          <!-- Visualization placeholder REMOVED -->
         </div>
-        <div class="offering-block">
+        <div class="offering-block" data-service="operations">
           <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Financial Operations</h3>
-          <p class="offering-description">Operationalizing finance via dashboards, headcount planning, ARR tracking, and spend management.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
+          <h3 class="offering-title">Financial Operations &<br>Reducing Overhead</h3>
+          <p class="offering-description">Operationalizing finance via dashboards, headcount planning, ARR tracking, spend management, and identifying cost-saving opportunities.</p>
+          <!-- Visualization placeholder REMOVED -->
+        </div>
+      </div>
+      <!-- Shared Visualization Area -->
+      <div id="service-visualization-area">
+        <div class="service-visualization-content active" data-service="planning">
+          <!-- Content/Animation for Planning -->
+          <h4>Planning Visualization Placeholder</h4>
+          <p>Detailed charts and strategic roadmaps related to financial modeling will appear here.</p>
+        </div>
+        <div class="service-visualization-content" data-service="fundraising">
+          <!-- Content/Animation for Fundraising -->
+          <h4>Fundraising Visualization Placeholder</h4>
+           <p>Visuals showing fundraising timelines, investor metrics, and due diligence dashboards will appear here.</p>
+        </div>
+        <div class="service-visualization-content" data-service="operations">
+          <!-- Content/Animation for Operations -->
+          <h4>Operations Visualization Placeholder</h4>
+           <p>Interactive dashboards for KPIs, headcount planning tools, and spend management interfaces will appear here.</p>
         </div>
       </div>
     </div>
@@ -2657,23 +2762,23 @@ Date        Amount   Vendor                     Department              Account
 
         // --- Configuration ---
         const baseParticleColor = '255, 255, 255'; // Base RGB for particles
-        const baseLineColor = '103, 232, 249'; // Base RGB for lines (cyan)
+        const baseLineColor = '255, 255, 255'; // Base RGB for lines (changed from cyan to white)
         const baseParticleRadius = 2.0; // Slightly smaller base size
-        const connectionDistance = 110; // Slightly reduced connection distance
+        const connectionDistance = 60; // Slightly reduced connection distance (was 110)
         const baseParticleSpeed = 0.25; // Slightly slower base speed (WAS 0.25)
         const depthFactor = 0.6; // How much depth affects size/speed (0-1)
         const edgeFadeDistance = 50; // How far from edge fading starts
         const mouseEffectStrength = 0.03; // Very subtle mouse interaction
         const baseParticleOpacity = 0.15; // Dim base brightness for particles
         const brightnessBoostFactor = 0.5; // How much close connections boost brightness
-        const baseLineOpacityFactor = 0.3; // Base opacity factor for lines (Increased from 0.1)
+        const baseLineOpacityFactor = 0.8; // Base opacity factor for lines (Increased from 0.3)
         let particleCount = 100; // Initial estimate
 
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
-            // Adjust particle count - 20% reduction
-            particleCount = Math.max(48, Math.min(144, Math.floor((canvas.width * canvas.height) / 12000 * 0.8))); 
+            // Adjust particle count - Doubled density
+            particleCount = Math.max(96, Math.min(288, Math.floor((canvas.width * canvas.height) / 6000 * 0.8))); 
             initParticles();
             if (animationFrameId) {
                 startAnimation();
@@ -2830,6 +2935,118 @@ Date        Amount   Vendor                     Department              Account
         // Initial setup
         resizeCanvas();
         startAnimation();
+    });
+  </script>
+
+  <!-- Interactive Services Section Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const serviceSelectors = document.querySelectorAll('#service-selectors .offering-block');
+        const visualizationContents = document.querySelectorAll('#service-visualization-area .service-visualization-content');
+        let currentServiceIndex = 0;
+        let serviceRotationInterval = null;
+        const rotationDelay = 3000; // 3 seconds
+
+        if (serviceSelectors.length === 0 || visualizationContents.length === 0) {
+            console.warn('Service selectors or visualization content not found. Interaction disabled.');
+            return;
+        }
+
+        serviceSelectors.forEach(selector => {
+            selector.addEventListener('click', function() {
+                const targetService = this.getAttribute('data-service');
+                console.log('Clicked service:', targetService); // Debug log
+
+                // Update selectors
+                serviceSelectors.forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update visualizations
+                visualizationContents.forEach(content => {
+                    if (content.getAttribute('data-service') === targetService) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+         // Initialize the first one as active
+         // Check if an active one isn't already set by HTML
+         const alreadyActiveSelector = document.querySelector('#service-selectors .offering-block.active');
+         if (!alreadyActiveSelector && serviceSelectors.length > 0) {
+             serviceSelectors[0].click(); // Trigger click on the first element to set initial state
+             console.log('Initial service activated:', serviceSelectors[0].getAttribute('data-service'));
+         } else if (alreadyActiveSelector) {
+             console.log('Initial service already active:', alreadyActiveSelector.getAttribute('data-service'));
+             // Ensure corresponding visualization is also active (consistency check)
+             const initialService = alreadyActiveSelector.getAttribute('data-service');
+             visualizationContents.forEach(content => {
+                 if (content.getAttribute('data-service') === initialService) {
+                     content.classList.add('active');
+                 } else {
+                     content.classList.remove('active');
+                 }
+             });
+         }
+
+        function activateService(index) {
+            if (index < 0 || index >= serviceSelectors.length) return;
+
+            currentServiceIndex = index;
+            const targetService = serviceSelectors[index].getAttribute('data-service');
+
+            // Update selectors
+            serviceSelectors.forEach(s => s.classList.remove('active'));
+            serviceSelectors[index].classList.add('active');
+
+            // Update visualizations
+            visualizationContents.forEach(content => {
+                if (content.getAttribute('data-service') === targetService) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            console.log('Activated service:', targetService); // Debug log
+        }
+
+        function rotateService() {
+            const nextIndex = (currentServiceIndex + 1) % serviceSelectors.length;
+            activateService(nextIndex);
+        }
+
+        function startServiceRotation() {
+            // Clear existing interval before starting a new one
+            if (serviceRotationInterval) {
+                clearInterval(serviceRotationInterval);
+            }
+            console.log('Starting service rotation interval');
+            serviceRotationInterval = setInterval(rotateService, rotationDelay);
+        }
+
+         // Initialize the first one as active
+         const serviceAlreadyActiveSelector = document.querySelector('#service-selectors .offering-block.active');
+         if (serviceAlreadyActiveSelector) {
+             currentServiceIndex = Array.from(serviceSelectors).indexOf(serviceAlreadyActiveSelector);
+             activateService(currentServiceIndex); // Ensure consistency
+         } else if (serviceSelectors.length > 0) {
+             activateService(0); // Activate the first one
+         }
+
+         // Add click listeners that also reset the timer
+         serviceSelectors.forEach((selector, index) => {
+             selector.addEventListener('click', function() {
+                 activateService(index);
+                 startServiceRotation(); // Reset interval on manual click
+             });
+         });
+
+         // Start the initial rotation
+         if (serviceSelectors.length > 1) { // Only rotate if there's more than one service
+            startServiceRotation();
+         }
     });
   </script>
 </body>
