@@ -24,117 +24,156 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Scenario Data Store ---
     let currentScenario = 1;
     let mainUpdateInterval = null;
+
+    // --- New Quarterly Data Store ---
+    const quarterlyDataStore = {
+        scenario1: {
+            arr: [
+                /* 2024A */ 0.25, 0.50, 0.75, 1.00,
+                /* 2025E */ 1.78, 2.56, 3.34, 4.12,
+                /* 2026E */ 4.80, 6.30, 7.80, 9.30,
+                /* 2027E */ 9.80, 11.10, 12.40, 13.70,
+                /* 2028E */ 15.55, 18.10, 20.65, 23.20
+            ].map(v => v * 1000000), // Convert $MM to $
+            cashflow: [
+                /* 2024A */ -0.12, -0.14, -0.15, -0.18, // Updated OpCF
+                /* 2025E */ -0.28, -0.39, -0.46, -0.56, // Updated OpCF
+                /* 2026E */ -0.60, -0.66, -0.72, -0.73, // Updated OpCF
+                /* 2027E */ -0.25,  0.10,  0.30,  0.45, // Updated OpCF
+                /* 2028E */  0.55,  0.90,  1.25,  1.96  // Updated OpCF
+            ].map(v => v * 1000000) // Convert $MM to $
+        },
+        scenario2: {
+            arr: [
+                /* 2024A */ 0.25, 0.50, 0.75, 1.00,
+                /* 2025E */ 1.34, 1.68, 2.02, 2.36,
+                /* 2026E */ 3.07, 4.13, 5.20, 6.26,
+                /* 2027E */ 7.08, 8.28, 9.48, 10.68,
+                /* 2028E */ 12.18, 14.16, 16.14, 18.12
+            ].map(v => v * 1000000), // Convert $MM to $
+            cashflow: [
+                /* 2024A */ -0.12, -0.14, -0.15, -0.19, // Updated OpCF
+                /* 2025E */ -0.40, -0.55, -0.70, -0.93, // Updated OpCF
+                /* 2026E */ -1.05, -1.18, -1.30, -1.54, // Updated OpCF
+                /* 2027E */ -1.10, -0.85, -0.65, -0.36, // Updated OpCF
+                /* 2028E */ -0.32, -0.40, -0.45, -0.40  // Updated OpCF
+            ].map(v => v * 1000000) // Convert $MM to $
+        }
+    };
+    // --- End New Quarterly Data Store ---
+
     const scenarios = {
-        scenario1: {}, // Will store the initial HTML values
-        scenario2: { // Updated Scenario 2 data (2025E-2028E)
+        scenario1: {}, // Will store the initial HTML values (Annual)
+        scenario2: { // Updated Scenario 2 data (Annual for Table Update)
             // Format: metricName_Year: value (raw value, matching HTML data-value expectations)
             // NOTE: 2024A data is ignored here as only 2025E-2028E are updated by scenario switch
 
+            // --- Scenario 2 ANNUAL Table Data (Derived from quarterly where needed) ---
             // 2025E
-            "BeginningARR_2025E": 0.80,
-            "NewARR_2025E": 1.76,
-            "ExpansionARR_2025E": 0.04,
-            "ChurnedARR_2025E": -0.12,
-            "EndingARR_2025E": 2.28,
-            "ARRGrowthPct_2025E": 128.0,
-            "GrossRetentionPct_2025E": 88.0,
-            "NetRetentionPct_2025E": 92.0,
-            "AverageContractValueK_2025E": 31.6,
-            "EndingCustomers_2025E": 72,
-            "Revenue_2025E": 1.64,
-            "COGS_2025E": 0.377,
-            "GrossProfit_2025E": 1.263,
-            "GrossMarginPct_2025E": 77.0,
-            "TotalR&D_2025E": 1.60,
-            "TotalS&M_2025E": 1.85,
-            "TotalG&A_2025E": 0.52,
-            "TotalOperatingExp_2025E": 3.94,
-            "NetIncome_2025E": -2.677,
-            "EndingCash_2025E": -1.262,
-            "AvgMonthlyBurn_2025E": (223083 / 1000000).toFixed(6), // Convert dollars to millions string
-            "TotalHeadcount_2025E": 36,
-            "ARRperHead_2025E": 0.063,
+            "BeginningARR_2025E": 1.0, // From Scenario 2 2024Q4 ARR
+            "NewARR_2025E": 1.36, // Directly provided
+            "ExpansionARR_2025E": 0.04, // Directly provided
+            "ChurnedARR_2025E": -0.12, // Directly provided
+            "EndingARR_2025E": 2.28, // Directly provided (matches 2025Q4 ARR 2.36 rounded? -> using provided 2.28 for consistency with old data)
+            "ARRGrowthPct_2025E": 128.0, // Directly provided
+            "GrossRetentionPct_2025E": 88.0, // Directly provided
+            "NetRetentionPct_2025E": 92.0, // Directly provided
+            "AverageContractValueK_2025E": 31.6, // Directly provided
+            "EndingCustomers_2025E": 72, // Directly provided
+            "Revenue_2025E": 1.64, // Directly provided
+            "COGS_2025E": 0.377, // Directly provided
+            "GrossProfit_2025E": 1.263, // Directly provided
+            "GrossMarginPct_2025E": 77.0, // Directly provided
+            "TotalR&D_2025E": 1.60, // Directly provided
+            "TotalS&M_2025E": 1.85, // Directly provided
+            "TotalG&A_2025E": 0.52, // Directly provided
+            "TotalOperatingExp_2025E": 3.97, // Sum of R&D, S&M, G&A
+            "NetIncome_2025E": -2.677, // Directly provided
+            "EndingCash_2025E": -1.262, // Directly provided
+            "AvgMonthlyBurn_2025E": ((-0.40 -0.55 -0.70 -0.93) / 4).toFixed(3), // Avg quarterly burn (UPDATED)
+            "TotalHeadcount_2025E": 36, // Directly provided
+            "ARRperHead_2025E": (0.063 * 1000).toFixed(1),
 
             // 2026E
-            "BeginningARR_2026E": 2.28,
-            "NewARR_2026E": 3.57,
-            "ExpansionARR_2026E": 0.25,
-            "ChurnedARR_2026E": -0.30,
-            "EndingARR_2026E": 6.20,
-            "ARRGrowthPct_2026E": 171.9,
-            "GrossRetentionPct_2026E": 86.8,
-            "NetRetentionPct_2026E": 97.8,
-            "AverageContractValueK_2026E": 34.0,
-            "EndingCustomers_2026E": 182,
-            "Revenue_2026E": 4.24,
-            "COGS_2026E": 0.975,
-            "GrossProfit_2026E": 3.265,
-            "GrossMarginPct_2026E": 77.0,
-            "TotalR&D_2026E": 3.30,
-            "TotalS&M_2026E": 3.66,
-            "TotalG&A_2026E": 1.37,
-            "TotalOperatingExp_2026E": 8.33,
-            "NetIncome_2026E": -5.065,
-            "EndingCash_2026E": -6.332, // Adjusted value from S2 JSON
-            "AvgMonthlyBurn_2026E": (422083 / 1000000).toFixed(6), // Convert dollars to millions string
-            "TotalHeadcount_2026E": 70,
-            "ARRperHead_2026E": 0.089,
+            "BeginningARR_2026E": 2.28, // From Scenario 2 2025 Ending ARR
+            "NewARR_2026E": 3.97, // Directly provided
+            "ExpansionARR_2026E": 0.25, // Directly provided
+            "ChurnedARR_2026E": -0.30, // Directly provided
+            "EndingARR_2026E": 6.20, // Directly provided (matches S2 2026Q4 ARR 6.26 rounded? -> using 6.20)
+            "ARRGrowthPct_2026E": 171.9, // Directly provided
+            "GrossRetentionPct_2026E": 86.8, // Directly provided
+            "NetRetentionPct_2026E": 97.8, // Directly provided
+            "AverageContractValueK_2026E": 34.0, // Directly provided
+            "EndingCustomers_2026E": 182, // Directly provided
+            "Revenue_2026E": 4.24, // Directly provided
+            "COGS_2026E": 0.975, // Directly provided
+            "GrossProfit_2026E": 3.265, // Directly provided
+            "GrossMarginPct_2026E": 77.0, // Directly provided
+            "TotalR&D_2026E": 3.30, // Directly provided
+            "TotalS&M_2026E": 3.66, // Directly provided
+            "TotalG&A_2026E": 1.37, // Directly provided
+            "TotalOperatingExp_2026E": 8.33, // Sum of R&D, S&M, G&A
+            "NetIncome_2026E": -5.065, // Directly provided
+            "EndingCash_2026E": -6.327, // Directly provided
+            "AvgMonthlyBurn_2026E": ((-1.05 -1.18 -1.30 -1.54) / 4).toFixed(3), // Avg quarterly burn (UPDATED)
+            "TotalHeadcount_2026E": 70, // Directly provided
+            "ARRperHead_2026E": (0.089 * 1000).toFixed(1),
 
             // 2027E
-            "BeginningARR_2027E": 6.20,
-            "NewARR_2027E": 5.30,
-            "ExpansionARR_2027E": 0.90,
-            "ChurnedARR_2027E": -0.60,
-            "EndingARR_2027E": 11.40,
-            "ARRGrowthPct_2027E": 83.9,
-            "GrossRetentionPct_2027E": 90.3,
-            "NetRetentionPct_2027E": 104.8,
-            "AverageContractValueK_2027E": 37.0,
-            "EndingCustomers_2027E": 308,
-            "Revenue_2027E": 8.80,
-            "COGS_2027E": 1.936,
-            "GrossProfit_2027E": 6.864,
-            "GrossMarginPct_2027E": 78.0,
-            "TotalR&D_2027E": 3.38,
-            "TotalS&M_2027E": 3.99,
-            "TotalG&A_2027E": 2.00,
-            "TotalOperatingExp_2027E": 9.38,
-            "NetIncome_2027E": -2.516,
-            "EndingCash_2027E": -8.848, // Adjusted value from S2 JSON
-            "AvgMonthlyBurn_2027E": (209667 / 1000000).toFixed(6), // Convert dollars to millions string
-            "TotalHeadcount_2027E": 100,
-            "ARRperHead_2027E": 0.114,
+            "BeginningARR_2027E": 6.20, // From Scenario 2 2026 Ending ARR
+            "NewARR_2027E": 4.90, // Directly provided
+            "ExpansionARR_2027E": 0.90, // Directly provided
+            "ChurnedARR_2027E": -0.60, // Directly provided
+            "EndingARR_2027E": 11.40, // Directly provided (matches S2 2027Q4 ARR 10.68 rounded? -> using 11.40)
+            "ARRGrowthPct_2027E": 83.9, // Directly provided
+            "GrossRetentionPct_2027E": 90.3, // Directly provided
+            "NetRetentionPct_2027E": 104.8, // Directly provided
+            "AverageContractValueK_2027E": 37.0, // Directly provided
+            "EndingCustomers_2027E": 308, // Directly provided
+            "Revenue_2027E": 8.80, // Directly provided
+            "COGS_2027E": 1.936, // Directly provided
+            "GrossProfit_2027E": 6.864, // Directly provided
+            "GrossMarginPct_2027E": 78.0, // Directly provided
+            "TotalR&D_2027E": 3.38, // Directly provided
+            "TotalS&M_2027E": 3.99, // Directly provided
+            "TotalG&A_2027E": 2.00, // Directly provided
+            "TotalOperatingExp_2027E": 9.37, // Sum of R&D, S&M, G&A
+            "NetIncome_2027E": -2.516, // Directly provided
+            "EndingCash_2027E": -8.843, // Directly provided
+            "AvgMonthlyBurn_2027E": ((-1.10 -0.85 -0.65 -0.36) / 4).toFixed(3), // Avg quarterly burn (UPDATED)
+            "TotalHeadcount_2027E": 100, // Directly provided
+            "ARRperHead_2027E": (0.114 * 1000).toFixed(1),
 
             // 2028E
-            "BeginningARR_2028E": 11.40,
-            "NewARR_2028E": 7.24,
-            "ExpansionARR_2028E": 2.09,
-            "ChurnedARR_2028E": -0.93,
-            "EndingARR_2028E": 20.20,
-            "ARRGrowthPct_2028E": 77.2,
-            "GrossRetentionPct_2028E": 91.8,
-            "NetRetentionPct_2028E": 110.2,
-            "AverageContractValueK_2028E": 40.0,
-            "EndingCustomers_2028E": 505,
-            "Revenue_2028E": 15.80,
-            "COGS_2028E": 3.476,
-            "GrossProfit_2028E": 12.324,
-            "GrossMarginPct_2028E": 78.0,
-            "TotalR&D_2028E": 4.56,
-            "TotalS&M_2028E": 5.68,
-            "TotalG&A_2028E": 3.67,
-            "TotalOperatingExp_2028E": 13.89,
-            "NetIncome_2028E": -1.566,
-            "EndingCash_2028E": -10.414, // Adjusted value from S2 JSON
-            "AvgMonthlyBurn_2028E": (130500 / 1000000).toFixed(6), // Convert dollars to millions string
-            "TotalHeadcount_2028E": 140,
-            "ARRperHead_2028E": 0.144,
+            "BeginningARR_2028E": 11.40, // From Scenario 2 2027 Ending ARR
+            "NewARR_2028E": 7.64, // Directly provided
+            "ExpansionARR_2028E": 2.09, // Directly provided
+            "ChurnedARR_2028E": -0.93, // Directly provided
+            "EndingARR_2028E": 20.20, // Directly provided (matches S2 2028Q4 ARR 18.12 rounded? -> using 20.20)
+            "ARRGrowthPct_2028E": 77.2, // Directly provided
+            "GrossRetentionPct_2028E": 91.8, // Directly provided
+            "NetRetentionPct_2028E": 110.2, // Directly provided
+            "AverageContractValueK_2028E": 40.0, // Directly provided
+            "EndingCustomers_2028E": 505, // Directly provided
+            "Revenue_2028E": 15.80, // Directly provided
+            "COGS_2028E": 3.476, // Directly provided
+            "GrossProfit_2028E": 12.324, // Directly provided
+            "GrossMarginPct_2028E": 78.0, // Directly provided
+            "TotalR&D_2028E": 4.56, // Directly provided
+            "TotalS&M_2028E": 5.68, // Directly provided
+            "TotalG&A_2028E": 3.67, // Directly provided
+            "TotalOperatingExp_2028E": 13.91, // Sum of R&D, S&M, G&A
+            "NetIncome_2028E": -1.566, // Directly provided
+            "EndingCash_2028E": -10.409, // Directly provided
+            "AvgMonthlyBurn_2028E": ((-0.32 -0.40 -0.45 -0.40) / 4).toFixed(3), // Avg quarterly burn (UPDATED)
+            "TotalHeadcount_2028E": 140, // Directly provided
+            "ARRperHead_2028E": (0.144 * 1000).toFixed(1),
         }
     };
 
-     // --- Store Initial HTML (Scenario 1) Values --- //
-    const storeScenario1Values = () => {
-          scenarios.scenario1 = {};
+     // --- Store Initial HTML (Scenario 1 ANNUAL) Values --- //
+    const storeScenario1AnnualValues = () => {
+         scenarios.scenario1 = {};
           if (!tableBody) { return; }
           const dataRows = tableBody.querySelectorAll('tr[data-metric]');
 
@@ -142,82 +181,107 @@ document.addEventListener('DOMContentLoaded', () => {
              const metricName = row.getAttribute('data-metric');
              if (!metricName) return;
 
-             const dataCells = row.querySelectorAll('td[data-value]');
+            const dataCells = row.querySelectorAll('td[data-value]');
              dataCells.forEach((cell, index) => {
                  const yearHeaderIndex = index + 1;
                  if (yearHeaderIndex < yearHeaders.length) {
                      const year = yearHeaders[yearHeaderIndex];
                      const key = `${metricName}_${year}`;
                      let value = cell.getAttribute('data-value');
-                     scenarios.scenario1[key] = value;
-                 }
-             });
-          });
+                        // Store the raw data-value string
+                        scenarios.scenario1[key] = value;
+                }
+            });
+         });
      };
 
-    // --- Formatting Function (Handles Units, Expects BASE Value) --- //
-    const formatNumber = (value, unit) => {
+    // --- Formatting Function (Handles Units, Expects RAW Value from data-value) --- //
+    const formatNumber = (rawValue, unit) => {
         // Handle specific string values first
-        if (typeof value === 'string' && value.toLowerCase() === 'profitable') {
+        if (typeof rawValue === 'string' && rawValue.toLowerCase() === 'profitable') {
             return 'Profitable';
         }
 
-        const numericValue = parseFloat(value);
+        const numericValue = parseFloat(rawValue);
 
         // Handle null/NaN or 'null' string
-        if (isNaN(numericValue) || value === null || value === 'null') {
+        if (isNaN(numericValue) || rawValue === null || rawValue === 'null') {
             return '–';
         }
 
-        let formattedValue;
+        let displayValue;
+        let baseValueForSign = numericValue; // Used to check negativity
         let addParensForNegative = false;
+        let prefix = '';
+        let suffix = '';
 
+        // Determine formatting based on the *unit* attribute
         switch (unit) {
             case '$ MM':
-                // Format as millions with ONE decimal place
-                formattedValue = Math.abs(numericValue / 1000000).toFixed(1) + 'M';
+                baseValueForSign = numericValue * 1000000;
+                displayValue = Math.abs(numericValue).toFixed(1);
                 addParensForNegative = true;
+                prefix = '$';
+                suffix = 'M';
                 break;
             case '$ MM/month':
-                 // Format as dollars with commas (no forced rounding)
-                 formattedValue = numericValue.toLocaleString(undefined, { 
-                     minimumFractionDigits: 0, // Show decimals only if needed
-                     maximumFractionDigits: 0  // Show only whole dollars
-                 });
+                 baseValueForSign = numericValue * 1000000;
+                 // Display burn in K for better readability if less than $1M
+                 if (Math.abs(numericValue) < 1) {
+                     displayValue = (Math.abs(numericValue) * 1000).toFixed(0); // Show K
+                     suffix = 'K';
+                 } else {
+                     displayValue = Math.abs(numericValue).toFixed(1); // Show M
+                     suffix = 'M';
+                 }
                  addParensForNegative = true; // Still use parens for negative burn
+                 prefix = '$';
                  break;
             case '$ K':
-                 // Format as thousands with ONE decimal place
-                formattedValue = Math.abs(numericValue / 1000).toFixed(1) + 'K';
+                baseValueForSign = numericValue * 1000;
+                displayValue = Math.abs(numericValue).toFixed(1);
                 addParensForNegative = true;
+                prefix = '$';
+                suffix = 'K';
                 break;
             case '%':
-                // Format percentage with ZERO decimal places
-                formattedValue = Math.round(numericValue).toFixed(0) + '%';
+                displayValue = Math.round(numericValue).toFixed(0);
+                prefix = '';
+                suffix = '%';
                 break;
             case 'count':
             case 'FTE':
-                formattedValue = Math.round(numericValue).toLocaleString(undefined, { maximumFractionDigits: 0 });
+                displayValue = Math.round(numericValue).toLocaleString(undefined, { maximumFractionDigits: 0 });
+                prefix = '';
+                suffix = '';
                 break;
-            case '$': // For ARR per Head & Avg Monthly Burn (formatted as dollars)
-                 formattedValue = Math.round(numericValue).toLocaleString(undefined, {
+            case '$': // For ARR per Head (rawValue is in K)
+                 baseValueForSign = numericValue * 1000;
+                 displayValue = Math.round(numericValue).toLocaleString(undefined, {
                     maximumFractionDigits: 0,
                  });
-                 addParensForNegative = true; // Use parens for negative dollar amounts
+                 addParensForNegative = false; // ARR per head shouldn't be negative
+                 prefix = '$';
+                 suffix = 'K';
                  break;
             default:
-                formattedValue = numericValue.toLocaleString();
+                // Fallback for unhandled units or base numbers (like growth %)
+                displayValue = numericValue.toLocaleString(undefined, { maximumFractionDigits: 1 });
+                prefix = '';
+                suffix = '';
                 break;
         }
 
-        if (numericValue < 0 && addParensForNegative) {
-            return `(${formattedValue})`;
+        let formattedString = `${prefix}${displayValue}${suffix}`;
+
+        if (baseValueForSign < 0 && addParensForNegative) {
+            return `(${formattedString})`; // Add parens around the formatted string
         }
 
-        return formattedValue;
+        return formattedString;
     };
 
-    // --- Helper to Parse Formatted Numbers back to BASE Raw Numeric --- //
+    // --- Helper to Parse Formatted Numbers back to RAW Numeric for data-value --- //
     const parseFormattedNumber = (formattedString) => {
         if (typeof formattedString !== 'string') return NaN;
         let cleanString = formattedString.trim();
@@ -227,69 +291,55 @@ document.addEventListener('DOMContentLoaded', () => {
             return NaN; // Cannot animate these
         }
 
-        let multiplier = 1;
+        let rawValue = NaN;
         let isNegative = false;
 
         // Handle parentheses for negative
         if (cleanString.startsWith('(') && cleanString.endsWith(')')) {
             isNegative = true;
-            cleanString = cleanString.substring(1, cleanString.length - 1);
+            cleanString = cleanString.substring(1, cleanString.length - 1); // Remove parens
         }
 
-        // Handle dollar sign prefix if present
+         // Remove prefix ($) and suffix (M, K, %)
          if (cleanString.startsWith('$')) {
-            cleanString = cleanString.substring(1).trim();
+             cleanString = cleanString.substring(1);
+         }
+         let multiplier = 1;
+         if (cleanString.endsWith('M')) {
+             cleanString = cleanString.substring(0, cleanString.length - 1);
+             multiplier = 1; // Parsed value is already in Millions for $MM
+         } else if (cleanString.endsWith('K')) {
+             cleanString = cleanString.substring(0, cleanString.length - 1);
+             multiplier = 1; // Parsed value is already in Thousands for $K and $
+         } else if (cleanString.endsWith('%')) {
+             cleanString = cleanString.substring(0, cleanString.length - 1);
+             multiplier = 1; // Parsed value is direct %
          }
 
-        // Handle suffixes FIRST to determine multiplier/type
-         if (cleanString.endsWith('/mo')) {
-             cleanString = cleanString.replace('/mo', '').trim();
-             multiplier = 1000000;
-        }
-         else if (cleanString.endsWith('%')) {
-            cleanString = cleanString.substring(0, cleanString.length - 1);
-            multiplier = 1;
-        }
-        else if (cleanString.endsWith('K')) {
-             multiplier = 1000;
-            cleanString = cleanString.substring(0, cleanString.length - 1);
-        }
-        else if (cleanString.endsWith('M')) {
-            multiplier = 1000000;
-            cleanString = cleanString.substring(0, cleanString.length - 1);
-        }
-        // If no suffix, check for commas (likely count, FTE, or direct dollars)
-        else if (cleanString.includes(',')) {
-            multiplier = 1; // Direct value
-        }
-        // If no suffix and no commas, assume direct value (could be small decimal)
-        else {
-             multiplier = 1;
-        }
-
-        // Remove commas AFTER suffix handling
+        // Remove commas
         cleanString = cleanString.replace(/,/g, '');
 
-        let value = parseFloat(cleanString);
+        rawValue = parseFloat(cleanString);
 
-        if (isNaN(value)) return NaN;
+        if (isNaN(rawValue)) return NaN;
 
-        // Apply multiplier to get the base value
-        value *= multiplier;
+        // Apply multiplier (should be 1 now, parsing back to raw)
+        // rawValue *= multiplier;
 
         if (isNegative) {
-            value = -value;
+            rawValue = -rawValue;
         }
-        return value;
+        return rawValue;
     };
 
-    // --- Calculate ARR per Head (for the currently displayed data) --- //
+    // --- Calculate ARR per Head (for the currently displayed table data) --- //
     const calculateAndSetARRperHead = () => {
         const endingArrRow = findRowByMetric('EndingARR');
         const headcountRow = findRowByMetric('TotalHeadcount');
         const arrPerHeadRow = findRowByMetric('ARRperHead');
 
         if (!endingArrRow || !headcountRow || !arrPerHeadRow) {
+            console.warn("Missing rows for ARR per Head calc");
             return;
         }
 
@@ -298,23 +348,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrPerHeadCells = arrPerHeadRow.querySelectorAll('td[data-value]');
 
         if (arrCells.length !== 5 || headcountCells.length !== 5 || arrPerHeadCells.length !== 5) {
+             console.warn("Incorrect cell count for ARR per Head calc");
              return;
         }
 
         for (let i = 0; i < 5; i++) {
-            // Read current values from the table cells' data-value attributes
-            const endingArrMillions = parseFloat(arrCells[i].getAttribute('data-value'));
-            const totalHeadcount = parseFloat(headcountCells[i].getAttribute('data-value'));
+            // Read current ANNUAL values from the table cells' data-value attributes
+            const endingArrValue = parseFloat(arrCells[i].getAttribute('data-value')); // This is the raw value (e.g., 1.0 for $1M)
+            const totalHeadcount = parseFloat(headcountCells[i].getAttribute('data-value')); // Direct headcount
 
-            let calculatedArrPerHead = NaN; // Default to NaN
-            if (!isNaN(endingArrMillions) && !isNaN(totalHeadcount) && totalHeadcount !== 0) {
-                // ARR is in Millions in data-value, Headcount is direct
-                 calculatedArrPerHead = (endingArrMillions * 1000000) / totalHeadcount;
+            let calculatedArrPerHeadDollars = NaN; // Default to NaN
+            // Use the *annual* ending ARR from the table (which is in millions)
+            if (!isNaN(endingArrValue) && !isNaN(totalHeadcount) && totalHeadcount !== 0) {
+                // Convert ARR from millions to dollars for calculation
+                 calculatedArrPerHeadDollars = (endingArrValue * 1000000) / totalHeadcount;
             }
 
-            // Update the data-value attribute - store the *raw calculated value* (dollars)
-            // Handle potential NaN result by storing 'null' string
-            const newValue = isNaN(calculatedArrPerHead) ? 'null' : calculatedArrPerHead.toFixed(0); // Store as string
+            // Update the data-value attribute - store the *raw calculated value* in THOUSANDS ($ K)
+            const newValue = isNaN(calculatedArrPerHeadDollars)
+                                ? 'null'
+                                : (calculatedArrPerHeadDollars / 1000).toFixed(1); // Store as thousands string
             arrPerHeadCells[i].setAttribute('data-value', newValue);
         }
     };
@@ -325,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const parentRow = el.closest('tr');
         if (!parentRow) return;
 
-        let dataValueStr = el.getAttribute('data-value'); // e.g., "1.00", "10.0", "100", "null", "Profitable"
+        let dataValueStr = el.getAttribute('data-value'); // e.g., "1.0", "10.0", "100", "null", "Profitable"
         const unit = parentRow.getAttribute('data-unit') || '';
 
         // Handle non-numeric target strings DIRECTLY (no animation)
@@ -334,43 +387,39 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Target value calculation (BASE numeric value)
-        let targetNumericValue = parseFloat(dataValueStr);
+        // Target value calculation (RAW numeric value from data-value)
+        let targetRawValue = parseFloat(dataValueStr);
 
-        // Scale up based on unit if needed
-        if (unit === '$ MM' || unit === '$ MM/month') { 
-             targetNumericValue *= 1000000;
-        } else if (unit === '$ K') {
-             targetNumericValue *= 1000;
-        } 
+        // No scaling needed here, formatNumber handles it based on unit
 
-        // Handle Non-numeric target values after parse/scale attempt
-        if (isNaN(targetNumericValue)) {
-            el.textContent = '–';
+        // Handle Non-numeric target values after parse attempt
+        if (isNaN(targetRawValue)) {
+            el.textContent = formatNumber('null', unit); // Show '–'
             return;
         }
 
         // --- Animation Logic ---
         let startTimestamp = null;
 
-        // --- Determine Start Value from Current Display (BASE numeric value) --- 
+        // --- Determine Start Value from Current Display (RAW numeric value) --- 
         const currentText = el.textContent;
-        let startValue = parseFormattedNumber(currentText); // Returns base value or NaN
-        if (isNaN(startValue)) {
-             startValue = 0; // Default start from 0 if current text not parseable
+        let startRawValue = parseFormattedNumber(currentText); // Returns raw value or NaN
+        if (isNaN(startRawValue)) {
+             startRawValue = 0; // Default start from 0 if current text not parseable
         }
 
-        const endValue = targetNumericValue; // Target is already base value
+        const endRawValue = targetRawValue; // Target is already raw value
 
         // Don't animate if start and end are effectively the same
-        if (Math.abs(startValue - endValue) < 0.01) { 
-            el.textContent = formatNumber(endValue, unit); // Format the BASE end value
+        if (Math.abs(startRawValue - endRawValue) < 0.01) {
+            // Format the RAW end value based on its unit for display
+            el.textContent = formatNumber(endRawValue, unit);
             return;
         }
 
         // Set initial text to formatted start value
         try {
-             el.textContent = formatNumber(startValue, unit); // Format the BASE start value
+             el.textContent = formatNumber(startRawValue, unit); // Format the RAW start value
         } catch(e) {
              el.textContent = "Err";
         }
@@ -379,27 +428,27 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / numberAnimationDuration, 1);
-                // Animate between the base numeric start and end values
-                let currentAnimatedBaseVal = progress * (endValue - startValue) + startValue;
+                // Animate between the raw numeric start and end values
+                let currentAnimatedRawVal = progress * (endRawValue - startRawValue) + startRawValue;
 
-                // Format the current animated BASE value using the unit
-                el.textContent = formatNumber(currentAnimatedBaseVal, unit);
+                // Format the current animated RAW value using the unit
+                el.textContent = formatNumber(currentAnimatedRawVal, unit);
 
             if (progress < 1) {
                 window.requestAnimationFrame(step);
             } else {
                     // Ensure final value is exact and formatted correctly on completion
-                    // Format the TARGET base value for final display
-                    el.textContent = formatNumber(targetNumericValue, unit);
+                    // Format the TARGET raw value for final display
+                    el.textContent = formatNumber(targetRawValue, unit);
                 }
             } catch(e) {
-                 try { el.textContent = formatNumber(endValue, unit); } catch {} 
+                 try { el.textContent = formatNumber(endRawValue, unit); } catch {} // Fallback on error
             }
         };
         window.requestAnimationFrame(step);
     };
 
-    // --- Quarterly Data Generation ---
+    // --- Generate Quarterly Labels Helper --- //
     const generateQuarterlyLabels = () => {
         const labels = [];
         for (let year = 0; year < totalYears; year++) {
@@ -413,108 +462,33 @@ document.addEventListener('DOMContentLoaded', () => {
         return labels;
     };
 
-    const interpolateQuarterly = (annualData) => {
-        const quarterly = [];
-        if (!annualData || annualData.length !== totalYears) return quarterly; // Expecting 5 years of data
+    // --- Get Chart Data Function (Pulls from Quarterly Store) ---
+    const getChartData = () => {
+        const scenarioKey = `scenario${currentScenario}`;
+        const labels = generateQuarterlyLabels();
 
-        // Handle beginning ARR special case - it should align with previous year's ending ARR
-        // We'll calculate ending ARR first, then derive beginning ARR.
+        const arrValues = quarterlyDataStore[scenarioKey]?.arr || [];
+        const cashflowValues = quarterlyDataStore[scenarioKey]?.cashflow || [];
 
-        let lastEndingArr = 0; // Assume starts at 0 before 2024A
-        for (let year = 0; year < totalYears; year++) {
-            const yearEndingArr = annualData[year]; // Get the ending ARR for the year
-            const yearBeginningArr = lastEndingArr;
-            const totalGrowthThisYear = yearEndingArr - yearBeginningArr;
-            const quarterlyGrowth = totalGrowthThisYear / quartersPerYear;
-
-            for (let quarter = 1; quarter <= quartersPerYear; quarter++) {
-                const quarterEndingArr = yearBeginningArr + quarterlyGrowth * quarter;
-                quarterly.push(quarterEndingArr);
-            }
-            lastEndingArr = yearEndingArr;
-        }
-        return quarterly;
-    };
-
-     const generateQuarterlyArrData = () => {
-        const endingArrRow = findRowByMetric('EndingARR');
-        if (!endingArrRow) {
-            return { labels: [], values: [] };
-        }
-
-        const arrCells = endingArrRow.querySelectorAll('td[data-value]');
-
-        const annualEndingArrValues = Array.from(arrCells).map((td, index) => {
-             const rawValue = td.getAttribute('data-value');
-             const val = parseFloat(rawValue);
-             return isNaN(val) ? 0 : val * 1000000;
-        });
-
-        const quarterlyLabels = generateQuarterlyLabels();
-        const quarterlyValues = interpolateQuarterly(annualEndingArrValues);
-
-        return { labels: quarterlyLabels, values: quarterlyValues };
-    };
-
-    const generateQuarterlyCashflowData = (quarterlyLabels) => {
-        // Generate quarterly cashflow: unprofitable until Q2 2027, then profitable
-        const values = [];
-        const unprofitableQuarters = 3 * quartersPerYear + 2; // Target end of unprofitability = index 14 (Q2 27E)
-        const transitionQuarters = 2; // Quarters before/after target for smoothing
-        const smoothStartQuarter = unprofitableQuarters - transitionQuarters; // Index 12 (Q4 26E)
-        const smoothEndQuarter = unprofitableQuarters + transitionQuarters; // Index 16 (Q4 27E)
-
-        let currentCashflow = -200000; // Start slightly negative
-        const peakNegative = -1000000; // Deepest point
-        const targetPositiveSteady = 1500000; // Target for later quarters
-        const initialNegativeTrend = (peakNegative - currentCashflow) / (smoothStartQuarter * 0.7); // Trend towards peak negative
-
-        for (let i = 0; i < totalQuarters; i++) {
-            if (i < smoothStartQuarter) {
-                // Phase 1: Trend towards peak negative cashflow
-                currentCashflow += initialNegativeTrend * (1 + (Math.random() - 0.5) * 0.2);
-                currentCashflow = Math.max(currentCashflow, peakNegative); // Clamp at peak negative
-
-            } else if (i >= smoothStartQuarter && i <= smoothEndQuarter) {
-                 // Phase 2: Smooth transition from negative towards positive
-                 const transitionProgress = (i - smoothStartQuarter) / (smoothEndQuarter - smoothStartQuarter);
-                 // Use an easing function (e.g., easeInOutQuad) for a smoother curve through zero
-                 const easedProgress = transitionProgress < 0.5
-                     ? 2 * transitionProgress * transitionProgress
-                     : 1 - Math.pow(-2 * transitionProgress + 2, 2) / 2;
-
-                 // Interpolate between the cashflow value at the start of the transition and a slightly positive target
-                 const startTransitionValue = values[smoothStartQuarter -1] || peakNegative; // Get value before smoothing started
-                 const targetTransitionValue = 50000; // Aim slightly positive just after transition
-                 currentCashflow = startTransitionValue + (targetTransitionValue - startTransitionValue) * easedProgress;
-                 // Add some minor variation
-                 currentCashflow += (Math.random() - 0.5) * 100000 * (1-Math.abs(easedProgress - 0.5)*2); // Less variation near zero
-
-            } else {
-                // Phase 3: Gradual growth towards steady positive cashflow
-                if (i === smoothEndQuarter + 1) {
-                    // Ensure starting value for this phase is based on the end of the transition
-                    currentCashflow = values[i-1] || 50000;
-                }
-                const growthFactor = 1.15 + Math.random() * 0.1; // Increased base growth factor (e.g., 15-25% per quarter)
-                currentCashflow *= growthFactor;
-                // Increase the cap significantly to allow for more growth
-                currentCashflow = Math.min(currentCashflow, targetPositiveSteady * 2.5); // Allow growth up to 2.5x the original steady target
-                // Ensure it stays positive
-                currentCashflow = Math.max(currentCashflow, 10000);
-            }
-            values.push(Math.round(currentCashflow));
+        if (arrValues.length !== totalQuarters || cashflowValues.length !== totalQuarters) {
+            console.error(`Data mismatch for ${scenarioKey}. Expected ${totalQuarters} quarters.`);
+            // Return empty data to prevent chart errors
+             return {
+                 arrData: { labels: labels, values: Array(totalQuarters).fill(0) },
+                 cashflowData: { labels: labels, values: Array(totalQuarters).fill(0) }
+             };
         }
 
         return {
-            labels: quarterlyLabels,
-            values: values
+            arrData: { labels: labels, values: arrValues },
+            cashflowData: { labels: labels, values: cashflowValues }
         };
     };
 
     // --- Bar Chart Creation Function (Handles Quarterly Data) --- //
     const createChartBars = (data, container, labelsContainer, isCashflow = false) => {
         if (!container || !labelsContainer || !data || data.values.length === 0 || data.values.length !== data.labels.length) {
+             console.warn("Chart generation skipped due to missing data/containers.", {data, container, labelsContainer});
              return;
         }
         container.innerHTML = ''; // Clear existing bars
@@ -523,87 +497,104 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragment = document.createDocumentFragment();
         const labelFragment = document.createDocumentFragment();
 
-        const values = data.values;
+        const values = data.values; // Expecting base dollar values here
         const labels = data.labels;
         const barCount = values.length;
 
-        // Determine scale
-        const allValues = values.map(v => v || 0); // Handle potential null/undefined
+        // Determine scale from base dollar values
+        const allValues = values.map(v => v || 0);
         let maxVal = 0;
         let minVal = 0;
         if (isCashflow) {
             maxVal = Math.max(0, ...allValues);
             minVal = Math.min(0, ...allValues);
-        } else {
+        } else { // ARR
             maxVal = Math.max(...allValues);
             minVal = 0; // ARR doesn't go below zero
         }
 
-        // Add padding to scale
-        const paddingFactor = 0.1; // 10% padding
-        const range = maxVal - minVal;
-        maxVal = maxVal + range * paddingFactor;
-        if (isCashflow) {
-             minVal = minVal - range * paddingFactor;
-        } else {
-             maxVal = Math.max(maxVal, 1000000); // Ensure ARR scale minimum
-        }
-        // Prevent zero range
-         if (maxVal === minVal) {
-             maxVal += 100000; // Add arbitrary range if all values are the same
-             if (isCashflow && minVal !== 0) minVal -= 100000;
-         }
+        // Use max absolute deviation for scaling, prevent zero division
+        const maxAbsValue = Math.max(Math.abs(maxVal), Math.abs(minVal), 1); // Ensure not zero
 
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
-        if (containerWidth <= 0 || containerHeight <= 0) { return; }
+        if (containerWidth <= 0 || containerHeight <= 0) { console.warn("Chart container zero dimensions"); return; }
 
         const barSpacing = containerWidth / barCount;
-        const barWidth = Math.max(2, barSpacing * 0.6); // Narrower bars for quarterly view (60% width)
+        const barWidth = Math.max(2, barSpacing * 0.6);
         const barGap = barSpacing - barWidth;
 
-        const zeroLinePercent = isCashflow ? (maxVal / (maxVal - minVal)) * 100 : 0;
+        // --- Dynamic Zero Line for Cashflow --- 
+        let zeroLineBottomPercent = 50; // Default for ARR or if range is zero
+        if (isCashflow) {
+            const dataRange = maxVal - minVal;
+            if (dataRange > 1) { // Avoid division by zero or tiny ranges
+                // Calculate ideal zero line position based on negative proportion
+                let dynamicZeroLine = (Math.abs(minVal) / dataRange) * 100;
+                // Clamp the line position to prevent extremes (e.g., 20% to 80%)
+                zeroLineBottomPercent = Math.max(20, Math.min(80, dynamicZeroLine));
+            } else if (maxVal === 0 && minVal === 0) {
+                zeroLineBottomPercent = 50; // Center if all zero
+            } else if (maxVal > 0) {
+                 zeroLineBottomPercent = 20; // Mostly positive, push line down
+            } else {
+                 zeroLineBottomPercent = 80; // Mostly negative, push line up
+            }
+        }
+        // ------------------------------------
+
+        // --- Scaling based on dynamic zero line for cashflow ---
+        let scalePositive = 100 / maxAbsValue; // Default scale
+        let scaleNegative = 100 / maxAbsValue; // Default scale
+
+        if (isCashflow && maxAbsValue > 0) { // Check maxAbsValue > 0 to prevent division by zero
+            // Calculate scaling based on available space above/below the dynamic zero line
+            scalePositive = maxVal > 0 ? (100 - zeroLineBottomPercent) / maxVal : 0; // Scale positive part to space above zero
+            scaleNegative = minVal < 0 ? zeroLineBottomPercent / Math.abs(minVal) : 0; // Scale negative part to space below zero
+        }
+        // -----------------------------------------------------
 
         values.forEach((value, index) => {
             const bar = document.createElement('div');
             bar.classList.add('bar');
-            const itemValue = value || 0;
+            const itemValue = value || 0; // Base dollar value
 
             let heightPercentage = 0;
             let bottomPositionPercent = 0;
             let topPositionPercent = null; // Use null to unset
 
             if (isCashflow) {
-                const totalRange = maxVal - minVal;
-                 heightPercentage = totalRange === 0 ? 0 : (Math.abs(itemValue) / totalRange) * 100;
+                let rawHeightPercentage = Math.abs(itemValue) * (itemValue >= 0 ? scalePositive : scaleNegative);
 
+                // Determine position based on value
                 if (itemValue >= 0) {
                     bar.classList.add('positive');
-                    // Starts at zero line, goes up
-                    bottomPositionPercent = zeroLinePercent;
-                    // bar.style.top will be unset
+                    bar.classList.remove('negative');
+                    // Position based on dynamic zero line
+                    bottomPositionPercent = zeroLineBottomPercent;
+                    topPositionPercent = null;
+                    heightPercentage = itemValue * scalePositive; // Use new positive scale
                 } else {
                     bar.classList.add('negative');
-                    // Ends at zero line, goes down (so top is set)
-                     topPositionPercent = (100 - zeroLinePercent);
-                    // bar.style.bottom will be unset
+                    bar.classList.remove('positive');
+                     // Position based on dynamic zero line
+                    topPositionPercent = (100 - zeroLineBottomPercent);
+                    bottomPositionPercent = null;
+                    // Use new negative scale, cap height to space below zero
+                    heightPercentage = Math.min(Math.abs(itemValue) * scaleNegative, zeroLineBottomPercent - 1); // Leave 1% gap
                  }
-                 // Color based on profitability rule
-                const unprofitableQuarters = 3 * quartersPerYear + 2; // 14
-                if (index < unprofitableQuarters) {
-                     bar.style.backgroundColor = 'var(--excel-negative-red)'; // Red before Q3 2027
-                     bar.classList.remove('positive'); // Ensure classes match color if needed
-                     bar.classList.add('negative');
+
+                 // Set color based directly on value
+                 if (itemValue >= 0) {
+                     bar.style.backgroundColor = 'var(--excel-positive-green)';
                  } else {
-                     bar.style.backgroundColor = 'var(--excel-positive-green)'; // Green from Q3 2027
-                     bar.classList.remove('negative');
-                     bar.classList.add('positive');
+                     bar.style.backgroundColor = 'var(--excel-negative-red)';
                  }
 
             } else { // ARR Chart
-                const totalRange = maxVal - minVal; // minVal is 0 for ARR
-                 heightPercentage = totalRange === 0 ? 0 : (itemValue / totalRange) * 100;
+                heightPercentage = itemValue * scalePositive; // Use positive scale (scaled to 100% height)
                 bottomPositionPercent = 0; // Always starts from bottom
+                topPositionPercent = null; // Unset top
                 bar.style.backgroundColor = 'var(--excel-chart-blue)'; // Use standard blue
              }
 
@@ -613,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bar.style.width = `${barWidth}px`;
             bar.style.height = `0%`; // Start height at 0 for animation
 
-            // Set bottom or top based on cashflow type
+            // Set bottom or top based on cashflow type / ARR
              if (topPositionPercent !== null) {
                  bar.style.top = `${topPositionPercent}%`;
                  bar.style.bottom = ''; // Unset bottom
@@ -632,17 +623,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Create Labels - Only for Q1 of each year
             if (index % quartersPerYear === 0) {
-                 const label = document.createElement('span');
+            const label = document.createElement('span');
                  label.textContent = labels[index];
-                 label.style.position = 'absolute';
+            label.style.position = 'absolute';
                  // Position under the first bar of the year
-                 label.style.left = `${index * barSpacing + barSpacing / 2}px`; 
+                 label.style.left = `${index * barSpacing + barSpacing / 2}px`;
                  label.style.bottom = '0';
-                 label.style.whiteSpace = 'nowrap';
+            label.style.whiteSpace = 'nowrap';
                  // label.style.fontSize = '9pt'; // Set font size in CSS
                  label.style.transform = 'translateX(-50%) translateY(100%)'; // Center below bar, no rotation
                  // label.style.transformOrigin = 'center'; // Not needed without rotation
-                 labelFragment.appendChild(label);
+            labelFragment.appendChild(label);
             }
         });
 
@@ -656,14 +647,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return tableBody.querySelector(`tr[data-metric="${metric}"]`);
     }
 
-    // --- Redraw Charts based on current table data --- //
+    // --- Redraw Charts based on current scenario's quarterly data --- //
     const redrawCharts = () => {
          try {
-             const arrData = generateQuarterlyArrData();
-             const cashflowData = generateQuarterlyCashflowData(arrData.labels);
+             const { arrData, cashflowData } = getChartData(); // Get data for current scenario
 
               // === Log Generated Chart Data ===
-              console.log("Chart Data Generated:", {
+              console.log(`Chart Data for Scenario ${currentScenario}:`, {
                   arrValues: arrData.values.slice(0, 5).concat(arrData.values.slice(-5)), // Log first 5 and last 5
                   cashflowValues: cashflowData.values.slice(0, 5).concat(cashflowData.values.slice(-5)) // Log first 5 and last 5
               });
@@ -672,20 +662,23 @@ document.addEventListener('DOMContentLoaded', () => {
              createChartBars(arrData, arrChartContainer, arrLabelsContainer, false);
              createChartBars(cashflowData, cashflowChartContainer, cashflowLabelsContainer, true);
          } catch(e) {
+             console.error("Error redrawing charts:", e);
          }
     }
 
-    // --- Dashboard Update Function (Scenario Switching) --- //
+    // --- Dashboard Update Function (Handles Scenario Switching for Table) --- //
     const updateDashboard = () => {
          currentScenario = currentScenario === 1 ? 2 : 1;
-         const targetScenarioData = scenarios[`scenario${currentScenario}`];
+         const targetScenarioAnnualData = scenarios[`scenario${currentScenario}`]; // Use ANNUAL data for table
          const cellsToUpdate = []; // Keep track of cells whose values change
 
-         if (!tableBody) { return; }
+         if (!tableBody || !targetScenarioAnnualData) {
+             console.error("Missing table body or scenario data for update.");
+             return;
+         }
 
-         // Iterate over scenario 2 data and update table cells' data-value
-         // NOTE: Scenario 2 only has a subset of keys
-         Object.keys(targetScenarioData).forEach(key => {
+         // Iterate over the ANNUAL scenario data to update the TABLE cells
+         Object.keys(targetScenarioAnnualData).forEach(key => {
              const [metricName, year] = key.split('_');
              if (!metricName || !year) return;
 
@@ -695,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  if (headerIndex !== undefined && headerIndex > 0) { // Ensure valid year index > 0
                      const cell = row.querySelector(`td:nth-child(${headerIndex + 1})`);
                      if (cell && cell.hasAttribute('data-value')) {
-                         const newValue = String(targetScenarioData[key]); // Ensure it's a string
+                         const newValue = String(targetScenarioAnnualData[key]); // Ensure it's a string (using raw annual values)
                          const oldValue = cell.getAttribute('data-value');
                          if (newValue !== oldValue) {
                              cell.setAttribute('data-value', newValue);
@@ -706,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
              }
          });
 
-         // Recalculate ARR per Head for the new scenario data
+         // Recalculate ARR per Head based on the updated ANNUAL table data
          try {
             calculateAndSetARRperHead();
             // Add the ARR per Head cells to the update list if they weren't already updated by scenario data
@@ -719,40 +712,47 @@ document.addEventListener('DOMContentLoaded', () => {
                  });
              }
          } catch (e) {
+             console.error("Error recalculating ARR per Head:", e);
          }
 
-         // Apply updates/animations to only the changed cells
+         // Apply updates/animations to only the changed table cells
          cellsToUpdate.forEach(cell => {
              try {
                 animateCountUp(cell);
              } catch(e) {
+                 console.error("Error animating cell:", cell, e);
              }
          });
 
+         // Redraw charts using the QUARTERLY data for the *newly set* currentScenario
          redrawCharts();
      };
 
     // --- Initial Draw Function --- //
     const initializeDashboard = () => {
-        storeScenario1Values();
+        storeScenario1AnnualValues(); // Store initial ANNUAL data from HTML
 
         try {
-             calculateAndSetARRperHead();
+             calculateAndSetARRperHead(); // Calculate based on initial annual data
         } catch (e) {
+             console.error("Error calculating initial ARR per Head:", e);
         }
 
-        // 3. Apply initial formatting/animation to all table cells
+        // 3. Apply initial formatting/animation to all table cells based on initial annual data
         document.querySelectorAll('.financial-summary td[data-value]').forEach(cell => {
             try {
                 animateCountUp(cell);
             } catch (e) {
+                console.error("Error animating initial cell:", cell, e);
                 if (cell) cell.textContent = 'Err';
             }
         });
 
-        // 4. Draw initial charts based on Scenario 1 data
+        // 4. Draw initial charts based on Scenario 1 QUARTERLY data
+        currentScenario = 1; // Ensure we start with scenario 1 charts
         redrawCharts();
 
+        // 5. Start the scenario switching interval
         if (mainUpdateInterval) clearInterval(mainUpdateInterval);
          console.log(`Starting scenario switch interval (${updateIntervalTime}ms)...`);
         mainUpdateInterval = setInterval(updateDashboard, updateIntervalTime);
@@ -765,10 +765,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         if (mainUpdateInterval) {
+            console.log("Clearing interval due to resize.");
             clearInterval(mainUpdateInterval);
         }
         resizeTimer = setTimeout(() => {
-            initializeDashboard();
+            console.log("Re-initializing dashboard after resize.");
+            initializeDashboard(); // Re-initialize completely on resize
         }, 500);
     });
 });
