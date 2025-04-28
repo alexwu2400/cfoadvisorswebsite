@@ -273,7 +273,17 @@ body.modal-open {
 /* @keyframes gradientShift { ... } */
 
 /* Define accent color variable (can be added to :root if used elsewhere) */
-:root { --accent-highlight: #67e8f9; }
+:root {
+    --accent-highlight: #67e8f9;
+    /* Added Financial Model CSS Variables */
+    --excel-chart-blue: #4472C4;
+    --excel-positive-green: #107C41;
+    --excel-negative-red: #C00000;
+    --excel-gridline-color: #D4D4D4; /* Also add gridline color */
+    --excel-header-bg: #F2F2F2;
+    --excel-text-color: #000000;
+    --excel-bg-color: #FFFFFF;
+}
 
 .operational-tax, .operational-excellence {
     position: relative;
@@ -1433,13 +1443,21 @@ body.modal-open {
 }
 #service-visualization-area {
     margin-top: 40px;
-    min-height: 350px; /* Adjusted height */
-    position: relative; /* For positioning content */
+    min-height: 600px;
+    max-width: 1440px; /* Make container wider */
+    margin-left: auto; /* Center the wider container */
+    margin-right: auto; /* Center the wider container */
+    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 30px;
-    background-color: rgba(31, 41, 55, 0.2); /* Slight background tint for container */
-    overflow: hidden; /* Ensure content background doesn't bleed out */
+    background-color: rgba(31, 41, 55, 0.2);
+    overflow: hidden;
+    transition: min-height 0.5s ease; /* Add transition for smooth height change */
+}
+
+#service-visualization-area.planning-active {
+    min-height: 880px; /* Increased by 20% (780px * 1.2) */
 }
 .service-visualization-content {
     display: none;
@@ -1461,6 +1479,7 @@ body.modal-open {
     top: 0; left: 0; right: 0; bottom: 0;
     padding: 30px; /* Re-apply padding inside the absolute positioned element */
     border-radius: 8px; /* Match container radius */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 /* Responsive adjustments for services */
 @media (max-width: 991px) {
@@ -1491,131 +1510,340 @@ body.modal-open {
 
 /* Financial Model Component Styles */
 #embedded-financial-model {
-    /* Add base styles if needed for the container itself, e.g.: */
-    border-right: 1px solid var(--excel-gridline-color, #D4D4D4);
-}
-
-/* *** ADDED IR TABLE STYLES *** */
-.ir-framework-table-container {
+    position: relative;
     width: 100%;
-    /* max-width: 1100px; /* Use container padding */
-    overflow-x: auto; /* Allow horizontal scroll if needed */
-    height: 100%; /* Fill container */
-    display: flex; /* Center table vertically */
-    align-items: center; /* Center table vertically */
-    justify-content: center; /* Center table horizontally */
+    height: 100%;
+    font-family: Calibri, Arial, 'Segoe UI', sans-serif;
+    font-size: 11pt;
+    color: #000000;
+    line-height: 1.4;
+    overflow: hidden; /* Keep overflow hidden */
+    /* transform: scale(0.75); /* REMOVED scaling from parent */
+    /* transform-origin: top left; /* REMOVED scaling from parent */
 }
 
-.ir-framework-table {
+#embedded-financial-model * {
+    box-sizing: border-box;
+    /* margin: 0; /* Be careful with blanket resets, may conflict */
+    /* padding: 0; */
+}
+
+#embedded-financial-model .dashboard {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--excel-bg-color, #FFFFFF); /* Keep white background */
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Contain the scaled content-wrapper */
+}
+
+#embedded-financial-model h1.dashboard-title {
+    font-family: var(--heading-font-family, Calibri, Arial, 'Segoe UI', sans-serif);
+    font-size: 16pt;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    color: var(--excel-text-color, #000000);
+    padding-left: 1rem;
+    flex-shrink: 0; /* Prevent title from shrinking */
+}
+
+#embedded-financial-model .financial-summary {
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Keep horizontal scroll for table */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    flex-shrink: 0; /* Prevent summary from shrinking excessively */
+}
+
+#embedded-financial-model .financial-summary table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid var(--row-border-inactive, rgba(255, 255, 255, 0.15));
-    border-radius: 8px; /* Apply radius to container if border-collapse used */
-    overflow: hidden; /* Helps with radius */
-    margin: auto; /* Center table if container is wider */
+    font-size: 11pt;
+    /* min-width: 800px; /* REMOVED min-width */
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+    table-layout: fixed;
 }
 
-.ir-framework-table th,
-.ir-framework-table td {
-    padding: 12px 15px; /* Consistent padding */
+#embedded-financial-model .financial-summary th,
+#embedded-financial-model .financial-summary td {
+    padding: 4px 8px;
     text-align: left;
-    border-bottom: 1px solid var(--row-border-inactive, rgba(255, 255, 255, 0.15));
-    vertical-align: top; /* Align content top */
-    font-size: 0.95rem; /* Base size */
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+    color: var(--excel-text-color, #000000);
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
-.ir-framework-table th {
-    background-color: var(--header-bg, rgba(31, 41, 55, 0.3));
-    font-size: 0.85rem; /* Slightly smaller header */
-    font-weight: 600;
-    color: var(--medium-grey, #9ca3af);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom-width: 2px; /* Thicker bottom border for header */
-    border-bottom-color: var(--row-border-inactive, rgba(255, 255, 255, 0.15));
+#embedded-financial-model .financial-summary th {
+    background-color: var(--excel-header-bg, #F2F2F2);
+    font-weight: bold;
+    text-align: center;
 }
 
-.ir-framework-table tbody tr {
-    transition: background-color 0.4s ease, opacity 0.4s ease;
-    opacity: 0.5; /* Dim inactive rows */
-    cursor: pointer;
+/* Specific overrides for Actual/Forecast header cells */
+#embedded-financial-model .financial-summary th.th-actual {
+    background-color: #2F5597;
+    color: #FFFFFF;
+    border-color: #2F5597;
 }
 
-.ir-framework-table tbody tr:last-child td {
-    border-bottom: none; /* Remove bottom border on last row */
+#embedded-financial-model .financial-summary th.th-forecast {
+    background-color: #5B9BD5;
+    color: #FFFFFF;
+    border-color: #5B9BD5;
 }
 
-.ir-framework-table tbody tr.active {
-    background-color: var(--row-bg-active, rgba(31, 41, 55, 0.6));
+#embedded-financial-model .financial-summary thead th {
+     /* width: 14%; /* REMOVED default, handled below */
+     /* Default styles for all th in thead - potentially overridden below */
+     font-size: 11pt; /* Keep base size for default */
+}
+
+#embedded-financial-model .financial-summary thead th:first-child {
+     width: 35%; /* Increased width */
+     text-align: left;
+     background-color: var(--excel-header-bg, #F2F2F2);
+     color: var(--excel-text-color, #000000);
+     border-color: var(--excel-gridline-color, #D4D4D4);
+     font-size: 13pt; /* Increased size */
+}
+
+/* Target year headers specifically (exclude first) */
+#embedded-financial-model .financial-summary thead th:not(:first-child) {
+    width: 13%; /* Decreased width */
+    font-size: 13pt; /* Increase size for year headers */
+    /* Keep existing background/color overrides */
+}
+
+#embedded-financial-model .financial-summary tbody tr:last-child td {
+     border-bottom: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+/* Specific Row Styling */
+#embedded-financial-model .financial-summary .header-row th {
+    background-color: var(--excel-header-bg, #F2F2F2);
+    color: var(--excel-text-color, #000000);
+    font-size: 10pt;
+    text-align: center;
+    padding: 4px 8px;
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+#embedded-financial-model .financial-summary .total-row td {
+    font-weight: bold;
+    background-color: #F8F8F8;
+}
+
+#embedded-financial-model .financial-summary .growth-row td {
+    color: var(--excel-text-color, #000000);
+    font-style: italic;
+}
+
+#embedded-financial-model .financial-summary td[data-value] {
+   text-align: right;
+   font-variant-numeric: tabular-nums;
+   font-size: 11pt; /* Explicitly keep original size */
+}
+
+/* Negative value colors applied by JS */
+#embedded-financial-model tr:has(td:first-child:contains("Churned")) td[data-value] {
+     color: var(--excel-negative-red, #C00000);
+}
+
+/* Grouping Row Styles */
+#embedded-financial-model .group-header td {
+    font-weight: bold;
+    background-color: #D9E1F2;
+    color: #000000;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 2px solid var(--excel-gridline-color, #D4D4D4);
+    font-size: 13pt; /* Increase size */
+}
+
+#embedded-financial-model .group-separator td {
+    border: none;
+    height: 10px;
+    background-color: transparent;
+}
+
+/* New Content Wrapper for Layout */
+#embedded-financial-model .content-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    flex-grow: 1;
+    /* overflow: hidden; /* Removed, parent handles clipping */
+    padding-bottom: 1rem;
+    /* Add scaling and compensation */
+    transform: scale(0.75);
+    transform-origin: top left;
+    width: 133.33%; /* Compensate for scaling (1 / 0.75) */
+    height: 133.33%; /* Compensate for scaling (1 / 0.75) */
+    /* Ensure content inside scales nicely */
+    box-sizing: border-box;
+}
+
+/* Charts Section - Update layout */
+#embedded-financial-model .charts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 0;
+    overflow-y: auto; /* Allow charts area to scroll if needed */
+    max-height: 100%; /* Ensure it doesn't overflow wrapper */
+}
+
+#embedded-financial-model .chart-container {
+    background-color: transparent;
+    padding: 1rem; /* Keep inner padding */
+    border-radius: 0;
+}
+
+#embedded-financial-model .chart-container h2 {
+    font-family: var(--heading-font-family, Calibri, Arial, 'Segoe UI', sans-serif);
+    text-align: center;
+    font-size: 17pt; /* Increased size */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--excel-text-color, #000000);
+}
+
+#embedded-financial-model .chart-area {
+    height: 250px;
+    position: relative; /* Keep this for labels */
+    border-left: 1px solid var(--excel-text-color, #000000);
+    border-bottom: 1px solid var(--excel-text-color, #000000);
+    margin-bottom: 2.5rem;
+    background-color: var(--excel-bg-color, #FFFFFF);
+    overflow: visible; /* Ensure bars aren't clipped here */
+}
+
+/* Common bar styles */
+#embedded-financial-model .bar {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--excel-chart-blue, #4472C4);
+    border-radius: 0;
     opacity: 1;
+    /* transition: height 0.4s ease-out, top 0.4s ease-out, bottom 0.4s ease-out; /* Original */
+    transition: height 0.6s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother transition specifically for height */
+    will-change: height; /* Hint browser for performance */
 }
 
-/* Style cell content */
-.ir-framework-table td {
-    color: var(--light-outline, #e5e7eb);
-    transition: color 0.3s ease;
+/* ARR Chart Specifics */
+#embedded-financial-model #arr-chart .arr-bars {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    position: relative; /* Ensure positioning context */
 }
 
-.ir-framework-table td:first-child { /* Core Element Column */
-    font-weight: 600;
-    width: 20%; /* Adjusted width slightly */
-    color: var(--white, #fff);
-    font-size: 1.0rem;
-    background-color: var(--header-bg, rgba(31, 41, 55, 0.3));
-    transition: color 0.3s ease, background-color 0.4s ease;
+/* Cashflow Chart Specifics */
+#embedded-financial-model #cashflow-chart .cashflow-bars {
+    position: relative; /* Ensure positioning context */
+    height: 100%;
+    width: 100%;
 }
 
-/* Ensure active row overrides first-child background */
-.ir-framework-table tbody tr.active td {
-     /* Active background applied to TR handles this */
+#embedded-financial-model #cashflow-chart .bar.positive {
+    background-color: var(--excel-positive-green, #107C41);
+    /* Keep transition inherited from .bar */
 }
 
-.ir-framework-table td:nth-child(2) { width: 30%; } /* Key Principle */
-.ir-framework-table td:nth-child(3) { width: 25%; font-style: italic; color: var(--medium-grey, #9ca3af); } /* Success Metrics */
-.ir-framework-table td:nth-child(4) { width: 25%; color: var(--medium-grey, #9ca3af); font-style: italic; } /* Common Mistakes */
-
-/* Responsive for Table */
-@media (max-width: 991px) {
-    .ir-framework-table th,
-    .ir-framework-table td {
-        padding: 10px 12px;
-        font-size: 0.9rem;
-    }
-    .ir-framework-table td:first-child { font-size: 0.95rem; }
+#embedded-financial-model #cashflow-chart .bar.negative {
+    background-color: var(--excel-negative-red, #C00000);
+    /* Keep transition inherited from .bar */
+    /* Ensure negative bars also animate height correctly */
+    /* If negative bars animate from top, transition 'height' and 'top' */
+    transition: height 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), top 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-@media (max-width: 767px) {
-     /* Responsive stacking handled in shared service styles if needed */
-     /* Re-add stacking specifically if needed */
-    .ir-framework-table-container { align-items: flex-start; padding-top: 15px; } /* Align top */
-    .ir-framework-table th { display: none; } /* Hide header */
-    .ir-framework-table td {
-        display: block; width: 100% !important;
-        text-align: left !important; padding-left: 15px; padding-right: 15px;
-        border-bottom: none; position: relative;
-    }
-    .ir-framework-table td:first-child {
-        background-color: rgba(31, 41, 55, 0.2);
-        padding-top: 12px; padding-bottom: 10px;
-        margin-left: -15px; margin-right: -15px;
-        font-size: 1.1rem; color: var(--white, #fff);
-    }
-    .ir-framework-table tr.active td:first-child {
-         /* Active state handled by TR */
-    }
-    .ir-framework-table td:not(:first-child)::before {
-        content: attr(data-label); display: block;
-        font-weight: 600; color: var(--medium-grey, #9ca3af); font-size: 0.75rem;
-        text-transform: uppercase; margin-bottom: 4px; margin-top: 8px;
-    }
-    .ir-framework-table tbody tr {
-        display: block; margin-bottom: 15px;
-        border: 1px solid var(--row-border-inactive, rgba(255, 255, 255, 0.15));
-        border-radius: 6px; padding-bottom: 5px;
-    }
-    .ir-framework-table tbody tr.active {
-        border-color: var(--row-border-active, #67e8f9);
-    }
-    .ir-framework-table td:last-child { padding-bottom: 12px; }
+/* X-axis labels */
+#embedded-financial-model .chart-labels {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    font-size: 9pt;
+    color: var(--excel-text-color, #000000);
+    overflow: visible;
+    white-space: nowrap;
+    margin-top: 0px;
 }
-/* *** END IR TABLE STYLES *** */ 
+
+#embedded-financial-model .chart-labels span {
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    color: var(--excel-text-color, #000000);
+    font-size: 11pt; /* Increased size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    #embedded-financial-model .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    #embedded-financial-model .charts {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #embedded-financial-model {
+        /* Adjust container font size if needed for mobile */
+        /* font-size: 10pt; */
+    }
+    #embedded-financial-model h1.dashboard-title { font-size: 14pt; padding-left: 0.5rem;}
+    #embedded-financial-model .financial-summary th,
+    #embedded-financial-model .financial-summary td {
+        padding: 3px 5px;
+    }
+    #embedded-financial-model .chart-area { height: 200px; margin-bottom: 2rem; }
+    #embedded-financial-model .chart-labels { font-size: 10pt; bottom: -20px; } /* Adjusted base for mobile */
+    #embedded-financial-model .chart-labels span { font-size: 10pt; } /* Adjusted for mobile */
+    #embedded-financial-model .chart-container h2 { font-size: 14pt; } /* Adjusted for mobile */
+    #embedded-financial-model .financial-summary th:first-child, 
+    #embedded-financial-model .financial-summary thead th:not(:first-child), /* Target year headers on mobile */
+    #embedded-financial-model .financial-summary tbody td:first-child,
+    #embedded-financial-model .group-header td /* Target group headers on mobile */ {
+        font-size: 11pt; /* Adjusted label/header size for mobile */
+    }
+     #embedded-financial-model .financial-summary td[data-value] {
+         font-size: 10pt; /* Slightly smaller values on mobile if needed */
+     }
+}
+
+/* Add standard left border BETWEEN 25/26 and 26/27 */
+#embedded-financial-model .financial-summary th:nth-child(5),
+#embedded-financial-model .financial-summary td:nth-child(5),
+#embedded-financial-model .financial-summary th:nth-child(6),
+#embedded-financial-model .financial-summary td:nth-child(6) {
+    border-left: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+/* Ensure the last column also has a right border matching the table */
+#embedded-financial-model .financial-summary th:last-child,
+#embedded-financial-model .financial-summary td:last-child {
+     border-right: 1px solid var(--excel-gridline-color, #D4D4D4);
+} 
+
+#embedded-financial-model .financial-summary tbody td:first-child {
+    /* Rule specifically for the first column in the body */
+    font-size: 13pt !important; /* Increased size and force override */
+    /* Add other styles if needed, e.g., font-weight */
+}
