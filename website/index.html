@@ -99,7 +99,7 @@
              </div>
              <h4 class="attribute-card-title" style="margin-top: 0.5rem; font-size: 1.62rem;">Actual ARR vs Board Plan</h4> <!-- Reduced margin-top & font-size -->
              <p class="attribute-card-description" style="margin-top: 0.5rem;">
-                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have real-time clarity.
+                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have <span class="description-highlight">real-time clarity</span>.
              </p>
           </div>
           <div class="attribute-card" data-attribute="alignment">
@@ -110,7 +110,7 @@
                  <img src="images/Alignment Slide 3.jpg" alt="Slide 3" class="slide">
              </div>
              <h4 class="attribute-card-title">Strategic Focus</h4>
-             <p class="attribute-card-description">Ensure board, management, and team alignment on strategic priorities and the critical metrics that matter most.</p>
+             <p class="attribute-card-description">Ensure board, management, and team alignment on strategic priorities and the <span class="description-highlight">critical metrics that matter most.</span></p>
           </div>
           <div class="attribute-card" data-attribute="accountability">
              <!-- Slackbot Visual Representation (Moved Here) -->
@@ -153,7 +153,7 @@ Date        Amount   Vendor                     Department              Account
              </div>
              <h4 class="attribute-card-title" style="margin-top: 1.5rem;">Performance Driven</h4> <!-- Updated Title -->
              <p class="attribute-card-description" style="margin-top: 0.5rem;">
-                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have real-time clarity and fostering accountability.
+                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs <span class="description-highlight">directly through Slack</span>, ensuring executives have real-time clarity and fostering accountability.
              </p>
           </div>
           <div class="attribute-card" data-attribute="autonomy">
@@ -185,7 +185,7 @@ Date        Amount   Vendor                     Department              Account
              </div>
              <!-- Re-added Title and Description -->
              <h4 class="attribute-card-title">Empowered Leaders</h4>
-             <p class="attribute-card-description">Equip leaders with clear goals, necessary resources, and the authority to proactively address gaps and drive results.</p>
+             <p class="attribute-card-description">Equip leaders with clear goals, necessary resources, and the authority to <span class="description-highlight">proactively address gaps</span> and drive results.</p>
              <!-- Removed redundant script from slack.html -->
           </div>
           <div class="attribute-card" data-attribute="velocity">
@@ -238,7 +238,7 @@ Date        Amount   Vendor                     Department              Account
             </div>
             <!-- End of Stacked Advantage Widget -->
              <h4 class="attribute-card-title">Accelerated Execution</h4>
-             <p class="attribute-card-description">Increase the speed at which quality decisions are surfaced, made, and implemented across the organization.</p>
+             <p class="attribute-card-description">Increase the speed at which quality decisions are <span class="description-highlight">surfaced, made, and implemented</span> across the organization.</p>
           </div>
         </div>
       </div>
@@ -281,25 +281,43 @@ Date        Amount   Vendor                     Department              Account
   <!-- Added Services Section -->
   <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 60px; padding-bottom: 60px;">
     <div class="w-container">
-      <h2 class="heading" style="color: white; text-align: center;">Services</h2>
+      <h2 class="heading" style="color: white; text-align: center;">CFO Services</h2>
       <!-- Service content will go here -->
       <div class="core-offerings-container" id="service-selectors">
         <div class="offering-block active" data-service="planning">
           <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Financial Model & Strategic Planning</h3>
-          <p class="offering-description">Managing investor-ready financial models and facilitating strategic planning alignment.</p>
+          <h3 class="offering-title">Financial Model &<br>Strategic Planning</h3>
+          <div class="offering-description">
+             <ul>
+                 <li>Investor-ready financial models</li>
+                 <li>Strategic planning & alignment</li>
+                 <li>Forecast accuracy consistently &gt; 95%</li>
+             </ul>
+          </div>
           <!-- Visualization placeholder REMOVED -->
         </div>
         <div class="offering-block" data-service="fundraising">
           <!-- Placeholder Icon SVG can go here -->
           <h3 class="offering-title">Fundraising &<br>Investor Relations</h3>
-          <p class="offering-description">Assisting with board decks, fundraising support, due diligence, and investor-ready financials.</p>
+          <div class="offering-description">
+             <ul>
+                 <li>Board deck preparation</li>
+                 <li>Fundraising support & due diligence</li>
+                 <li>Investor-ready financials</li>
+             </ul>
+          </div>
           <!-- Visualization placeholder REMOVED -->
         </div>
         <div class="offering-block" data-service="operations">
           <!-- Placeholder Icon SVG can go here -->
           <h3 class="offering-title">Financial Operations &<br>Reducing Overhead</h3>
-          <p class="offering-description">Operationalizing finance via dashboards, headcount planning, ARR tracking, spend management, and identifying cost-saving opportunities.</p>
+          <div class="offering-description">
+             <ul>
+                 <li>Finance dashboards & KPI tracking</li>
+                 <li>Headcount & ARR planning</li>
+                 <li>Spend management & cost savings</li>
+             </ul>
+          </div>
           <!-- Visualization placeholder REMOVED -->
         </div>
       </div>
@@ -307,6 +325,10 @@ Date        Amount   Vendor                     Department              Account
       <div id="service-visualization-area">
         <div class="service-visualization-content active" data-service="planning">
           <!-- Content/Animation for Planning -->
+          <!-- ADDED: Header and Link for Planning Visualization -->
+          <h4 class="visualization-sub-header">Custom Financial Models & Board Approved Plans</h4>
+          <a href="pdf/hybrid_budgeting_framework.pdf" target="_blank" class="visualization-link">CFO Advisors Budgeting Framework</a>
+          <!-- END ADDED Section -->
           <!-- INSERTED FINANCIAL MODEL DASHBOARD -->
           <div id="embedded-financial-model" style="height: 100%; overflow: auto;"> <!-- Added inline styles for initial fitting -->
               <div class="dashboard">
@@ -400,10 +422,10 @@ Date        Amount   Vendor                     Department              Account
         </div>
         <div class="service-visualization-content" data-service="fundraising">
           <!-- Content/Animation for Fundraising -->
-          <!-- REMOVED Placeholder:
-          <h4>Fundraising Visualization Placeholder</h4>
-           <p>Visuals showing fundraising timelines, investor metrics, and due diligence dashboards will appear here.</p>
-          -->
+          <!-- ADDED: Header and Link for Fundraising Visualization -->
+          <h4 class="visualization-sub-header">CFO Advisors x Bessemer Investor Relations Playbook</h4>
+          <a href="https://www.bvp.com/atlas/cfo-playbook-mastering-metrics-and-managing-boards-for-saas-finance-success" target="_blank" class="visualization-link">Read the full Investor Relations CFO Playbook</a>
+          <!-- END ADDED Section -->
           <!-- INSERTED IR FRAMEWORK TABLE -->
           <div class="ir-framework-table-container">
               <table class="ir-framework-table" id="ir-framework-table">

@@ -7,92 +7,94 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="dashboard">
-        <h1 class="dashboard-title">Operating Model Dashboard</h1>
+    <div id="embedded-financial-model">
+        <div class="dashboard">
+            <h1 class="dashboard-title">Operating Model Dashboard</h1>
 
-        <!-- New Wrapper for two-column layout -->
-        <div class="content-wrapper">
+            <!-- New Wrapper for two-column layout -->
+            <div class="content-wrapper">
 
-            <div class="financial-summary">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Metric</th>
-                            <th class="th-actual">2024A</th>
-                            <th class="th-forecast">2025E</th>
-                            <th class="th-forecast">2026E</th>
-                            <th class="th-forecast">2027E</th>
-                            <th class="th-forecast">2028E</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- ARR Waterfall -->
-                        <tr class="group-header"><td colspan="6">Topline Metrics</td></tr>
-                        <tr data-metric="BeginningARR" data-unit="$ MM" class="total-row"><td>Beginning ARR</td><td data-value="0.0"></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td></tr>
-                        <tr data-metric="NewARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) New ARR</td><td data-value="1.0"></td><td data-value="2.20"></td><td data-value="4.46"></td><td data-value="6.63"></td><td data-value="9.05"></td></tr>
-                        <tr data-metric="ExpansionARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) Expansion ARR</td><td data-value="0.0"></td><td data-value="0.05"></td><td data-value="0.31"></td><td data-value="1.12"></td><td data-value="2.61"></td></tr>
-                        <tr data-metric="ChurnedARR" data-unit="$ MM"><td style="padding-left: 25px;">(-) Churned ARR</td><td data-value="0.0"></td><td data-value="-0.15"></td><td data-value="-0.37"></td><td data-value="-0.75"></td><td data-value="-1.16"></td></tr>
-                        <tr data-metric="EndingARR" data-unit="$ MM" class="total-row"><td><strong>Ending ARR</strong></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td><td data-value="25.0"></td></tr>
+                <div class="financial-summary">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th class="th-actual">2024A</th>
+                                <th class="th-forecast">2025E</th>
+                                <th class="th-forecast">2026E</th>
+                                <th class="th-forecast">2027E</th>
+                                <th class="th-forecast">2028E</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ARR Waterfall -->
+                            <tr class="group-header"><td colspan="6">Topline Metrics</td></tr>
+                            <tr data-metric="BeginningARR" data-unit="$ MM" class="total-row"><td>Beginning ARR</td><td data-value="0.0"></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td></tr>
+                            <tr data-metric="NewARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) New ARR</td><td data-value="1.0"></td><td data-value="2.20"></td><td data-value="4.46"></td><td data-value="6.63"></td><td data-value="9.05"></td></tr>
+                            <tr data-metric="ExpansionARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) Expansion ARR</td><td data-value="0.0"></td><td data-value="0.05"></td><td data-value="0.31"></td><td data-value="1.12"></td><td data-value="2.61"></td></tr>
+                            <tr data-metric="ChurnedARR" data-unit="$ MM"><td style="padding-left: 25px;">(-) Churned ARR</td><td data-value="0.0"></td><td data-value="-0.15"></td><td data-value="-0.37"></td><td data-value="-0.75"></td><td data-value="-1.16"></td></tr>
+                            <tr data-metric="EndingARR" data-unit="$ MM" class="total-row"><td><strong>Ending ARR</strong></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td><td data-value="25.0"></td></tr>
 
-                        <!-- Retention / Growth -->
-                        <tr data-metric="ARRGrowthPct" data-unit="%"><td>ARR Growth %</td><td data-value="null"></td><td data-value="210.0"></td><td data-value="141.9"></td><td data-value="93.3"></td><td data-value="72.4"></td></tr>
-                        <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
-                        <tr data-metric="GrossRetentionPct" data-unit="%"><td>Gross Retention %</td><td data-value="null"></td><td data-value="85.0"></td><td data-value="88.1"></td><td data-value="90.0"></td><td data-value="92.0"></td></tr>
-                        <tr data-metric="NetRetentionPct" data-unit="%"><td>Net Retention %</td><td data-value="null"></td><td data-value="90.0"></td><td data-value="98.1"></td><td data-value="104.9"></td><td data-value="110.0"></td></tr>
-                        <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
+                            <!-- Retention / Growth -->
+                            <tr data-metric="ARRGrowthPct" data-unit="%"><td>ARR Growth %</td><td data-value="null"></td><td data-value="210.0"></td><td data-value="141.9"></td><td data-value="93.3"></td><td data-value="72.4"></td></tr>
+                            <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
+                            <tr data-metric="GrossRetentionPct" data-unit="%"><td>Gross Retention %</td><td data-value="null"></td><td data-value="85.0"></td><td data-value="88.1"></td><td data-value="90.0"></td><td data-value="92.0"></td></tr>
+                            <tr data-metric="NetRetentionPct" data-unit="%"><td>Net Retention %</td><td data-value="null"></td><td data-value="90.0"></td><td data-value="98.1"></td><td data-value="104.9"></td><td data-value="110.0"></td></tr>
+                            <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
 
-                        <!-- Customer Metrics -->
-                        <tr data-metric="AverageContractValueK" data-unit="$ K"><td>Avg Contract Value</td><td data-value="29.4"></td><td data-value="31.6"></td><td data-value="34.0"></td><td data-value="37.0"></td><td data-value="40.0"></td></tr>
-                        <tr data-metric="EndingCustomers" data-unit="count"><td>Ending Customers</td><td data-value="34"></td><td data-value="98"></td><td data-value="221"></td><td data-value="392"></td><td data-value="625"></td></tr>
+                            <!-- Customer Metrics -->
+                            <tr data-metric="AverageContractValueK" data-unit="$ K"><td>Avg Contract Value</td><td data-value="29.4"></td><td data-value="31.6"></td><td data-value="34.0"></td><td data-value="37.0"></td><td data-value="40.0"></td></tr>
+                            <tr data-metric="EndingCustomers" data-unit="count"><td>Ending Customers</td><td data-value="34"></td><td data-value="98"></td><td data-value="221"></td><td data-value="392"></td><td data-value="625"></td></tr>
 
-                        <!-- Income Statement -->
-                        <tr class="group-header"><td colspan="6">Income Statement</td></tr>
-                        <tr data-metric="Revenue" data-unit="$ MM"><td>Revenue</td><td data-value="0.50"></td><td data-value="2.05"></td><td data-value="5.30"></td><td data-value="11.00"></td><td data-value="19.75"></td></tr>
-                        <tr data-metric="COGS" data-unit="$ MM"><td style="padding-left: 25px;">COGS</td><td data-value="0.120"></td><td data-value="0.410"></td><td data-value="0.901"></td><td data-value="1.540"></td><td data-value="2.370"></td></tr>
-                        <tr data-metric="GrossProfit" data-unit="$ MM" class="total-row"><td>Gross Profit</td><td data-value="0.380"></td><td data-value="1.640"></td><td data-value="4.399"></td><td data-value="9.460"></td><td data-value="17.380"></td></tr>
-                        <tr data-metric="GrossMarginPct" data-unit="%"><td>Gross Margin %</td><td data-value="76.0"></td><td data-value="80.0"></td><td data-value="83.0"></td><td data-value="86.0"></td><td data-value="88.0"></td></tr>
+                            <!-- Income Statement -->
+                            <tr class="group-header"><td colspan="6">Income Statement</td></tr>
+                            <tr data-metric="Revenue" data-unit="$ MM"><td>Revenue</td><td data-value="0.50"></td><td data-value="2.05"></td><td data-value="5.30"></td><td data-value="11.00"></td><td data-value="19.75"></td></tr>
+                            <tr data-metric="COGS" data-unit="$ MM"><td style="padding-left: 25px;">COGS</td><td data-value="0.120"></td><td data-value="0.410"></td><td data-value="0.901"></td><td data-value="1.540"></td><td data-value="2.370"></td></tr>
+                            <tr data-metric="GrossProfit" data-unit="$ MM" class="total-row"><td>Gross Profit</td><td data-value="0.380"></td><td data-value="1.640"></td><td data-value="4.399"></td><td data-value="9.460"></td><td data-value="17.380"></td></tr>
+                            <tr data-metric="GrossMarginPct" data-unit="%"><td>Gross Margin %</td><td data-value="76.0"></td><td data-value="80.0"></td><td data-value="83.0"></td><td data-value="86.0"></td><td data-value="88.0"></td></tr>
 
-                         <!-- OpEx -->
-                        <tr class="total-row"><td colspan="6">Operating Expenses</td></tr>
-                        <tr data-metric="TotalR&D" data-unit="$ MM"><td style="padding-left: 25px;">Research & Development</td><td data-value="0.37"></td><td data-value="1.39"></td><td data-value="2.87"></td><td data-value="2.94"></td><td data-value="3.96"></td></tr>
-                        <tr data-metric="TotalS&M" data-unit="$ MM"><td style="padding-left: 25px;">Sales & Marketing</td><td data-value="0.46"></td><td data-value="1.58"></td><td data-value="3.19"></td><td data-value="3.49"></td><td data-value="4.94"></td></tr>
-                        <tr data-metric="TotalG&A" data-unit="$ MM"><td style="padding-left: 25px;">General & Administrative</td><td data-value="0.14"></td><td data-value="0.45"></td><td data-value="1.18"></td><td data-value="1.73"></td><td data-value="3.18"></td></tr>
+                             <!-- OpEx -->
+                            <tr class="total-row"><td colspan="6">Operating Expenses</td></tr>
+                            <tr data-metric="TotalR&D" data-unit="$ MM"><td style="padding-left: 25px;">Research & Development</td><td data-value="0.37"></td><td data-value="1.39"></td><td data-value="2.87"></td><td data-value="2.94"></td><td data-value="3.96"></td></tr>
+                            <tr data-metric="TotalS&M" data-unit="$ MM"><td style="padding-left: 25px;">Sales & Marketing</td><td data-value="0.46"></td><td data-value="1.58"></td><td data-value="3.19"></td><td data-value="3.49"></td><td data-value="4.94"></td></tr>
+                            <tr data-metric="TotalG&A" data-unit="$ MM"><td style="padding-left: 25px;">General & Administrative</td><td data-value="0.14"></td><td data-value="0.45"></td><td data-value="1.18"></td><td data-value="1.73"></td><td data-value="3.18"></td></tr>
 
-                        <!-- P&L Bottom Line -->
-                        <tr data-metric="TotalOperatingExp" data-unit="$ MM"><td><strong>Total Operating Expenses</strong></td><td data-value="0.97"></td><td data-value="3.42"></td><td data-value="7.24"></td><td data-value="8.16"></td><td data-value="12.72"></td></tr>
-                        <tr data-metric="NetIncome" data-unit="$ MM" class="total-row"><td><strong>Net Income</strong></td><td data-value="-0.59"></td><td data-value="-1.78"></td><td data-value="-2.841"></td><td data-value="1.300"></td><td data-value="4.660"></td></tr>
+                            <!-- P&L Bottom Line -->
+                            <tr data-metric="TotalOperatingExp" data-unit="$ MM"><td><strong>Total Operating Expenses</strong></td><td data-value="0.97"></td><td data-value="3.42"></td><td data-value="7.24"></td><td data-value="8.16"></td><td data-value="12.72"></td></tr>
+                            <tr data-metric="NetIncome" data-unit="$ MM" class="total-row"><td><strong>Net Income</strong></td><td data-value="-0.59"></td><td data-value="-1.78"></td><td data-value="-2.841"></td><td data-value="1.300"></td><td data-value="4.660"></td></tr>
 
-                         <!-- Additional KPIs -->
-                        <tr class="group-header"><td colspan="6">Additional KPIs</td></tr>
-                        <tr data-metric="EndingCash" data-unit="$ MM"><td>Ending Cash</td><td data-value="1.41"></td><td data-value="-0.37"></td><td data-value="-3.211"></td><td data-value="-1.911"></td><td data-value="2.749"></td></tr>
-                        <tr data-metric="AvgMonthlyBurn" data-unit="$ MM/month"><td>Avg Monthly Burn</td><td data-value="0.049167"></td><td data-value="0.148333"></td><td data-value="0.236750"></td><td data-value="Profitable"></td><td data-value="Profitable"></td></tr>
-                        <tr data-metric="TotalHeadcount" data-unit="FTE"><td>Total Headcount</td><td data-value="12"></td><td data-value="31"></td><td data-value="58"></td><td data-value="81"></td><td data-value="109"></td></tr>
-                        <tr data-metric="ARRperHead" data-unit="$"><td>ARR per Head</td><td data-value="0.08"></td><td data-value="0.10"></td><td data-value="0.13"></td><td data-value="0.18"></td><td data-value="0.23"></td></tr>
-                    </tbody>
-                </table>
-            </div>
+                             <!-- Additional KPIs -->
+                            <tr class="group-header"><td colspan="6">Additional KPIs</td></tr>
+                            <tr data-metric="EndingCash" data-unit="$ MM"><td>Ending Cash</td><td data-value="1.41"></td><td data-value="-0.37"></td><td data-value="-3.211"></td><td data-value="-1.911"></td><td data-value="2.749"></td></tr>
+                            <tr data-metric="AvgMonthlyBurn" data-unit="$ MM/month"><td>Avg Monthly Burn</td><td data-value="0.049167"></td><td data-value="0.148333"></td><td data-value="0.236750"></td><td data-value="Profitable"></td><td data-value="Profitable"></td></tr>
+                            <tr data-metric="TotalHeadcount" data-unit="FTE"><td>Total Headcount</td><td data-value="12"></td><td data-value="31"></td><td data-value="58"></td><td data-value="81"></td><td data-value="109"></td></tr>
+                            <tr data-metric="ARRperHead" data-unit="$"><td>ARR per Head</td><td data-value="0.08"></td><td data-value="0.10"></td><td data-value="0.13"></td><td data-value="0.18"></td><td data-value="0.23"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="charts">
-                <!-- Chart containers will stack vertically now -->
-                <div class="chart-container" id="arr-chart">
-                    <h2>Annual Recurring Revenue</h2>
-                    <div class="chart-area">
-                        <div class="arr-bars"></div>
-                        <div class="arr-labels chart-labels"></div>
+                <div class="charts">
+                    <!-- Chart containers will stack vertically now -->
+                    <div class="chart-container" id="arr-chart">
+                        <h2>Annual Recurring Revenue</h2>
+                        <div class="chart-area">
+                            <div class="arr-bars"></div>
+                            <div class="arr-labels chart-labels"></div>
+                        </div>
+                    </div>
+                    <div class="chart-container" id="cashflow-chart">
+                        <h2>Operating Cashflow</h2>
+                        <div class="chart-area">
+                            <div class="cashflow-bars"></div>
+                            <div class="cashflow-labels chart-labels"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="chart-container" id="cashflow-chart">
-                    <h2>Operating Cashflow</h2>
-                    <div class="chart-area">
-                        <div class="cashflow-bars"></div>
-                        <div class="cashflow-labels chart-labels"></div>
-                    </div>
-                </div>
-            </div>
 
-        </div> <!-- End content-wrapper -->
+            </div> <!-- End content-wrapper -->
 
-    </div>
+        </div>
+    </div> <!-- End embedded-financial-model -->
 
     <script src="script.js"></script>
 </body>

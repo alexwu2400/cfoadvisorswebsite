@@ -680,8 +680,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add/Remove class for height adjustment
         if (targetService === 'planning') {
             visualizationArea?.classList.add('planning-active');
+            visualizationArea?.classList.remove('fundraising-active'); // Remove other class
+        } else if (targetService === 'fundraising') {
+            visualizationArea?.classList.add('fundraising-active');
+            visualizationArea?.classList.remove('planning-active'); // Remove other class
         } else {
             visualizationArea?.classList.remove('planning-active');
+            visualizationArea?.classList.remove('fundraising-active'); // Remove for other services too
         }
 
         serviceSelectors.forEach(s => s.classList.remove('active'));
