@@ -629,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const visualizationContents = document.querySelectorAll('#service-visualization-area .service-visualization-content');
     let currentServiceIndex = 0;
     let serviceRotationInterval = null;
-    const serviceRotationDelay = 3000;
+    const serviceRotationDelay = 5000;
 
     const irTableBody = document.querySelector('#ir-framework-table tbody');
     const irTableRows = irTableBody ? Array.from(irTableBody.querySelectorAll('tr')) : [];
@@ -681,12 +681,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetService === 'planning') {
             visualizationArea?.classList.add('planning-active');
             visualizationArea?.classList.remove('fundraising-active'); // Remove other class
+            visualizationArea?.classList.remove('operations-active'); // Also remove operations class
         } else if (targetService === 'fundraising') {
             visualizationArea?.classList.add('fundraising-active');
             visualizationArea?.classList.remove('planning-active'); // Remove other class
+            visualizationArea?.classList.remove('operations-active'); // Also remove operations class
+        } else if (targetService === 'operations') {
+            visualizationArea?.classList.add('operations-active'); // Add operations class
+            visualizationArea?.classList.remove('planning-active'); // Remove planning class
+            visualizationArea?.classList.remove('fundraising-active'); // Remove fundraising class
         } else {
             visualizationArea?.classList.remove('planning-active');
-            visualizationArea?.classList.remove('fundraising-active'); // Remove for other services too
+            visualizationArea?.classList.remove('fundraising-active'); 
+            visualizationArea?.classList.remove('operations-active');
         }
 
         serviceSelectors.forEach(s => s.classList.remove('active'));
