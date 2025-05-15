@@ -769,7 +769,6 @@ document.addEventListener('DOMContentLoaded', function() {
          selector.addEventListener('click', function() {
             if (serviceRotationInterval) clearInterval(serviceRotationInterval);
              activateService(index);
-            startServiceRotation(); // Start the rotation again after manual selection
         });
      });
      
