@@ -769,9 +769,24 @@ document.addEventListener('DOMContentLoaded', function() {
          selector.addEventListener('click', function() {
             if (serviceRotationInterval) clearInterval(serviceRotationInterval);
              activateService(index);
+            startServiceRotation(); // Start the rotation again after manual selection
         });
-         });
      });
+     
+     // Start automatic rotation
+     startServiceRotation();
+});
+
+// Find the service section JavaScript that handles tab switching
+document.addEventListener('DOMContentLoaded', function() {
+    // Service selection functionality
+    const serviceSelectors = document.querySelectorAll('#service-selectors .offering-block');
+    const serviceVisualizations = document.querySelectorAll('.service-visualization-content');
+    const visualizationArea = document.getElementById('service-visualization-area');
+    
+    // Don't add duplicate click handlers - they're already handled above
+    // This function is now just a fallback
+});
 
 // --- Financial Model Script --- //
 function initializeFinancialModel(containerId) {
@@ -1172,34 +1187,4 @@ let financialModelInstance = null;
 document.addEventListener('DOMContentLoaded', function() {
     // Financial model initialization is handled by the activateService function
     // This listener is kept for other potential DOMContentLoaded tasks if needed.
-});
-
-// Find the service section JavaScript that handles tab switching
-document.addEventListener('DOMContentLoaded', function() {
-    // Service selection functionality
-    const serviceSelectors = document.querySelectorAll('#service-selectors .offering-block');
-    const serviceVisualizations = document.querySelectorAll('.service-visualization-content');
-    const visualizationArea = document.getElementById('service-visualization-area');
-    
-    serviceSelectors.forEach(selector => {
-        selector.addEventListener('click', function() {
-            // Get the service type from the data attribute
-            const serviceType = this.getAttribute('data-service');
-            
-            // Update active selector
-            serviceSelectors.forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Update active visualization content
-            serviceVisualizations.forEach(v => v.classList.remove('active'));
-            document.querySelector(`.service-visualization-content[data-service="${serviceType}"]`).classList.add('active');
-            
-            // THIS IS THE FIX - Add the appropriate class to the visualization area
-            visualizationArea.classList.remove('planning-active', 'fundraising-active', 'operations-active');
-            visualizationArea.classList.add(`${serviceType}-active`);
-            
-            // Additional code for specific service visualizations (charts, etc.)
-            // ...
-        });
-    });
 });
