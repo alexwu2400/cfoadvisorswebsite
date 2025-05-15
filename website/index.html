@@ -22,15 +22,15 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body class="body">
-  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav" style="background-color: #0D121C; border-bottom: none; box-shadow: none;">
+  <div class="hero-section-wrapper">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav" style="background-color: transparent; border-bottom: none; box-shadow: none;">
     <div class="container-8 w-container">
       <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="images/CFO-ADVISORS.svg" loading="lazy" alt="CFO Advisors Logo
-" class="image" style="max-height: 60px; width: auto;"></a>
+" class="image" style="width: auto; height: 25px;"></a>
       <nav role="navigation" class="nav-menu-2 w-nav-menu">
-        <a href="#company-overview" class="nav-link w-nav-link" style="font-size: 18px;">Company</a>
-        <a href="#services" class="nav-link w-nav-link" style="font-size: 18px;">Services</a>
-        <a href="#testimonials-section" class="nav-link w-nav-link" style="font-size: 18px;">Testimonials</a>
-        <a href="careers.html" class="nav-link w-nav-link" style="font-size: 18px;">Careers</a>
+        <a href="#testimonials-section" class="nav-link w-nav-link" style="font-size: 22px; padding-top: 28px;">Testimonials</a>
+        <a href="#services" class="nav-link w-nav-link" style="font-size: 22px; padding-top: 28px;">Services</a>
+        <a href="careers.html" class="nav-link w-nav-link" style="font-size: 22px; padding-top: 28px;">Careers</a>
       </nav>
       <div class="menu-button w-nav-button">
         <div class="icon w-icon-nav-menu"></div>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <!-- New Hero Section based on example header.html -->
-  <section class="section hero-section-interactive" style="margin-top: 20px; padding: 0; margin-bottom: 0;">
+  <section class="section hero-section-interactive" style="padding: 0; margin: 0;">
     <canvas id="plexus-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas> <!-- Added Canvas for Plexus Effect -->
     <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1;">
       <h1 class="hero-headline fade-in" style="font-family: 'Gilda Display', serif; font-size: clamp(2.7rem, 5.4vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--white, #fff); margin-bottom: 2rem;">
@@ -249,9 +249,11 @@ Date        Amount   Vendor                     Department              Account
     </div>
   </section>
   <!-- End New Hero Section -->
+  </div>
+  <!-- End hero-section-wrapper -->
 
   <!-- START: Testimonials Section -->
-  <section id="testimonials-section" class="section beige-section">
+  <section id="testimonials-section" class="section beige-section" style="margin-bottom: 0;">
     <div class="carousel-parent-container">
       <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
       <div class="swiper testimonial-swiper">
@@ -364,8 +366,8 @@ Date        Amount   Vendor                     Department              Account
   <!-- END: Testimonials Section -->
 
   <!-- MOVED Services Section Here -->
-  <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 0px; padding-bottom: 0px;">
-    <div class="w-container">
+  <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 0px; padding-bottom: 50px;">
+    <div class="w-container" style="padding-top: 50px;">
       <h2 class="heading" style="color: white; text-align: center;">CFO Services</h2>
       <!-- Service content will go here -->
       <div class="core-offerings-container" id="service-selectors">
@@ -553,39 +555,39 @@ Date        Amount   Vendor                     Department              Account
             <!-- Added FinOps Section -->
             <div class="finops-container" style="display: flex; gap: 20px; height: 100%;">
                 <div class="finops-left-content" style="flex: 1; color: #e5e7eb; padding-right: 30px; max-width: 500px;">
-                     <p style="font-size: 1.15rem; line-height: 1.65; margin-bottom: 3rem; opacity: 0.9; margin-top: 1rem;">
-                         We help you integrate finance seamlessly, turning data into <strong>decisive action</strong> and <strong>a real competitive edge</strong>.
-                    </p>
+                     <h3 style="font-size: 1.5rem; line-height: 1.4; margin-bottom: 2rem; opacity: 0.9; margin-top: 1rem;">
+                         Operationalizing Your Finance Stack
+                    </h3>
                     <div class="timeline-container" style="position: relative; padding-left: 20px; margin-top: 1rem;">
-                        <div class="timeline-line" style="position: absolute; left: 0px; top: 5px; width: 1px; background-color: rgb(90, 90, 90); height: 267px;"></div>
+                        <div class="timeline-line timeline-line-styled"></div>
                         <div class="timeline-items">
                             <div class="timeline-item visible" data-index="0" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Centralized spend management</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Centralized spend management</span>
                             </div>
                             <div class="timeline-item visible" data-index="1" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Unified headcount planning</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Unified headcount planning</span>
                             </div>
                             <div class="timeline-item visible" data-index="2" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Revenue Source of Truth</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Revenue Source of Truth</span>
                             </div>
                             <div class="timeline-item visible" data-index="3" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Automated Quote to Cash</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Automated Quote to Cash</span>
                             </div>
                             <div class="timeline-item visible" data-index="4" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Live P&L</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Live P&L</span>
                             </div>
                             <div class="timeline-item visible" data-index="5" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Automated Custom Reporting</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">Automated Custom Reporting</span>
                             </div>
                             <div class="timeline-item visible" data-index="6" style="position: relative; margin-bottom: 0px; opacity: 1;">
-                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
-                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">AI CFO Slackbot</span>
+                                <div class="timeline-dot active timeline-dot-positioned"></div>
+                                <span class="timeline-label timeline-label-large">AI CFO Slackbot</span>
                             </div>
                         </div>
                     </div>
@@ -687,16 +689,14 @@ Date        Amount   Vendor                     Department              Account
       <div class="w-container">
         <div id="w-node-cb9d68ee-e91f-e38d-8c73-7a6013e26b8c-790205b7" class="w-layout-layout footer-stack wf-layout-layout">
           <div class="w-layout-cell cell-7">
-            <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="images/CFO-ADVISORS.svg" loading="lazy" alt="CFO Advisors Logo
-" class="image"></a>
+            <!-- CFO Advisors logo removed from the footer -->
           </div>
           <div class="w-layout-cell cell-6">
             <div class="div-block-2">
-              <a href="https://www.linkedin.com/company/cfo-advisors-com/about/" target="_blank" class="nav-link w-nav-link">LinkedIn</a>
-              <a href="#company-overview" class="nav-link w-nav-link">Company</a>
-              <a href="#services" class="nav-link w-nav-link">Services</a>
-              <a href="#testimonials-section" class="nav-link w-nav-link">Testimonials</a>
-              <a href="careers.html" class="nav-link w-nav-link">Careers</a>
+              <a href="https://www.linkedin.com/company/cfo-advisors-com/about/" target="_blank" class="nav-link w-nav-link" style="font-size: 20px;">LinkedIn</a>
+              <a href="#testimonials-section" class="nav-link w-nav-link" style="font-size: 20px;">Testimonials</a>
+              <a href="#services" class="nav-link w-nav-link" style="font-size: 20px;">Services</a>
+              <a href="careers.html" class="nav-link w-nav-link" style="font-size: 20px;">Careers</a>
             </div>
           </div>
         </div>

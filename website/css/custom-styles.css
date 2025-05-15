@@ -114,11 +114,24 @@ body.modal-open {
     }
 }
 
-/* Added Style for Navbar Distinction */
+/* Remove gradient from body */
+body.body {
+    /* Removed gradient from here */
+    background-color: #060F17; /* Set a solid dark background for the rest of the page */
+}
+
+/* Create a container wrapper for the top section */
+.hero-section-wrapper {
+    background: radial-gradient(circle at center 10%, #162534, #060F17);
+    position: relative;
+    width: 100%;
+}
+
+/* Update navbar to have transparent background but retain the blur effect */
 .navbar {
-    background-color: rgba(20, 28, 37, 0.5); /* Slightly lighter, semi-transparent dark blue */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Faint white border */
-    backdrop-filter: blur(5px); /* Optional: Add a blur effect */
+    background-color: transparent !important; /* Keep navbar transparent */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Keep faint white border */
+    backdrop-filter: blur(5px); /* Keep blur effect */
     -webkit-backdrop-filter: blur(5px); /* For Safari */
 }
 
@@ -239,11 +252,10 @@ body.modal-open {
 .hero-section-interactive {
     display: flex;
     align-items: center;
-    background-color: var(--dark-blue, #141c25); /* Ensure base color */
+    background: transparent !important; /* Keep section transparent */
+    margin-top: 0 !important; /* Remove top margin */
     position: relative; /* Needed for pseudo-elements */
     overflow: hidden; /* Hide overflowing pseudo-elements */
-    /* Removed grid background-image and subtlePan animation */
-    /* Removed inline padding - will be handled on the section tag */
 }
 
 /* New Background Animation Elements */
@@ -263,7 +275,7 @@ body.modal-open {
 .hero-section-interactive::before {
     /* Replaced animated gradient with solid color */
     /* background: linear-gradient(...) */
-    background-color: #141c25; /* Set solid dark blue */
+    /* background-color: #141c25; */ /* Removed solid dark blue */
     /* background-size: 400% 400%; */ /* Removed size */
     /* animation: gradientShift 15s ease infinite; */ /* Removed animation */
 }
@@ -2158,3 +2170,43 @@ body.modal-open {
     margin-bottom: 20px; /* Add space between slackbots */
 }
 /* ... existing code ... */
+
+/* Make container-8 20% wider */
+.container-8.w-container {
+    max-width: 1100px !important; /* Standard Webflow container is 1140px, increased by 20% */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 30px;
+}
+
+/* Timeline label font size class */
+.timeline-label-large {
+    font-size: 1.4rem;
+    line-height: 1.6;
+}
+
+/* Timeline dot positioning and style */
+.timeline-dot-positioned {
+    position: absolute;
+    left: -24px; 
+    top: 13px; 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    border: 1px solid rgb(255, 255, 255); 
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out; 
+    background-color: rgb(255, 255, 255);
+}
+
+/* Timeline line styling */
+.timeline-line-styled {
+    position: absolute;
+    left: 1px;
+    top: 12px;
+    width: 1px;
+    background-color: rgb(90, 90, 90);
+    height: 385px;
+}
