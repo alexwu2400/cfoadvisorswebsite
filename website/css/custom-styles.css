@@ -775,7 +775,7 @@ body.modal-open {
     border: 2px solid #1f2937; /* Increased border width */
     border-radius: 50px; /* Added large border-radius for rounded shape */
     margin-top: 2.4rem; /* Increased margin to move button down */
-    margin-bottom: 2.4rem; /* ADDED margin-bottom */
+    margin-bottom: 5.0rem; /* UPDATED margin-bottom to 60px */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Added subtle shadow */
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Added transform to transition */
 }
@@ -1110,8 +1110,8 @@ body.modal-open {
     border-radius: 28px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     padding: 36px 40px; /* Increased horizontal padding for thinner content */
-    height: auto; /* Let Swiper handle height */
-    min-height: 220px; /* Increased min-height by 10% */
+    height: 100%; /* Make card take full height of its container (swiper-slide) */
+    min-height: 500px;  /* Removed to allow cards to fully adapt to tallest slide */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1146,14 +1146,15 @@ body.modal-open {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    font-size: 16px;
-    color: #4A5568;
-    background-color: #EDF2F7;
+    /* display: flex; */ /* No longer needed for img */
+    /* align-items: center; */ /* No longer needed for img */
+    /* justify-content: center; */ /* No longer needed for img */
+    /* font-weight: 500; */ /* No longer needed for img */
+    /* font-size: 16px; */ /* No longer needed for img */
+    /* color: #4A5568; */ /* No longer needed for img */
+    /* background-color: #EDF2F7; */ /* No longer needed for img if it has a src */
     margin-right: 16px;
+    object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
 }
 .person-name {
     font-weight: 600;
@@ -1337,7 +1338,7 @@ body.modal-open {
 }
 @keyframes moveLabelHire {
     0% { opacity: 0; bottom: 0px; }
-    100% { opacity: 1; bottom: 180px; /* Adjusted final position */ }
+    100% { opacity: 1; bottom: 200px; /* Adjusted final position */ }
 }
 
 /* Apply label animations - Adjusted delays */
@@ -1471,6 +1472,11 @@ body.modal-open {
 /* Added rule for Fundraising height */
 #service-visualization-area.fundraising-active {
     min-height: 670px; /* Base 600px + 10% */
+}
+
+/* Added rule for Operations height */
+#service-visualization-area.operations-active {
+    min-height: 820px; /* Set appropriate height for operations content */
 }
 
 .service-visualization-content {
@@ -2083,3 +2089,72 @@ body.modal-open {
         gap: 20px;
      } */
 }
+
+/* Added to standardize "Backed By" client logo sizes */
+.logo-row .logo-image.client {
+    /* REMOVED fixed height: 50px; */
+    /* REMOVED width: auto; */
+    max-width: 100%; /* Prevent overflow if original image is very wide */
+    object-fit: contain; /* Ensures the entire logo is visible and scaled down if necessary */
+    margin: 20px; /* Add some spacing around logos */
+    vertical-align: middle; /* Helps with alignment within flex container */
+}
+
+/* Specific adjustments for each logo */
+.logo-row img[src="images/Backed By/Sequoia_Capital_logo.svg"] {
+    max-height: 45px;
+    max-width: 170px;
+}
+.logo-row img[src="images/Backed By/bessemer.svg"] {
+    max-height: 50px;
+    max-width: 160px;
+}
+.logo-row img[src="images/Backed By/a16z.svg"] {
+    max-height: 40px;
+    max-width: 180px;
+}
+.logo-row img[src="images/Backed By/first-round.svg"] {
+    max-height: 55px;
+    max-width: 110px;
+}
+.logo-row img[src="images/Backed By/general-catalyst.svg"] {
+    max-height: 30px; /* 10% smaller */
+    max-width: 90px; /* 10% smaller */
+}
+.logo-row img[src="images/Backed By/insight.svg"] {
+    max-height: 80px; /* 30% larger */
+    max-width: 150px; /* 30% larger */
+}
+.logo-row img[src="images/Backed By/basis-set.svg"] {
+    max-height: 30px; /* 10% smaller */
+    max-width: 144px; /* 10% smaller */
+}
+.logo-row img[src="images/Backed By/Sam-altman.svg"] {
+    max-height: 40px;
+    max-width: 170px;
+}
+
+/* Ensure logo containers align items to center for better visual balance */
+.logo-row .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ... existing code ... */
+.finops-right-visuals .slackbot-visual {
+    min-height: 350px; /* Add fixed height to match the top slackbot */
+    display: flex;
+    flex-direction: column;
+}
+/* ... existing code ... */
+
+
+/* Make sure both slackbots have consistent styling */
+.finops-right-visuals .slackbot-visual {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add space between slackbots */
+}
+/* ... existing code ... */

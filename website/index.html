@@ -5,7 +5,6 @@
   <title>CFO Advisors | Operational Excellence</title>
   <meta content="CFO Advisors provides expert fractional CFO services, financial modeling, and fundraising support tailored for AI and technology startups. Elevate your financial strategy." name="description">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/cfoadvisors-248196d6728cfb467fea544aaab.webflow.css" rel="stylesheet" type="text/css">
@@ -23,15 +22,15 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body class="body">
-  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav" style="background-color: #0D121C; border-bottom: none; box-shadow: none;">
     <div class="container-8 w-container">
       <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="images/CFO-ADVISORS.svg" loading="lazy" alt="CFO Advisors Logo
-" class="image"></a>
+" class="image" style="max-height: 60px; width: auto;"></a>
       <nav role="navigation" class="nav-menu-2 w-nav-menu">
-        <a href="#company-overview" class="nav-link w-nav-link">Company</a>
-        <a href="#services" class="nav-link w-nav-link">Services</a>
-        <a href="#testimonials-section" class="nav-link w-nav-link">Testimonials</a>
-        <a href="careers.html" class="nav-link w-nav-link">Careers</a>
+        <a href="#company-overview" class="nav-link w-nav-link" style="font-size: 18px;">Company</a>
+        <a href="#services" class="nav-link w-nav-link" style="font-size: 18px;">Services</a>
+        <a href="#testimonials-section" class="nav-link w-nav-link" style="font-size: 18px;">Testimonials</a>
+        <a href="careers.html" class="nav-link w-nav-link" style="font-size: 18px;">Careers</a>
       </nav>
       <div class="menu-button w-nav-button">
         <div class="icon w-icon-nav-menu"></div>
@@ -39,7 +38,7 @@
     </div>
   </div>
   <!-- New Hero Section based on example header.html -->
-  <section class="section hero-section-interactive" style="margin-bottom: 0; padding: 0;">
+  <section class="section hero-section-interactive" style="margin-top: 20px; padding: 0; margin-bottom: 0;">
     <canvas id="plexus-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas> <!-- Added Canvas for Plexus Effect -->
     <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1;">
       <h1 class="hero-headline fade-in" style="font-family: 'Gilda Display', serif; font-size: clamp(2.7rem, 5.4vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--white, #fff); margin-bottom: 2rem;">
@@ -251,8 +250,118 @@ Date        Amount   Vendor                     Department              Account
   </section>
   <!-- End New Hero Section -->
 
-  <!-- REMOVED Company Overview Section -->
-  <!-- <section id="company-overview" ... </section> --> 
+  <!-- START: Testimonials Section -->
+  <section id="testimonials-section" class="section beige-section">
+    <div class="carousel-parent-container">
+      <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
+      <div class="swiper testimonial-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                The CEO and I talk about how valuable CFO Advisors is all the time.<br> <br> <strong>We had no idea that a CFO could be such an incredible strategic partner.</strong>
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Maryel Ley.jpg" alt="Maryel Ley" class="initials">
+                <div>
+                  <div class="person-name">Maryel Ley</div>
+                  <div class="person-title">Head of Ops Brisk (Backed by Bessemer)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                CFO Advisors was critical in the success of our multiple fundraises. They partnered seamlessly with our finance team and delivered investor-ready financials aligned with our strategy in <strong>days, not weeks</strong>. <br><br>No other firm matches their unique combination of <strong>time-to-value</strong> and quality.
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Nicolas Kopp.jpg" alt="Nicolas Koop" class="initials">
+                <div>
+                  <div class="person-name">Nicolas Koop</div>
+                  <div class="person-title">CEO Rillet (Backed by First Round)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                Their <strong>forecast accuracy is remarkable</strong>—empowering us to make critical decisions months before the numbers showed up in our books. They <strong>genuinely care about our success</strong>, and it shows in everything they deliver. <br><br> I cannot recommend them enough.
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Andrei Santalo.jpg" alt="Andrei Santalo" class="initials">
+                <div>
+                  <div class="person-name">Andrei Santalo</div>
+                  <div class="person-title">Head of Ops Rain AI (Backed by Sam Altman)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Operational Excellence</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                The CFO Advisors team has been an indispensable partner across my multiple companies and funding rounds. Their team crafts compelling narratives while their reporting suite keeps burn on track and enables rapid fundraising launches. They're true thought partners who <strong>consistently deliver when it matters most</strong>. 
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Thenuka Karunaratne.jpg" alt="Thenuka Karunaratne" class="initials">
+                <div>
+                  <div class="person-name">Thenuka Karunaratne</div>
+                  <div class="person-title">CEO DayDream (Backed by First Round)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                Their expertise with Tier 1 VCs transformed our fundraising process. They sharpened our narrative and highlighted our unique insights, dramatically accelerating our timeline. <br><br>We valued their partnership so much, <strong>we invited them onto our cap table</strong>.
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Spyri Karasavva.jpg" alt="Spyri Karasavva" class="initials">
+                <div>
+                  <div class="person-name">Spyri Karasavva</div>
+                  <div class="person-title">CEO DealOps (Backed by General Catalyst)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination testimonial-pagination"></div>
+      </div>
+      <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:1; margin-top: 60px;" class="w-layout-blockcontainer container-7 w-container">
+        <div class="w-row">
+          <div class="column w-col w-col-6">
+            <p class="paragraph" style="color: #141c25;">We work with founders backed by the best </p>
+          </div>
+          <div class="column-2 w-col w-col-6">
+            <p class="paragraph right-align" style="color: #141c25;">Serving customers worldwide</p>
+          </div>
+        </div>
+        <div class="w-layout-grid logo-row">
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffa-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/Sequoia_Capital_logo.svg" loading="lazy" alt="Sequoia Capital logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffc-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Backed By/bessemer.svg" loading="lazy" alt="Bessemer Venture Partners logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffe-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/a16z.svg" loading="lazy" alt="Andreessen Horowitz (a16z) logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c000-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Backed By/first-round.svg" loading="lazy" alt="First Round Capital logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c002-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/general-catalyst.svg" loading="lazy" alt="General Catalyst logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c004-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Backed By/insight.svg" loading="lazy" alt="Insight Partners logo" class="logo-image client"></div>
+          <div id="w-node-c9db1daa-b10c-59cd-ae5b-37b2206405c2-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/basis-set.svg" loading="lazy" alt="Basis Set Ventures logo" class="logo-image client"></div>
+          <div id="w-node-e2db9a0c-a3ba-0df0-7cac-79c2b4a6d55b-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Backed By/Sam-altman.svg" loading="lazy" alt="Sam Altman logo" class="logo-image client"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Testimonials Section -->
 
   <!-- MOVED Services Section Here -->
   <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 0px; padding-bottom: 0px;">
@@ -389,7 +498,7 @@ Date        Amount   Vendor                     Department              Account
         </div>
         <div class="service-visualization-content" data-service="fundraising">
           <h4 class="visualization-sub-header">CFO Advisors x Bessemer Investor Relations Playbook</h4>
-          <a href="https://www.bvp.com/atlas/cfo-playbook-mastering-metrics-and-managing-boards-for-saas-finance-success" target="_blank" class="visualization-link">Read the full Investor Relations CFO Playbook</a>
+          <a href="https://www.bvp.com/atlas/cfo-playbook-five-elements-of-building-world-class-investor-relations" target="_blank" class="visualization-link">CFO Playbook: Investor Relations</a>
           <div class="ir-framework-table-container">
               <table class="ir-framework-table" id="ir-framework-table">
                   <thead>
@@ -548,147 +657,6 @@ Date        Amount   Vendor                     Department              Account
     </div>
   </section>
   <!-- END: Services Section -->
-
-  <!-- START: Testimonials Section -->
-  <section id="testimonials-section" class="section beige-section">
-    <div class="carousel-parent-container">
-      <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
-      <div class="swiper testimonial-swiper">
-        <div class="swiper-wrapper">
-          <!-- Original Testimonials -->
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                The strategic clarity and operational efficiency CFO Advisors brought to our finance function was game-changing. They didn't just fix our processes - they transformed our entire approach to financial management.
-              </div>
-              <div class="person-container">
-                <div class="initials">PO</div>
-                <div>
-                  <div class="person-name">Peter O'Donohgue</div>
-                  <div class="person-title">CFO of Stability AI</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                CFO Advisors has been a game-changer. I haven't looked back and can't believe we didn't sign up sooner. The team is amazing and the work they deliver helps us with things like planning for growth, expenses, fundraising, and more.
-              </div>
-              <div class="person-container">
-                <div class="initials">PW</div>
-                <div>
-                  <div class="person-name">Philip Wang</div>
-                  <div class="person-title">CEO Gather Town</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Operational Excellence</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                We know we have the back office covered with CFO Advisors. They are hands on and make our accounting and bookkeeping easy. You get a team who provides guidance on best practices in the tax and accounting world.
-              </div>
-              <div class="person-container">
-                <div class="initials">SF</div>
-                <div>
-                  <div class="person-name">Shmulik Fishman</div>
-                  <div class="person-title">CEO Argyle</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Updated Duplicated Testimonials -->
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                The strategic clarity and operational efficiency CFO Advisors brought to our finance function was game-changing. They didn't just fix our processes - they transformed our entire approach to financial management.
-              </div>
-              <div class="person-container">
-                <div class="initials">SA</div>
-                <div>
-                  <div class="person-name">Sarah Ahmand</div>
-                  <div class="person-title">CEO Stable</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                CFO Advisors has been a game-changer. I haven't looked back and can't believe we didn't sign up sooner. The team is amazing and the work they deliver helps us with things like planning for growth, expenses, fundraising, and more.
-              </div>
-              <div class="person-container">
-                <div class="initials">RC</div>
-                <div>
-                  <div class="person-name">Rene Caisse</div>
-                  <div class="person-title">CEO Medeloop</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Added 6th Testimonial -->
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Operational Excellence</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                We know we have the back office covered with CFO Advisors. They are hands on and make our accounting and bookkeeping easy. You get a team who provides guidance on best practices in the tax and accounting world.
-              </div>
-              <div class="person-container">
-                <div class="initials">AJ</div>
-                <div>
-                  <div class="person-name">Arman Jaffer</div>
-                  <div class="person-title">CEO Brisk AI</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination testimonial-pagination"></div>
-      </div>
-      <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:1; margin-top: 60px;" class="w-layout-blockcontainer container-7 w-container">
-        <div class="w-row">
-          <div class="column w-col w-col-6">
-            <p class="paragraph" style="color: #141c25;">We work with founders backed by the best </p>
-          </div>
-          <div class="column-2 w-col w-col-6">
-            <p class="paragraph right-align" style="color: #141c25;">Serving customers worldwide</p>
-          </div>
-        </div>
-        <div class="w-layout-grid logo-row">
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffa-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/a16z.svg" loading="lazy" alt="a16z logo" class="logo-image client"></div>
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffc-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/general-catalyst.svg" loading="lazy" alt="general catalyst logo" class="logo-image client"></div>
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffe-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/first-round.svg" loading="lazy" width="600" alt="firstround logo" class="logo-image client"></div>
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c000-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/bessemer.svg" loading="lazy" alt="bessemer logo" class="logo-image client"></div>
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c002-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/insight.svg" loading="lazy" alt="insight logo" class="logo-image client"></div>
-          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c004-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Sequoia_Capital_logo.svg" loading="lazy" width="540" alt="sequoia capital logo" class="logo-image client"></div>
-          <div id="w-node-c9db1daa-b10c-59cd-ae5b-37b2206405c2-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/basis-set.svg" loading="lazy" alt="basis set logo" class="logo-image client"></div>
-          <div id="w-node-e2db9a0c-a3ba-0df0-7cac-79c2b4a6d55b-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Sam-altman.svg" loading="lazy" alt="sam altman text" class="logo-image client"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- END: Testimonials Section -->
-
-  <!-- START: Company Overview Section -->
-  <section id="company-overview" class="section header-section" style="margin-bottom: 0; padding-top: 30px; background-color: #F8F7F5;">
-    <div data-w-id="6da26c89-e38f-0451-4bac-3c07e9039af2" style="opacity:1" class="w-layout-blockcontainer w-container">
-      <h2 class="heading">Company Overview</h2>
-      <p class="paragraph">CFO Advisors is redefining how venture-backed startups operate by building <strong>best-in-class operational frameworks</strong> that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. <br><br>Our clients trust CFO Advisors to help them create a <strong>sustainable competitive advantage</strong> by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's <strong>category defining leaders</strong>.</p>
-    </div>
-  </section>
-  <!-- END: Company Overview Section -->
 
   <section class="section white-section">
     <div id="w-node-bf5a4832-24b2-1d21-aecf-aeae6296d86d-790205b7" data-w-id="bf5a4832-24b2-1d21-aecf-aeae6296d86d" style="opacity:0" class="w-layout-layout quick-stack-2 wf-layout-layout">
