@@ -1488,7 +1488,7 @@ body.body {
 
 /* Added rule for Operations height */
 #service-visualization-area.operations-active {
-    min-height: 950px; /* Increased from 820px to give more space for operations content */
+    min-height: 820px; /* Set appropriate height for operations content */
 }
 
 .service-visualization-content {
