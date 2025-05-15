@@ -5,11 +5,11 @@
   <title>CFO Advisors | Operational Excellence</title>
   <meta content="CFO Advisors provides expert fractional CFO services, financial modeling, and fundraising support tailored for AI and technology startups. Elevate your financial strategy." name="description">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/cfoadvisors-248196d6728cfb467fea544aaab.webflow.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="css/custom-styles.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Inter:100,200,300,regular,500,600,700,800,900","Gilda Display:regular"]  }});</script>
@@ -18,1434 +18,19 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-B0LY120F9V"></script>
   <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('set', 'developer_id.dZGVlNj', true);gtag('config', 'G-B0LY120F9V');</script>
-  <!-- Modal Styles -->
-  <style>
-    .modal-overlay {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-    }
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1001; /* Sit on top of overlay */
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--white, white); /* Use site variable, fallback to white */
-      padding: 40px 50px; /* Increased padding */
-      border: 1px solid #ccc; /* Slightly softer border */
-      width: 90%; /* Adjust width for responsiveness */
-      max-width: 550px; /* Slightly narrower max-width */
-      border-radius: 8px; /* Consistent radius */
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      font-family: Inter, sans-serif; /* Apply base font */
-    }
-    .modal h2 {
-        font-family: Gilda Display, sans-serif; /* Heading font */
-        color: var(--blue, #22293e); /* Heading color */
-        text-align: center;
-        margin-top: 0;
-        margin-bottom: 30px;
-        font-size: 28px; /* Adjust size as needed */
-        line-height: 1.3;
-    }
-    .close-button {
-      color: #aaa;
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 32px;
-      font-weight: bold;
-      line-height: 1;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .close-button:hover,
-    .close-button:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    /* Style for modal form fields - inheriting from .w-input and .field-label */
-    .modal .field-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500; /* Slightly bolder */
-      color: var(--blue, #22293e);
-      font-size: 14px;
-    }
-    .modal .text-field,
-    .modal .text-area {
-      margin-bottom: 15px;
-      width: 100%; /* Ensure they take full width */
-      min-height: 48px; /* Match original */
-      border: 1px solid #d1d5db; /* Match original */
-      border-radius: 4px; /* Match original */
-      padding: 8px 12px; /* Standard padding */
-      font-size: 16px; /* Standard font size */
-      color: #333;
-      box-sizing: border-box; /* Include padding/border in width */
-    }
-    .modal .text-area {
-        min-height: 100px; /* Give textarea more height */
-        resize: vertical; /* Allow vertical resize */
-    }
-    /* Match .submit-button style */
-    .modal .submit-button {
-        margin-top: 20px;
-        width: 100%; /* Make button full width */
-        background-color: #1f2937;
-        border: 1px solid #1f2937;
-        border-radius: 4px;
-        min-height: 48px;
-        padding: 12px 24px;
-        color: white;
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-    .modal .submit-button:hover {
-        background-color: #374151; /* Slightly lighter on hover */
-        border-color: #374151;
-    }
-
-    /* Prevent body scroll when modal is open */
-    body.modal-open {
-        overflow: hidden;
-    }
-    /* Responsive adjustments if needed */
-    @media (max-width: 600px) {
-        .modal {
-            width: 90%;
-            padding: 30px 25px;
-        }
-        .modal h2 {
-            font-size: 24px;
-        }
-    }
-
-  </style>
-  <!-- Added Core Offerings Styles -->
-  <style>
-    .core-offerings-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
-        gap: 30px; /* Space between columns */
-        margin-top: 40px; /* Space above the offerings */
-    }
-    .offering-block {
-        /* background-color: rgba(255, 255, 255, 0.05); Optional: slight background differentiation */
-        /* border: 1px solid rgba(255, 255, 255, 0.1); Optional: subtle border */
-        /* border-radius: 8px; */
-        padding: 20px;
-        text-align: left; /* Align content left */
-    }
-    .offering-icon svg {
-        width: 48px;
-        height: 48px;
-        stroke: var(--white, white); /* Icon color */
-        margin-bottom: 20px;
-    }
-    .offering-title {
-        font-family: Inter, sans-serif; /* Using Inter for consistency here */
-        font-size: 20px;
-        font-weight: 700; /* Bolder title */
-        color: var(--white, white);
-        margin-top: 0;
-        margin-bottom: 20px; /* Increased spacing */
-    }
-    .offering-description {
-        font-family: Inter, sans-serif;
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 1.65; /* Slightly tighter line height */
-        color: #e5e7eb; /* Light gray for description */
-        text-align: left; /* Keep description text left-aligned */
-    }
-
-    /* Responsive adjustments for offerings */
-    @media (max-width: 991px) {
-        .core-offerings-container {
-            grid-template-columns: 1fr; /* Stack columns on tablet */
-            gap: 40px; /* Increase gap when stacked */
-        }
-        .offering-block {
-            text-align: left; /* Align icon/title left when stacked */
-        }
-        .offering-icon svg {
-           margin-bottom: 15px;
-        }
-    }
-    @media (max-width: 767px) {
-        .core-offerings-container {
-            margin-top: 30px;
-            gap: 30px;
-        }
-        .offering-title {
-            font-size: 18px;
-        }
-        .offering-description {
-            font-size: 15px;
-        }
-    }
-  </style>
-  <!-- Added Animated Slides Styles -->
-  <style>
-      .slides-container {
-          position: relative;
-          width: 100%;
-          max-width: 595px; /* Adjust as needed */
-          margin: 0 auto;
-          perspective: 1000px;
-          overflow: hidden; /* Hide potential overflow during calculation */
-          border-radius: 12px; /* Add rounded corners to the container */
-          /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); Remove drop shadow from container */
-      }
-
-      .slide {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%; /* Ensure slides fill the container */
-          object-fit: contain; /* Scale image while maintaining aspect ratio */
-          border-radius: 12px; /* Increased border-radius */
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-          opacity: 0;
-          transform: rotateY(90deg) translateX(50px); /* Initial state for animation */
-          transform-origin: left center;
-          transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-          backface-visibility: hidden; /* Hide back during rotation */
-      }
-
-      .slide.active {
-          opacity: 1;
-          transform: rotateY(0deg) translateX(0px);
-          z-index: 1; /* Bring active slide to front */
-      }
-
-       .slide.previous {
-          /* State for the slide that is animating out */
-          transform: rotateY(-90deg) translateX(-50px);
-           opacity: 0;
-           z-index: 0;
-      }
-
-      /* Additional styling to fit within the card */
-      .attribute-card[data-attribute="alignment"] .slides-container {
-         margin-bottom: 1.5rem; /* Match spacing of other visual elements */
-         aspect-ratio: 595 / 397; /* Maintain aspect ratio based on typical slide dimensions */
-         height: auto; /* Allow height to adjust based on aspect ratio and width */
-         max-width: 100%; /* Ensure it doesn't overflow the card */
-      }
-  </style>
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-  <!-- New Hero Section Styles (Inspired by example) -->
-  <style>
-    .hero-section-interactive {
-        display: flex;
-        align-items: center;
-        background-color: var(--dark-blue, #141c25); /* Ensure base color */
-        position: relative; /* Needed for pseudo-elements */
-        overflow: hidden; /* Hide overflowing pseudo-elements */
-        /* Removed grid background-image and subtlePan animation */
-        /* Removed inline padding - will be handled on the section tag */
-    }
-
-    /* New Background Animation Elements */
-    .hero-section-interactive::before,
-    .hero-section-interactive::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* Make sure they don't interfere with clicks */
-        z-index: 0; /* Behind content */
-    }
-
-    /* Example: Subtle moving vertical lines */
-    .hero-section-interactive::before {
-        /* Replaced animated gradient with solid color */
-        /* background: linear-gradient(...) */
-        background-color: #141c25; /* Set solid dark blue */
-        /* background-size: 400% 400%; */ /* Removed size */
-        /* animation: gradientShift 15s ease infinite; */ /* Removed animation */
-    }
-    /* Example: Fading particles/dots (optional second layer) */
-    /* .hero-section-interactive::after { ... Add another animation if desired ... } */
-
-    /* Keyframe for gradient animation (No longer used) */
-    /* @keyframes gradientShift { ... } */
-
-    /* Define accent color variable (can be added to :root if used elsewhere) */
-    :root { --accent-highlight: #67e8f9; }
-
-    .operational-tax, .operational-excellence {
-        position: relative;
-        font-weight: inherit;
-        /* Use new accent color */
-        /* color: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
-    }
-    /* Removed duplicate color definitions */
-    .operational-tax {
-        /* color: #ff8c42; */ /* Original orange - Updated below */
-        color: #D95F0E; /* Darker complementary orange */
-    }
-    .operational-excellence {
-        color: var(--accent-highlight, #67e8f9); /* Keep text color cyan */
-    }
-
-    /* Removed Underline/Animation Rules Below */
-    /* .operational-tax::after, .operational-excellence::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        /* bottom: -0.4rem; */ /* Old underline position */
-    /*    width: 0;
-        height: 2px;
-        /* Use new accent color for underline */
-    /*    /* background: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
-    /* } */
-    /* .operational-tax::after {
-        /* bottom: 0.7rem; */ /* Position for strike-through - Reverted below */
-    /*    /* bottom: -0.4rem; */ /* Position for underline - Updated below */
-    /*    bottom: -2px; /* Adjusted bottom position */
-    /*    /* background: #9ca3af; */ /* Muted grey color - Changed below */
-    /*    background: #ff8c42; /* Complementary orange color */
-    /*    animation: drawLine 1s forwards 0.5s;
-    } */
-    /* .operational-excellence::after {
-        /* bottom: -0.4rem; */ /* Position for underline - Updated below */
-    /*    bottom: -2px; /* Adjusted bottom position */
-    /*    background: var(--accent-highlight, #67e8f9); /* Bright accent color */
-    /*    animation: drawLine 1s forwards 1.2s;
-    } */
-
-    /* @keyframes drawLine { to { width: 100%; } } */ /* REMOVED */
-
-    @keyframes moveLines { /* Added animation for vertical lines */
-        from { background-position: 0 0; }
-        to { background-position: 0 -1000px; } /* Adjust distance for speed */
-    }
-
-    /* main-content styles moved inline */
-
-    .attributes-column::before {
-        content: '';
-        position: absolute;
-        left: -0.025rem;
-        /* top: 0; */
-        top: 2.5rem; /* Moved further down */
-        /* height: 100%; */
-        height: 56%; /* Reduced height by another 20% */
-        /* width: 3px; */
-        width: 2px; /* Reduced width */
-        background: linear-gradient(to bottom, var(--blue, #22293e), var(--dark-blue, #141c25));
-        border-radius: 1.5px;
-    }
-    /* attributes-list styles moved inline */
-
-    .attribute-item {
-        margin-bottom: 1.5rem;
-        position: relative;
-        transition: opacity 0.3s ease;
-        cursor: pointer;
-    }
-    .attribute-item:not(.active) { opacity: 0.6; }
-    .attribute-item:hover:not(.active) { opacity: 0.8; }
-
-    .attribute-item::before {
-        content: '';
-        position: absolute;
-        /* left: -2.4rem; Old value */
-        left: -2.25rem; /* Moved further right */
-        top: 0.7rem;  /* Adjusted: Vertically center */
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.3);
-        transition: all 0.3s ease;
-    }
-    .attribute-item.active::before {
-        background-color: var(--white, #fff);
-        transform: scale(1.3);
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-        /* left: -2.45rem; Old value */
-        left: -2.25rem; /* Adjusted for new base position + scale */
-        top: 0.65rem; /* Adjusted: Vertically center when active */
-    }
-
-    .attribute-title {
-        font-family: 'Gilda Display', serif;
-        font-size: 1.6rem;
-        font-weight: 400;
-        color: var(--light-outline, #e5e7eb);
-        margin-bottom: 0.2rem;
-        transition: all 0.3s ease;
-    }
-    .attribute-item.active .attribute-title {
-        color: var(--white, #fff);
-        font-size: 1.9rem;
-    }
-
-    .attribute-description {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.95rem;
-        color: var(--light-outline, #9ca3af);
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: all 0.4s ease;
-        padding-left: 0.1rem; /* Slight indent */
-    }
-    .attribute-item.active .attribute-description {
-        max-height: 100px;
-        opacity: 1;
-        margin-top: 0.4rem;
-        margin-bottom: 0.4rem;
-    }
-
-    /* visualization-column styles moved inline */
-
-    .attribute-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; /* Reinstated height */
-        /* background: rgba(31, 41, 55, 0.3); */ /* Darker translucent background - Updated alpha below */
-        background: rgba(31, 41, 55, 0.4); /* Made background less transparent (was 0.2) */
-        border-radius: 0.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 1.5rem 2.5rem; /* Reduced vertical padding */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Align content top */
-        opacity: 0;
-        transform: translateY(10px);
-        z-index: 1;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        line-height: 1.6;
-    }
-    .attribute-card.active {
-        opacity: 1;
-        transform: translateY(0);
-        z-index: 2;
-    }
-    /* Placeholder for chart area */
-    .attribute-card-chart-placeholder {
-        width: 100%;
-        height: 150px; /* Example height */
-        border: 1px dashed rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem; /* Space below chart */
-    }
-    /* Removed .attribute-card-icon rule */
-    .attribute-card-title {
-        font-family: 'Gilda Display', serif;
-        font-size: 1.8rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
-        color: var(--white, #fff);
-    }
-    .attribute-card-description {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        color: var(--light-outline, #e5e7eb);
-        line-height: 1.6;
-    }
-
-    /* Styles for Slackbot Visual Representation */
-    .slackbot-visual {
-        font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Slack uses Lato */
-        background-color: #1d1c1d; /* Dark Slack background */
-        border: 1px solid #4a4a4a; /* Subtle border */
-        border-radius: 6px;
-        padding: 12px 15px;
-        color: #d1d2d3; /* Slack light text */
-        font-size: 14px;
-        line-height: 1.4;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden; /* Hide overflow */
-        flex-grow: 1; /* Allow to grow vertically */
-    }
-    .slackbot-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-    }
-    .slackbot-app-icon {
-        width: 20px;
-        height: 20px;
-        /* background-color: #3f0f40; /* Placeholder color */
-        background-color: var(--blue, #22293e); /* Use CFO blue */
-        border-radius: 4px;
-        margin-right: 6px;
-        /* Added styles to match Autonomy icon container */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--white, #fff);
-        font-size: 10px;
-        font-weight: 700;
-    }
-    /* Added ::before for Accountability icon */
-    .slackbot-app-icon::before {
-        content: "CFO";
-    }
-    .slackbot-app-name {
-        font-weight: 700;
-        color: #fff;
-        margin-right: 4px;
-        /* Note: Font size is implicitly set by .slackbot-visual */
-    }
-    .slackbot-app-label {
-        background-color: #2e2e2e;
-        color: #b4b4b4;
-        font-size: 10px;
-        padding: 1px 4px;
-        border-radius: 3px;
-        margin-right: 6px;
-        text-transform: uppercase;
-    }
-    .slackbot-time {
-        font-size: 12px;
-        color: #a8a8a8;
-    }
-    .slackbot-attachment {
-        border-left: 3px solid #7a5b7a; /* Slack attachment bar color */
-        padding-left: 12px;
-        margin-top: 5px;
-    }
-    .slackbot-title {
-        font-weight: 700;
-        color: #fff;
-        font-size: 16px;
-        margin-bottom: 2px;
-    }
-    .slackbot-timestamp {
-        font-size: 12px;
-        color: #a8a8a8;
-        margin-bottom: 10px;
-    }
-    .slackbot-button {
-        display: inline-block;
-        background-color: #007a5a; /* Slack green */
-        color: #fff;
-        padding: 6px 12px;
-        border-radius: 4px;
-        font-size: 13px;
-        text-decoration: none;
-        margin-bottom: 15px;
-        border: none;
-        cursor: pointer; /* Add cursor */
-    }
-    .slackbot-chart-area {
-        background-color: #fafafa; /* Eggshell white background */
-        border-radius: 4px;
-        padding: 10px 5px; /* Adjusted padding slightly */
-        margin-bottom: 15px;
-        height: 150px; /* Keep increased height */
-        display: flex;
-        align-items: flex-end; /* Bars grow from bottom */
-        justify-content: space-around;
-        overflow: hidden;
-    }
-    .slackbot-chart-bar {
-        /* background-color: #8a8a8a; Default bar color - now set by nth-child */
-        width: 10%; /* Adjusted width for pairs */
-        /* animation: growBar 1.5s ease-out forwards; Removed animation from base style */
-        transform-origin: bottom;
-        margin: 0; /* Reset margin, handle with nth-child */
-    }
-    /* Grouping and Coloring Logic (Pairs: Blue, Grey) */
-    .slackbot-chart-bar:nth-child(2n+1) { /* Odd bars (Blue) */
-      background-color: #22293e; /* CFO Blue */
-      height: 55%; /* Example height, shorter in pair */
-      animation-delay: 0.1s;
-      margin-left: 3%; /* Space before pair starts */
-      margin-right: 0.5%; /* Small space within pair */
-    }
-    .slackbot-chart-bar:nth-child(2n) { /* Even bars (Grey) */
-      background-color: #8a8a8a; /* Dark Grey */
-      height: 90%; /* Example height, taller in pair */
-      animation-delay: 0.3s;
-      margin-left: 0.5%; /* Small space within pair */
-      margin-right: 3%; /* Space after pair ends */
-    }
-    /* Remove orange bar rule - already removed */
-
-    /* Adjust heights for variety for 4 pairs (8 bars) - Blue first, Grey second */
-    .slackbot-chart-bar:nth-child(1) { height: 55%; } /* Blue 1 */
-    .slackbot-chart-bar:nth-child(2) { height: 90%; } /* Grey 1 */
-    .slackbot-chart-bar:nth-child(3) { height: 40%; } /* Blue 2 */
-    .slackbot-chart-bar:nth-child(4) { height: 75%; } /* Grey 2 */
-    .slackbot-chart-bar:nth-child(5) { height: 60%; } /* Blue 3 */
-    .slackbot-chart-bar:nth-child(6) { height: 85%; } /* Grey 3 */
-    .slackbot-chart-bar:nth-child(7) { height: 30%; } /* Blue 4 */
-    .slackbot-chart-bar:nth-child(8) { height: 65%; } /* Grey 4 */
-
-    .slackbot-expenses-title {
-        font-weight: 700;
-        margin-bottom: 8px;
-        font-size: 13px;
-        color: #d1d2d3;
-    }
-    .slackbot-expenses-table {
-        font-family: 'Monaco', 'Consolas', monospace;
-        font-size: 11px;
-        white-space: pre;
-        line-height: 1.5;
-        color: #a8a8a8;
-        overflow: hidden; /* Prevent wrapping/overflow */
-        /* Removed max-height previously */
-    }
-
-    @keyframes growBar {
-        from { transform: scaleY(0); }
-        to { transform: scaleY(1); }
-    }
-
-    /* Apply animation only when parent has start-animation class */
-    .slackbot-visual.start-animation .slackbot-chart-bar {
-        animation: growBar 1.5s ease-out forwards;
-    }
-
-    /* End Slackbot Styles */
-
-    /* Styles for SVG Line Graph */
-    .line-graph-visual {
-        /* background-color: #fafafa; Removed background */
-        background-color: transparent; /* Blend with card */
-        border-radius: 4px;
-        padding: 10px 5px; /* Adjusted padding */
-        margin-bottom: 1.5rem; /* Space below graph */
-        /* min-height: 380px; */ /* Removed fixed/min height */
-        width: 100%; /* Make width flexible */
-        height: auto; /* Height determined by aspect ratio */
-        aspect-ratio: 135 / 95; /* Maintain the SVG's intended proportions */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative; /* For potential pseudo-elements */
-    }
-    .line-graph-svg {
-        width: 100%;
-        height: 100%;
-        overflow: visible; /* Allow elements like lines/shadows to be drawn */
-    }
-    /* Removed .line-graph-axis rules */
-
-    .line-graph-target {
-        stroke: rgba(229, 231, 235, 0.7); /* Increased opacity from 0.4 */
-        stroke-width: 1.5;
-        stroke-dasharray: 3, 3; /* Smaller dashes */
-        fill: none;
-        stroke-linecap: round;
-    }
-    .line-graph-actual {
-        stroke: var(--accent-highlight, #67e8f9); /* Accent color for actual */
-        stroke-width: 2.5; /* Slightly thicker */
-        fill: none;
-        stroke-dasharray: 500; /* Arbitrarily large value */
-        stroke-dashoffset: 500; /* Start fully dashed (invisible) */
-        stroke-linecap: round;
-        stroke-linejoin: round; /* Smoother corners */
-        transition: stroke-width 0.2s ease, filter 0.2s ease; /* Added filter transition */
-    }
-    .line-graph-actual.start-line-animation { /* Added class for animation */
-        animation: drawLineGraph 3s ease-out 0.2s forwards, pulseGlow 2.5s infinite ease-in-out 3.2s; /* Slower draw, pulse starts after */
-    }
-    .line-graph-actual:hover {
-      stroke-width: 4; /* Thicken line on hover */
-      filter: drop-shadow(0 0 3px var(--accent-highlight, #67e8f9)); /* Add glow on hover */
-    }
-
-    @keyframes drawLineGraph {
-        to {
-            stroke-dashoffset: 0; /* Animate to fully drawn */
-        }
-    }
-    @keyframes pulseGlow {
-        0%, 100% {
-            filter: drop-shadow(0 0 1.5px rgba(103, 232, 249, 0.7)); /* Subtle glow */
-            opacity: 0.9;
-        }
-        50% {
-            filter: drop-shadow(0 0 3px rgba(103, 232, 249, 1)); /* Brighter glow */
-            opacity: 1;
-        }
-    }
-    /* Style for SVG text labels - repurposed for Y-Axis */
-    .line-graph-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 10px; /* Increased font size from 7px */
-      fill: #e5e7eb; /* Increased opacity - changed from rgba(229, 231, 235, 0.6) */
-      text-anchor: end; /* Align text end to the coordinate */
-    }
-    /* Reinstated axis style */
-    .line-graph-axis {
-        stroke: rgba(229, 231, 235, 0.5); /* Increased opacity from 0.2 */
-        stroke-width: 0.5;
-    }
-    /* End SVG Line Graph Styles */
-
-    /* Responsive adjustments for chart labels */
-    @media (max-width: 767px) {
-        .line-graph-label,
-        .line-graph-x-label,
-        .line-graph-legend-label {
-            font-size: 7px; /* Smaller font size for mobile */
-        }
-    }
-    @media (max-width: 479px) {
-       .line-graph-label,
-        .line-graph-x-label,
-        .line-graph-legend-label {
-            font-size: 6px; /* Even smaller */
-        }
-    }
-
-    /* Conclusion box styles moved inline */
-    /* Conclusion text/highlight styles moved inline */
-    /* CTA Button uses existing .submit-button.w-button styles */
-
-    /* Fade animations */
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-in { animation: fadeIn 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
-    .fade-in-delay-1 { animation: fadeIn 0.8s forwards 0.2s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
-    .fade-in-delay-2 { animation: fadeIn 0.8s forwards 0.4s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
-
-    /* Responsive */
-    @media (max-width: 991px) {
-        .main-content { grid-template-columns: 1fr; gap: 3rem; min-height: auto; }
-        .visualization-column { min-height: 350px; /* Give space for card */ }
-        .attribute-card { position: relative; /* Stack cards below list on tablet */ display: none; }
-        .attribute-card.active { display: flex; }
-    }
-     @media (max-width: 767px) {
-         .attributes-list { padding-left: 1.5rem; }
-         /* Adjust dot position for mobile too */
-         .attribute-item::before { left: -1.6rem; top: 0.6rem; /* Adjusted for mobile */ }
-         .attribute-item.active::before { left: -1.65rem; top: 0.55rem; /* Adjusted for mobile */ }
-         .attribute-title { font-size: 1.4rem; }
-         .attribute-item.active .attribute-title { font-size: 1.6rem; }
-         .attribute-card { padding: 1.5rem 2rem; }
-         .attribute-card-title { font-size: 1.5rem; }
-         .attribute-card-description { font-size: 1rem; }
-     }
-
-    .conclusion-highlight {
-       /* color: var(--blue, #22293e); Old value */
-       color: var(--accent-highlight, #67e8f9); /* Use new accent color */
-       font-weight: 700;
-    }
-
-    /* Added style for larger CTA button */
-    #openContactModalBtn.submit-button.w-button {
-        padding: 21px 42px; /* Increased padding by ~30% */
-        font-size: 23px; /* Increased font size by ~30% */
-        min-height: 73px; /* Increased min height by ~30% */
-        /* Added new color styles */
-        background-color: #F8F7F5; /* Light beige background */
-        color: #1f2937; /* Dark blue/grey text */
-        /* border: 1px solid #1f2937; */ /* Dark blue/grey border - Updated below */
-        border: 2px solid #1f2937; /* Increased border width */
-        border-radius: 50px; /* Added large border-radius for rounded shape */
-        margin-top: 2.4rem; /* Increased margin to move button down */
-        margin-bottom: 2.4rem; /* ADDED margin-bottom */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Added subtle shadow */
-        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Added transform to transition */
-    }
-
-    /* Added hover state for the button */
-    #openContactModalBtn.submit-button.w-button:hover {
-        background-color: #F0EDE9; /* Slightly darker beige on hover */
-        color: #1f2937; /* Keep text color */
-        border-color: #1f2937; /* Keep border color */
-        transform: scale(1.03); /* Added scale effect on hover */
-    }
-  </style>
-  <!-- Added Animated ARR Chart Styles -->
-  <style>
-    /* Chart Container Styles */
-    .chart-container {
-        position: relative;
-        width: 100%;
-        /* max-width: 600px; /* Responsive max width */ /* Removed to allow full width */
-        margin: 0 auto 0 auto; /* Centering and removed bottom margin */
-        background-color: transparent; /* Blend with card background */
-        border-radius: 12px;
-        overflow: hidden; /* Clip contents */
-        /* Removed box-shadow */
-        padding: 0; /* Removed padding */
-        /* border: 1px solid #4a4a4a; /* Added border like slackbot */ /* Removed border */
-        box-sizing: border-box;
-        color: #e5e7eb; /* Match index.html axis label color */
-        min-height: 360px; /* Set min-height to match slackbot visual, reduced by 10% */
-        display: flex; /* Use flexbox for layout */
-        flex-direction: column; /* Stack title and svg vertically */
-        text-align: center;
-        font-size: 1.68em; /* Increased font size by 20% */
-        margin-top: 2px; /* Reduced margin top by 50% */
-        margin-bottom: 0; /* Removed margin bottom */
-        font-weight: bold;
-        color: #ffffff; /* Match index.html --white */
-    }
-    .chart-title {
-        /* display: none; /* Hide default title, use card title */ /* Corrected comment */
-        /* display: none; /* Hide again, use H4 below chart */ /* Removed display:none */
-        text-align: center;
-        font-size: 1.2em; /* Increased font size by 20% */
-        margin-top: 5px; /* Reduced margin top by 50% */
-        margin-bottom: 0; /* Removed margin bottom */
-        font-weight: bold;
-        color: #ffffff; /* Match index.html --white */
-    }
-    .chart-svg {
-        display: block;
-        width: 100%;
-        /* height: auto; /* Maintain aspect ratio */ /* Replaced by flex-grow */
-        /* aspect-ratio: 500 / 300; /* Define aspect ratio */ /* Removed aspect ratio */
-        transform: scale(0.99); /* Scale down SVG slightly (made 10% wider than 0.9) */
-        transform-origin: center center; /* Scale from the center */
-        flex-grow: 1; /* Allow SVG to fill remaining height */
-        min-height: 0; /* Prevent flex item from overflowing */
-        align-self: center; /* Center scaled SVG horizontally */
-    }
-    /* SVG Styles */
-    .axis path,
-    .axis line {
-        fill: none;
-        stroke: #718096; /* Match index.html .line-graph-axis approx */
-        stroke-width: 1;
-        shape-rendering: crispEdges;
-    }
-    .axis text {
-        fill: #e5e7eb; /* Match index.html .line-graph-label */
-        font-size: 24px; /* Increased font size x2 */
-    }
-    .grid-line {
-        fill: none;
-        stroke: #718096; /* Match index.html .line-graph-axis approx */
-        stroke-width: 0.5;
-        stroke-dasharray: 2,2; /* Dashed grid lines */
-    }
-    .arr-line {
-        fill: none;
-        stroke: #67e8f9; /* Match index.html --accent-highlight */
-        stroke-width: 2.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        /* Animation properties will be added via JS */
-    }
-    .target-line {
-        fill: none;
-        stroke: #a0aec0; /* Approx index.html .line-graph-target rgba */
-        stroke-width: 1.5;
-        stroke-dasharray: 3, 3; /* Make target line dashed */
-    }
-    .arr-endpoint {
-        fill: #67e8f9; /* Match ARR line color */
-        opacity: 0; /* Initially hidden */
-        transition: opacity 0.3s ease-in-out; /* Fade in */
-    }
-    /* Callout Styles */
-    .callout {
-        fill: #e5e7eb; /* Match index.html axis label color */
-        font-size: 20px; /* Reduced font size by ~10% */
-        opacity: 0; /* Start hidden */
-        pointer-events: none; /* Don't interfere with mouse */
-        text-anchor: middle; /* Center text horizontally */
-        font-weight: normal; /* Ensure not bold */
-    }
-    .callout-line {
-        fill: none;
-        stroke: #a0aec0; /* Match target line color */
-        stroke-width: 1;
-        stroke-dasharray: 2, 2; /* Dotted line */
-        opacity: 0.8;
-    }
-    
-    /* Define the drawLine keyframes specifically for this chart */
-    @keyframes drawLine {
-        to {
-            stroke-dashoffset: 0;
-        }
-    }
-
-    /* Added classes for dynamic callout animation */
-    .callout-line-animating {
-        animation: drawLine 0.4s ease-out forwards, fadeIn 0.3s ease-in forwards;
-    }
-    .callout-text-animating {
-        animation: fadeIn 0.5s ease-in forwards;
-    }
-  </style>
-  <!-- Added Styles for Autonomy Slack Message -->
-  <style>
-      /* Target the specific card */
-      .attribute-card[data-attribute="autonomy"] .slackbot-visual-container {
-          max-width: 100%;
-          width: 100%;
-          opacity: 0;
-          animation: fadeIn 1.0s ease-out forwards 0.2s;
-          /* flex-grow: 1; Removed to prevent extra height */
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 1.5rem;
-          /* min-height: 380px; /* REMOVED to allow shrinking */
-          /* Adjusted height: Let content dictate, but ensure flex works */
-          /* Consider adding max-height if needed */
-      }
-
-      /* Autonomy Specific Overrides / Additions */
-      .attribute-card[data-attribute="autonomy"] .slackbot-visual {
-          /* Inherits most styles from general .slackbot-visual */
-          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-          /* min-height: 270px; /* REMOVED - Let content determine height */ 
-          /* flex-grow: 1; Removed to prevent extra height */
-          display: flex; /* Ensure flex works for internal elements */
-          flex-direction: column; /* Stack header/attachment */
-      }
-
-      /* Header uses default styles */
-      .attribute-card[data-attribute="autonomy"] .slackbot-app-label {
-           font-weight: 600; /* Slightly bolder label */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-time {
-          font-size: 12px; /* Match Accountability */
-          color: #a8a8a8; /* Match Accountability */
-          /* margin-left: auto; /* Removed to place time next to APP label */
-          margin-left: 8px; /* Add some space after the APP label */
-      }
-
-      /* Attachment */
-      .attribute-card[data-attribute="autonomy"] .slackbot-attachment {
-          border-left-color: var(--warning-border-color, #daa520); /* Use warning color */
-          /* Inherits padding/margin from base */
-          flex-grow: 1; /* Allow attachment to fill space */
-          display: flex; /* Enable flex for child elements */
-          flex-direction: column; /* Stack elements vertically */
-      }
-      /* ... other attachment styles ... */
-      .attribute-card[data-attribute="autonomy"] .slackbot-message-content {
-          margin-bottom: 15px; /* Adjusted margin */
-      }
-      
-      /* Added rule for QTD paragraph size */
-       .attribute-card[data-attribute="autonomy"] .slackbot-message-content p {
-          font-size: 18px; /* Increased by 20% from 15px */
-          margin-top: 10px; /* Added top margin */
-      }
-      
-
-      
-      /* Added rule for highlight styling */
-      .attribute-card[data-attribute="autonomy"] .highlight-warning {
-          color: #facc15; /* Match warning color variable */
-          font-weight: 600; /* Make bold */
-      }
-
-      /* Resources Section Styling (Match slack.html) */
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources {
-          margin-top: 18px;
-          padding: 18px 15px; /* Match slack.html */
-          border-top: 1px solid transparent; /* For animation */
-          position: relative;
-          background-color: var(--resource-bg, rgba(74, 74, 74, 0.2));
-          border-radius: 4px;
-          overflow: hidden;
-          /* Removed animation from base style */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 1px;
-          width: 0; /* Start at 0 width */
-          background-color: rgba(74, 74, 74, 0.5);
-          /* animation applied via class */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources-title {
-          font-size: 12px; /* Match slack.html */
-          font-weight: 700; /* Match slack.html */
-          color: #a8a8a8; /* Match slack.html */
-          margin-bottom: 10px; /* Match slack.html */
-          text-transform: uppercase; /* Match slack.html */
-          letter-spacing: 0.8px; /* Match slack.html */
-          padding-left: 0; /* Match slack.html */
-          opacity: 0;
-          /* animation applied via class */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p {
-           margin: 0 0 8px 0; /* Match slack.html */
-           display: flex;
-           align-items: center;
-           font-size: 15px; /* Match slack.html */
-           color: var(--slack-light-text, #d1d2d3);
-           opacity: 0;
-           /* animation applied via class */
-      }
-      /* Resource Icons (Ensure these are correct) */
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p::before {
-          content: '' ; /* Reset content */
-          display: inline-block;
-          width: 1.2em; /* Width for icon */
-          height: 1em; /* Match line height */
-          margin-right: 8px;
-          background-repeat: no-repeat;
-          background-position: center center;
-          background-size: contain;
-          vertical-align: middle; /* Align icon vertically */
-          opacity: 0.8;
-          position: relative;
-          top: -0.05em; /* Fine-tune vertical alignment */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p.headcount::before { content: '🧑‍💼'; }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources p.budget::before { content: '💰'; }
-
-      .attribute-card[data-attribute="autonomy"] .resource-highlight {
-          color: var(--white);
-          font-weight: 700;
-          display: inline-block;
-          margin-left: 0.5em; /* Match slack.html */
-      }
-
-      /* Button inherits styles, animation applied via class */
-      .attribute-card[data-attribute="autonomy"] .slackbot-button {
-          /* Styles inherited or set in base */
-          /* Added styles from slack.html */
-          display: inline-block;
-          background-color: var(--slack-green-button, #007a5a);
-          color: var(--white, #ffffff);
-          padding: 8px 15px;
-          border-radius: 5px;
-          font-size: 14px;
-          font-weight: 600;
-          text-decoration: none;
-          border: none;
-          cursor: pointer;
-          transition: background-color 0.2s ease;
-          margin-top: 20px;
-          /* opacity: 0; */ /* Changed to 1 for static visibility */
-          opacity: 1;
-          margin-bottom: 0;
-          align-self: flex-start;
-          /* animation: fadeIn 0.8s ease-out forwards 1.9s !important; */ /* REMOVED Animation */
-      }
-
-      .attribute-card[data-attribute="autonomy"] .slackbot-button:hover {
-           background-color: #148567; /* Darker green on hover */
-      }
-
-      /* --- Animation Triggers (Remain the same) --- */
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation::before {
-          animation: drawLineAcross 0.8s ease-out forwards 0.5s; /* Start sooner */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation .slackbot-resources-title {
-          animation: fadeIn 0.8s ease-out forwards 0.7s; /* 0.2s after line */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p {
-          animation: fadeInResource 0.8s ease-out forwards;
-          /* Removed opacity: 1 failsafe */ /* <-- Remove this line */
-      }
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(1) { animation-delay: 1.1s; } /* 0.4s after title */
-      .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(2) { animation-delay: 1.5s; } /* 0.4s after headcount */
-      /* Removed :has() selector for button animation */
-      /* --- End animation triggers --- */
-
-      /* Variables (Remain the same) */
-      /* Keyframes (Remain the same) */
-      /* --- Added missing keyframes --- */
-       @keyframes fadeInResource {
-           from { opacity: 0; transform: translateY(5px); }
-           to { opacity: 1; transform: translateY(0); }
-       }
-      /* Container animation trigger (Remains the same) */
-
-      /* Trigger button fade-in after budget line */
-      /* REMOVED Rule below that triggers button animation */
-      /* .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation + .slackbot-button {
-          animation: fadeIn 0.8s ease-out forwards 1.9s;
-      } */
-
-  </style>
-  <!-- Styles for individual testimonial cards (kept from original embed) -->
-  <style>
-    /* Custom styling for the cards themselves */
-    .carousel-parent-container {
-      /* max-width: none !important; /* Removed override */
-      /* width: 100%; /* Ensure it spans width */ /* REMOVED */
-      /* padding: 0 120px; /* Increased horizontal padding for wider margins */ /* REMOVED */
-      box-sizing: border-box; /* Include padding in width */
-      /* ADDED */
-      max-width: 1400px; /* Match hero section width */
-      margin-left: auto;
-      margin-right: auto;
-    }
-    /* Removed .carousel-container rule as width is now controlled by parent */
-    
-    .testimonial-card {
-        background-color: white;
-        border-radius: 28px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        padding: 36px 40px; /* Increased horizontal padding for thinner content */
-        height: auto; /* Let Swiper handle height */
-        min-height: 220px; /* Increased min-height by 10% */
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        margin-bottom: 40px; /* Add space below cards for pagination */
-    }
-    .quote-mark {
-        font-size: 56px; /* Slightly smaller quote mark */
-        line-height: 1;
-        color: #111827;
-        font-family: 'Georgia', serif;
-        margin-bottom: 2px; /* Very close to text */
-        margin-top: 0; /* Ensure no top margin */
-        display: block;
-        height: 40px;
-    }
-    .testimonial-text {
-        font-size: 1.125rem;
-        line-height: 1.65;
-        color: #4A5568;
-        flex-grow: 1;
-        margin-bottom: 32px;
-    }
-    .person-container {
-        display: flex;
-        align-items: center;
-        margin-top: auto;
-        padding-top: 20px;
-        border-top: 1px solid #F0F4F8;
-        margin-bottom: 10px;
-    }
-    .initials {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 500;
-        font-size: 16px;
-        color: #4A5568;
-        background-color: #EDF2F7;
-        margin-right: 16px;
-    }
-    .person-name {
-        font-weight: 600;
-        color: #2D3748;
-        font-size: 1rem;
-    }
-    .person-title {
-        color: #718096;
-        font-size: 0.875rem;
-    }
-    /* Style pagination dots */
-    .testimonial-pagination {
-        position: relative; /* Position below the swiper */
-        bottom: 10px; /* Adjust as needed */
-        margin-top: 20px; /* Space above dots */
-    }
-    .swiper-pagination-bullet {
-        background-color: #ccc; /* Inactive dot color */
-        opacity: 0.7;
-    }
-    .swiper-pagination-bullet-active {
-        background-color: var(--blue, #22293e); /* Active dot color - use site variable */
-        opacity: 1;
-    }
-    /* Ensure swiper slides have appropriate styling */
-    .swiper-slide {
-      height: auto; /* Allow slides to determine height based on content */
-      display: flex; /* Helps with vertical alignment if needed */
-      align-items: stretch; /* Make slides stretch to same height if desired */
-    }
-    .testimonial-swiper {
-        padding-bottom: 50px; /* Ensure space for pagination dots */
-    }
-    /* Added styles for category header */
-    .testimonial-category {
-        font-family: Inter, sans-serif;
-        font-size: 16px; /* Adjusted size */
-        font-weight: 700; /* Bolder */
-        color: #adb5bd; /* Lighter grey color */
-        text-transform: uppercase; /* Uppercase for distinction */
-        letter-spacing: 1px; /* More spacing */
-        margin-top: 0; /* Remove default h4 margin */
-        margin-bottom: 15px; /* Increased space below category */
-    }
-  </style>
-
-    <!-- Added Stacked Advantage Widget Styles -->
-    <style>
-        #stacked-advantage-widget {
-            /* --- Configuration Variables --- */
-            --dark-background: #0d1117;
-            --text-blue: #67e8f9;
-            --arrow-gradient-start: #1F7A8C;
-            --arrow-gradient-end: #67e8f9;
-            --text-light: #e5e7eb;
-            --arrow-animation-duration: 1.5s;
-            --arrow-delay-compete: 0.5s; /* Start delay for first arrow */
-            --arrow-delay-innovate: 0.8s; /* Delay for second, relative to first */
-            --arrow-delay-hire: 0.8s; /* Delay for third, relative to second */
-            --initial-delay: 0.2s; /* Overall delay before first animation starts */
-            
-            /* --- Container Styles --- */
-            font-family: 'Inter', sans-serif;
-            /* background-color: var(--dark-background); */ /* Removed - inherits from card */
-            border-radius: 12px;
-            /* padding: 40px 50px; */ /* Removed - inherits from card */
-            padding: 0; /* Reset padding, rely on card padding */
-            width: 100%; /* Take full width of card */
-            /* max-width: 450px; */ /* Removed max-width */
-            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */ /* Removed shadow */
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box; /* Include padding/border in element's total width and height */
-            margin-bottom: 1.5rem; /* Add space below widget */
-        }
-
-        #stacked-advantage-widget .advantage-visual {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            width: 100%;
-            min-height: 280px; /* Adjusted height */
-            position: relative;
-            margin-top: 10px; /* Added top margin */
-        }
-
-        #stacked-advantage-widget .advantage-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            bottom: 0;
-        }
-
-        #stacked-advantage-widget .advantage-step.compete {
-            left: calc(50% - 71.2px); /* Adjusted for 80px width */
-            z-index: 3;
-        }
-        #stacked-advantage-widget .advantage-step.innovate {
-            left: calc(50% - 40px); /* Adjusted for 80px width */
-            z-index: 2;
-         }
-        #stacked-advantage-widget .advantage-step.hire {
-            left: calc(50% - 8px); /* Adjusted for 80px width */
-            z-index: 1;
-        }
-
-        #stacked-advantage-widget .advantage-arrow {
-            width: 80px; /* Adjusted arrow width */
-            margin-bottom: 0px;
-            position: relative;
-            transform-origin: bottom center;
-            opacity: 0;
-            transition: bottom 1.5s ease-out;
-        }
-        
-        #stacked-advantage-widget .advantage-arrow svg {
-            display: block;
-        }
-        
-        @keyframes growFromBottom {
-            0% {
-                transform: scaleY(0.12); 
-                opacity: 1;
-            }
-            100% {
-                transform: scaleY(1);
-                opacity: 1;
-            }
-        }
-
-        /* Apply animations - Adjusted delays */
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-arrow {
-            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
-            fill: url(#stacked-advantage-competeGradient);
-        }
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-arrow {
-            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
-            fill: url(#stacked-advantage-innovateGradient);
-        }
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-arrow {
-            animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
-            fill: url(#stacked-advantage-hireGradient);
-        }
-
-        #stacked-advantage-widget .advantage-label {
-            display: block;
-            color: white;
-            font-size: 14px; /* Adjusted font size */
-            font-weight: 500; /* Slightly lighter weight */
-            position: absolute;
-            z-index: 10;
-            white-space: nowrap;
-            opacity: 0;
-            transition: bottom 1.5s ease-out;
-        }
-
-        /* Adjusted Initial Label Positioning */
-        #stacked-advantage-widget .advantage-step.compete .advantage-label {
-            left: -55px; /* Adjusted */
-            bottom: 0px;
-        }
-        #stacked-advantage-widget .advantage-step.innovate .advantage-label {
-            left: -80px; /* Adjusted */
-            bottom: 0px;
-        }
-        #stacked-advantage-widget .advantage-step.hire .advantage-label {
-            left: -85px; /* Adjusted */
-            bottom: 0px;
-        }
-
-        /* Adjusted Label Animations */
-        @keyframes moveLabelCompete {
-            0% { opacity: 0; bottom: 0px; }
-            100% { opacity: 1; bottom: 40px; /* Adjusted final position */ }
-        }
-        @keyframes moveLabelInnovate {
-            0% { opacity: 0; bottom: 0px; }
-            100% { opacity: 1; bottom: 100px; /* Adjusted final position */ }
-        }
-        @keyframes moveLabelHire {
-            0% { opacity: 0; bottom: 0px; }
-            100% { opacity: 1; bottom: 180px; /* Adjusted final position */ }
-        }
-
-        /* Apply label animations - Adjusted delays */
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
-            animation: moveLabelCompete var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
-        }
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
-            animation: moveLabelInnovate var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
-        }
-        .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
-            animation: moveLabelHire var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
-        }
-        
-        #stacked-advantage-widget .foundation-label {
-            position: relative;
-            width: 100%;
-            text-align: center;
-            color: var(--text-blue);
-            font-weight: 500; /* Slightly lighter */
-            font-size: 15px; /* Adjusted size */
-            padding: 8px 0 0 0; /* Adjusted padding */
-            z-index: 4;
-        }
-
-        #stacked-advantage-widget .foundation-line {
-            position: relative;
-            height: 1px; /* Thinner line */
-            width: 85%; /* Slightly narrower line */
-            background-color: var(--text-blue);
-            z-index: 4;
-            margin-bottom: 5px; /* Adjusted margin */
-        }
-
-        /* Simplified Responsive Adjustments for integration */
-        @media (max-width: 480px) {
-            #stacked-advantage-widget .advantage-visual {
-                 min-height: 200px;
-            }
-            #stacked-advantage-widget .advantage-arrow {
-                 width: 60px; /* Smaller arrows on mobile */
-            }
-             #stacked-advantage-widget .advantage-label {
-                 font-size: 12px;
-             }
-
-             /* Adjust mobile positioning */
-             #stacked-advantage-widget .advantage-step.compete {
-                 left: calc(50% - 60px);
-             }
-             #stacked-advantage-widget .advantage-step.innovate {
-                 left: calc(50% - 30px);
-             }
-             #stacked-advantage-widget .advantage-step.hire {
-                 left: calc(50% - 0px);
-             }
-
-             /* Mobile label keyframes (adjust final position) */
-             @keyframes moveLabelCompeteMobile {
-                0% { opacity: 0; bottom: 0px; }
-                100% { opacity: 1; bottom: 20px; }
-             }
-             @keyframes moveLabelInnovateMobile {
-                0% { opacity: 0; bottom: 0px; }
-                100% { opacity: 1; bottom: 65px; }
-             }
-             @keyframes moveLabelHireMobile {
-                0% { opacity: 0; bottom: 0px; }
-                100% { opacity: 1; bottom: 115px; }
-             }
-             
-             /* Apply mobile label animations */
-             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
-                 animation-name: moveLabelCompeteMobile;
-                 left: -50px; /* Adjust label position */
-             }
-             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
-                 animation-name: moveLabelInnovateMobile;
-                 left: -70px; /* Adjust label position */
-             }
-             .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
-                 animation-name: moveLabelHireMobile;
-                 left: -70px; /* Adjust label position */
-             }
-             
-             #stacked-advantage-widget .foundation-label {
-                font-size: 13px;
-            }
-        }
-    </style>
 </head>
 <body class="body">
-  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav" style="background-color: #0D121C; border-bottom: none; box-shadow: none;">
     <div class="container-8 w-container">
       <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="images/CFO-ADVISORS.svg" loading="lazy" alt="CFO Advisors Logo
-" class="image"></a>
+" class="image" style="max-height: 60px; width: auto;"></a>
       <nav role="navigation" class="nav-menu-2 w-nav-menu">
-        <a href="#company-overview" class="nav-link w-nav-link">Company</a>
-        <a href="#services" class="nav-link w-nav-link">Services</a>
-        <a href="#testimonials-section" class="nav-link w-nav-link">Testimonials</a>
-        <a href="careers.html" class="nav-link w-nav-link">Careers</a>
+        <a href="#company-overview" class="nav-link w-nav-link" style="font-size: 18px;">Company</a>
+        <a href="#services" class="nav-link w-nav-link" style="font-size: 18px;">Services</a>
+        <a href="#testimonials-section" class="nav-link w-nav-link" style="font-size: 18px;">Testimonials</a>
+        <a href="careers.html" class="nav-link w-nav-link" style="font-size: 18px;">Careers</a>
       </nav>
       <div class="menu-button w-nav-button">
         <div class="icon w-icon-nav-menu"></div>
@@ -1453,7 +38,7 @@
     </div>
   </div>
   <!-- New Hero Section based on example header.html -->
-  <section class="section hero-section-interactive" style="margin-bottom: 0; padding: 0;">
+  <section class="section hero-section-interactive" style="margin-top: 20px; padding: 0; margin-bottom: 0;">
     <canvas id="plexus-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas> <!-- Added Canvas for Plexus Effect -->
     <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1;">
       <h1 class="hero-headline fade-in" style="font-family: 'Gilda Display', serif; font-size: clamp(2.7rem, 5.4vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--white, #fff); margin-bottom: 2rem;">
@@ -1513,7 +98,7 @@
              </div>
              <h4 class="attribute-card-title" style="margin-top: 0.5rem; font-size: 1.62rem;">Actual ARR vs Board Plan</h4> <!-- Reduced margin-top & font-size -->
              <p class="attribute-card-description" style="margin-top: 0.5rem;">
-                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have real-time clarity.
+                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have <span class="description-highlight">real-time clarity</span>.
              </p>
           </div>
           <div class="attribute-card" data-attribute="alignment">
@@ -1524,7 +109,7 @@
                  <img src="images/Alignment Slide 3.jpg" alt="Slide 3" class="slide">
              </div>
              <h4 class="attribute-card-title">Strategic Focus</h4>
-             <p class="attribute-card-description">Ensure board, management, and team alignment on strategic priorities and the critical metrics that matter most.</p>
+             <p class="attribute-card-description">Ensure board, management, and team alignment on strategic priorities and the <span class="description-highlight">critical metrics that matter most.</span></p>
           </div>
           <div class="attribute-card" data-attribute="accountability">
              <!-- Slackbot Visual Representation (Moved Here) -->
@@ -1567,7 +152,7 @@ Date        Amount   Vendor                     Department              Account
              </div>
              <h4 class="attribute-card-title" style="margin-top: 1.5rem;">Performance Driven</h4> <!-- Updated Title -->
              <p class="attribute-card-description" style="margin-top: 0.5rem;">
-                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs directly through Slack, ensuring executives have real-time clarity and fostering accountability.
+                Our product suite delivers custom dashboards for Revenue, Headcount, Expenses, and other Key KPIs <span class="description-highlight">directly through Slack</span>, ensuring executives have real-time clarity and fostering accountability.
              </p>
           </div>
           <div class="attribute-card" data-attribute="autonomy">
@@ -1599,7 +184,7 @@ Date        Amount   Vendor                     Department              Account
              </div>
              <!-- Re-added Title and Description -->
              <h4 class="attribute-card-title">Empowered Leaders</h4>
-             <p class="attribute-card-description">Equip leaders with clear goals, necessary resources, and the authority to proactively address gaps and drive results.</p>
+             <p class="attribute-card-description">Equip leaders with clear goals, necessary resources, and the authority to <span class="description-highlight">proactively address gaps</span> and drive results.</p>
              <!-- Removed redundant script from slack.html -->
           </div>
           <div class="attribute-card" data-attribute="velocity">
@@ -1652,7 +237,7 @@ Date        Amount   Vendor                     Department              Account
             </div>
             <!-- End of Stacked Advantage Widget -->
              <h4 class="attribute-card-title">Accelerated Execution</h4>
-             <p class="attribute-card-description">Increase the speed at which quality decisions are surfaced, made, and implemented across the organization.</p>
+             <p class="attribute-card-description">Increase the speed at which quality decisions are <span class="description-highlight">surfaced, made, and implemented</span> across the organization.</p>
           </div>
         </div>
       </div>
@@ -1665,82 +250,24 @@ Date        Amount   Vendor                     Department              Account
   </section>
   <!-- End New Hero Section -->
 
-  <section id="company-overview" class="section header-section" style="margin-bottom: 0; padding-top: 30px;"> <!-- Increased padding-top -->
-    <div data-w-id="6da26c89-e38f-0451-4bac-3c07e9039af2" style="opacity:0" class="w-layout-blockcontainer w-container">
-      <h2 class="heading">Company Overview</h2>
-      <p class="paragraph">CFO Advisors is redefining how venture-backed startups operate by building <strong>best-in-class operational frameworks</strong> that power the fastest-growing startups backed by Sequoia, A16z, Bessemer, and visionary leaders like Sam Altman. <br><br>Our clients trust CFO Advisors to help them create a <strong>sustainable competitive advantage</strong> by instilling transparency, alignment, accountability, autonomy, and velocity throughout their organization. Spanning industries from Foundation Models and AI Agents to Cybersecurity and Healthcare — CFO Advisors ensures today's boldest ideas evolve into tomorrow's <strong>category defining leaders</strong>.</p>
-    </div>
-    <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:0" class="w-layout-blockcontainer container-7 w-container">
-      <!-- <div class="line"></div> --> <!-- REMOVED Divider Line -->
-      <div class="w-row">
-        <div class="column w-col w-col-6">
-          <p class="paragraph">We work with founders backed by the best </p>
-        </div>
-        <div class="column-2 w-col w-col-6">
-          <p class="paragraph right-align">Serving customers worldwide</p>
-        </div>
-      </div>
-      <div class="w-layout-grid logo-row">
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffa-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/a16z.svg" loading="lazy" alt="a16z logo" class="logo-image client"></div>
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffc-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/general-catalyst.svg" loading="lazy" alt="general catalyst logo" class="logo-image client"></div>
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffe-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/first-round.svg" loading="lazy" width="600" alt="firstround logo" class="logo-image client"></div>
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c000-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/bessemer.svg" loading="lazy" alt="bessemer logo" class="logo-image client"></div>
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c002-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/insight.svg" loading="lazy" alt="insight logo" class="logo-image client"></div>
-        <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c004-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Sequoia_Capital_logo.svg" loading="lazy" width="540" alt="sequoia capital logo" class="logo-image client"></div>
-        <div id="w-node-c9db1daa-b10c-59cd-ae5b-37b2206405c2-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/basis-set.svg" loading="lazy" alt="basis set logo" class="logo-image client"></div>
-        <div id="w-node-e2db9a0c-a3ba-0df0-7cac-79c2b4a6d55b-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Sam-altman.svg" loading="lazy" alt="sam altman text" class="logo-image client"></div>
-      </div>
-    </div>
-  </section>
-  <!-- Added Services Section -->
-  <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 60px; padding-bottom: 60px;">
-    <div class="w-container">
-      <h2 class="heading" style="color: white; text-align: center;">Services</h2>
-      <!-- Service content will go here -->
-      <div class="core-offerings-container">
-        <div class="offering-block">
-          <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Financial Model & Strategic Planning</h3>
-          <p class="offering-description">Managing investor-ready financial models and facilitating strategic planning alignment.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
-        </div>
-        <div class="offering-block">
-          <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Fundraising & Investor Relations</h3>
-          <p class="offering-description">Assisting with board decks, fundraising support, due diligence, and investor-ready financials.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
-        </div>
-        <div class="offering-block">
-          <!-- Placeholder Icon SVG can go here -->
-          <h3 class="offering-title">Financial Operations</h3>
-          <p class="offering-description">Operationalizing finance via dashboards, headcount planning, ARR tracking, and spend management.</p>
-          <!-- Visualization placeholder -->
-          <div class="visualization-placeholder" style="height: 150px; border: 1px dashed #4b5563; margin-top: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">Visualization Area</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Added Services Section -->
+  <!-- START: Testimonials Section -->
   <section id="testimonials-section" class="section beige-section">
     <div class="carousel-parent-container">
       <h2 class="heading" style="text-align: center; margin-bottom: 50px;">What Our Clients Say</h2>
       <div class="swiper testimonial-swiper">
         <div class="swiper-wrapper">
-          <!-- Original Testimonials -->
           <div class="swiper-slide">
             <div class="testimonial-card">
               <h4 class="testimonial-category">Strategic & Financial Planning</h4>
               <div class="quote-mark">&#8220;</div>
               <div class="testimonial-text">
-                The strategic clarity and operational efficiency CFO Advisors brought to our finance function was game-changing. They didn't just fix our processes - they transformed our entire approach to financial management.
+                The CEO and I talk about how valuable CFO Advisors is all the time.<br> <br> <strong>We had no idea that a CFO could be such an incredible strategic partner.</strong>
               </div>
               <div class="person-container">
-                <div class="initials">PO</div>
+                <img src="images/Testimonial Photos/Maryel Ley.jpg" alt="Maryel Ley" class="initials">
                 <div>
-                  <div class="person-name">Peter O'Donohgue</div>
-                  <div class="person-title">CFO of Stability AI</div>
+                  <div class="person-name">Maryel Ley</div>
+                  <div class="person-title">Head of Ops Brisk (Backed by Bessemer)</div>
                 </div>
               </div>
             </div>
@@ -1750,13 +277,29 @@ Date        Amount   Vendor                     Department              Account
               <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
               <div class="quote-mark">&#8220;</div>
               <div class="testimonial-text">
-                CFO Advisors has been a game-changer. I haven't looked back and can't believe we didn't sign up sooner. The team is amazing and the work they deliver helps us with things like planning for growth, expenses, fundraising, and more.
+                CFO Advisors was critical in the success of our multiple fundraises. They partnered seamlessly with our finance team and delivered investor-ready financials aligned with our strategy in <strong>days, not weeks</strong>. <br><br>No other firm matches their unique combination of <strong>time-to-value</strong> and quality.
               </div>
               <div class="person-container">
-                <div class="initials">PW</div>
+                <img src="images/Testimonial Photos/Nicolas Kopp.jpg" alt="Nicolas Koop" class="initials">
                 <div>
-                  <div class="person-name">Philip Wang</div>
-                  <div class="person-title">CEO Gather Town</div>
+                  <div class="person-name">Nicolas Koop</div>
+                  <div class="person-title">CEO Rillet (Backed by First Round)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
+              <div class="quote-mark">&#8220;</div>
+              <div class="testimonial-text">
+                Their <strong>forecast accuracy is remarkable</strong>—empowering us to make critical decisions months before the numbers showed up in our books. They <strong>genuinely care about our success</strong>, and it shows in everything they deliver. <br><br> I cannot recommend them enough.
+              </div>
+              <div class="person-container">
+                <img src="images/Testimonial Photos/Andrei Santalo.jpg" alt="Andrei Santalo" class="initials">
+                <div>
+                  <div class="person-name">Andrei Santalo</div>
+                  <div class="person-title">Head of Ops Rain AI (Backed by Sam Altman)</div>
                 </div>
               </div>
             </div>
@@ -1766,30 +309,13 @@ Date        Amount   Vendor                     Department              Account
               <h4 class="testimonial-category">Operational Excellence</h4>
               <div class="quote-mark">&#8220;</div>
               <div class="testimonial-text">
-                We know we have the back office covered with CFO Advisors. They are hands on and make our accounting and bookkeeping easy. You get a team who provides guidance on best practices in the tax and accounting world.
+                The CFO Advisors team has been an indispensable partner across my multiple companies and funding rounds. Their team crafts compelling narratives while their reporting suite keeps burn on track and enables rapid fundraising launches. They're true thought partners who <strong>consistently deliver when it matters most</strong>. 
               </div>
               <div class="person-container">
-                <div class="initials">SF</div>
+                <img src="images/Testimonial Photos/Thenuka Karunaratne.jpg" alt="Thenuka Karunaratne" class="initials">
                 <div>
-                  <div class="person-name">Shmulik Fishman</div>
-                  <div class="person-title">CEO Argyle</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Updated Duplicated Testimonials -->
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Strategic & Financial Planning</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                The strategic clarity and operational efficiency CFO Advisors brought to our finance function was game-changing. They didn't just fix our processes - they transformed our entire approach to financial management.
-              </div>
-              <div class="person-container">
-                <div class="initials">SA</div>
-                <div>
-                  <div class="person-name">Sarah Ahmand</div>
-                  <div class="person-title">CEO Stable</div>
+                  <div class="person-name">Thenuka Karunaratne</div>
+                  <div class="person-title">CEO DayDream (Backed by First Round)</div>
                 </div>
               </div>
             </div>
@@ -1799,30 +325,13 @@ Date        Amount   Vendor                     Department              Account
               <h4 class="testimonial-category">Investor Relations & Fundraising</h4>
               <div class="quote-mark">&#8220;</div>
               <div class="testimonial-text">
-                CFO Advisors has been a game-changer. I haven't looked back and can't believe we didn't sign up sooner. The team is amazing and the work they deliver helps us with things like planning for growth, expenses, fundraising, and more.
+                Their expertise with Tier 1 VCs transformed our fundraising process. They sharpened our narrative and highlighted our unique insights, dramatically accelerating our timeline. <br><br>We valued their partnership so much, <strong>we invited them onto our cap table</strong>.
               </div>
               <div class="person-container">
-                <div class="initials">RC</div>
+                <img src="images/Testimonial Photos/Spyri Karasavva.jpg" alt="Spyri Karasavva" class="initials">
                 <div>
-                  <div class="person-name">Rene Caisse</div>
-                  <div class="person-title">CEO Medeloop</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Added 6th Testimonial -->
-          <div class="swiper-slide">
-            <div class="testimonial-card">
-              <h4 class="testimonial-category">Operational Excellence</h4>
-              <div class="quote-mark">&#8220;</div>
-              <div class="testimonial-text">
-                We know we have the back office covered with CFO Advisors. They are hands on and make our accounting and bookkeeping easy. You get a team who provides guidance on best practices in the tax and accounting world.
-              </div>
-              <div class="person-container">
-                <div class="initials">AJ</div>
-                <div>
-                  <div class="person-name">Arman Jaffer</div>
-                  <div class="person-title">CEO Brisk AI</div>
+                  <div class="person-name">Spyri Karasavva</div>
+                  <div class="person-title">CEO DealOps (Backed by General Catalyst)</div>
                 </div>
               </div>
             </div>
@@ -1830,8 +339,325 @@ Date        Amount   Vendor                     Department              Account
         </div>
         <div class="swiper-pagination testimonial-pagination"></div>
       </div>
+      <div data-w-id="bc317490-d082-2e3b-fd20-63b7198fb8fd" style="opacity:1; margin-top: 60px;" class="w-layout-blockcontainer container-7 w-container">
+        <div class="w-row">
+          <div class="column w-col w-col-6">
+            <p class="paragraph" style="color: #141c25;">We work with founders backed by the best </p>
+          </div>
+          <div class="column-2 w-col w-col-6">
+            <p class="paragraph right-align" style="color: #141c25;">Serving customers worldwide</p>
+          </div>
+        </div>
+        <div class="w-layout-grid logo-row">
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffa-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/Sequoia_Capital_logo.svg" loading="lazy" alt="Sequoia Capital logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffc-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Backed By/bessemer.svg" loading="lazy" alt="Bessemer Venture Partners logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062bffe-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/a16z.svg" loading="lazy" alt="Andreessen Horowitz (a16z) logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c000-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Backed By/first-round.svg" loading="lazy" alt="First Round Capital logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c002-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/general-catalyst.svg" loading="lazy" alt="General Catalyst logo" class="logo-image client"></div>
+          <div id="w-node-f7d9d411-2dba-2e84-ac44-11a6d062c004-790205b7" class="w-layout-blockcontainer logo-container row-right w-container"><img src="images/Backed By/insight.svg" loading="lazy" alt="Insight Partners logo" class="logo-image client"></div>
+          <div id="w-node-c9db1daa-b10c-59cd-ae5b-37b2206405c2-790205b7" class="w-layout-blockcontainer logo-container row w-container"><img src="images/Backed By/basis-set.svg" loading="lazy" alt="Basis Set Ventures logo" class="logo-image client"></div>
+          <div id="w-node-e2db9a0c-a3ba-0df0-7cac-79c2b4a6d55b-790205b7" class="w-layout-blockcontainer logo-container row-right row-end w-container"><img src="images/Backed By/Sam-altman.svg" loading="lazy" alt="Sam Altman logo" class="logo-image client"></div>
+        </div>
+      </div>
     </div>
   </section>
+  <!-- END: Testimonials Section -->
+
+  <!-- MOVED Services Section Here -->
+  <section id="services" class="section dark-section" style="background-color: #141c25; padding-top: 0px; padding-bottom: 0px;">
+    <div class="w-container">
+      <h2 class="heading" style="color: white; text-align: center;">CFO Services</h2>
+      <!-- Service content will go here -->
+      <div class="core-offerings-container" id="service-selectors">
+        <div class="offering-block active" data-service="planning">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Financial Model &<br>Strategic Planning</h3>
+          <div class="offering-description">
+             <ul>
+                 <li>Investor-ready financial models</li>
+                 <li>Strategic planning & alignment</li>
+                 <li>Forecast accuracy consistently &gt; 95%</li>
+             </ul>
+          </div>
+          <!-- Visualization placeholder REMOVED -->
+        </div>
+        <div class="offering-block" data-service="fundraising">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Fundraising &<br>Investor Relations</h3>
+          <div class="offering-description">
+             <ul>
+                 <li>Board deck preparation</li>
+                 <li>Fundraising support & due diligence</li>
+                 <li>Investor-ready financials</li>
+             </ul>
+          </div>
+          <!-- Visualization placeholder REMOVED -->
+        </div>
+        <div class="offering-block" data-service="operations">
+          <!-- Placeholder Icon SVG can go here -->
+          <h3 class="offering-title">Financial Operations &<br>Reducing Overhead</h3>
+          <div class="offering-description">
+             <ul>
+                 <li>Finance dashboards & KPI tracking</li>
+                 <li>Headcount & ARR planning</li>
+                 <li>Spend management & cost savings</li>
+             </ul>
+          </div>
+          <!-- Visualization placeholder REMOVED -->
+        </div>
+      </div>
+      <!-- Shared Visualization Area -->
+      <div id="service-visualization-area">
+        <div class="service-visualization-content active" data-service="planning">
+          <!-- Content/Animation for Planning -->
+          <!-- ADDED: Header and Link for Planning Visualization -->
+          <h4 class="visualization-sub-header">Custom Financial Models & Board Approved Plans</h4>
+          <a href="pdf/hybrid_budgeting_framework.pdf" target="_blank" class="visualization-link">CFO Advisors Budgeting Framework</a>
+          <!-- END ADDED Section -->
+          <!-- INSERTED FINANCIAL MODEL DASHBOARD -->
+          <div id="embedded-financial-model" style="height: 100%; overflow: auto;">
+              <div class="dashboard">
+                  <div class="content-wrapper">
+                      <div class="financial-summary">
+                          <table>
+                              <thead>
+                                  <tr>
+                                      <th>Metric</th>
+                                      <th class="th-actual">2024A</th>
+                                      <th class="th-forecast">2025E</th>
+                                      <th class="th-forecast">2026E</th>
+                                      <th class="th-forecast">2027E</th>
+                                      <th class="th-forecast">2028E</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <!-- ARR Waterfall -->
+                                  <tr class="group-header"><td colspan="6">Topline Metrics</td></tr>
+                                  <tr data-metric="BeginningARR" data-unit="$ MM" class="total-row"><td>Beginning ARR</td><td data-value="0.0"></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td></tr>
+                                  <tr data-metric="NewARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) New ARR</td><td data-value="1.0"></td><td data-value="2.20"></td><td data-value="4.46"></td><td data-value="6.63"></td><td data-value="9.05"></td></tr>
+                                  <tr data-metric="ExpansionARR" data-unit="$ MM"><td style="padding-left: 25px;">(+) Expansion ARR</td><td data-value="0.0"></td><td data-value="0.05"></td><td data-value="0.31"></td><td data-value="1.12"></td><td data-value="2.61"></td></tr>
+                                  <tr data-metric="ChurnedARR" data-unit="$ MM"><td style="padding-left: 25px;">(-) Churned ARR</td><td data-value="0.0"></td><td data-value="-0.15"></td><td data-value="-0.37"></td><td data-value="-0.75"></td><td data-value="-1.16"></td></tr>
+                                  <tr data-metric="EndingARR" data-unit="$ MM" class="total-row"><td><strong>Ending ARR</strong></td><td data-value="1.0"></td><td data-value="3.1"></td><td data-value="7.5"></td><td data-value="14.5"></td><td data-value="25.0"></td></tr>
+
+                                  <!-- Retention / Growth -->
+                                  <tr data-metric="ARRGrowthPct" data-unit="%"><td>ARR Growth %</td><td data-value="null"></td><td data-value="210.0"></td><td data-value="141.9"></td><td data-value="93.3"></td><td data-value="72.4"></td></tr>
+                                  <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
+                                  <tr data-metric="GrossRetentionPct" data-unit="%"><td>Gross Retention %</td><td data-value="null"></td><td data-value="85.0"></td><td data-value="88.1"></td><td data-value="90.0"></td><td data-value="92.0"></td></tr>
+                                  <tr data-metric="NetRetentionPct" data-unit="%"><td>Net Retention %</td><td data-value="null"></td><td data-value="90.0"></td><td data-value="98.1"></td><td data-value="104.9"></td><td data-value="110.0"></td></tr>
+                                  <tr class="group-separator"><td colspan="6">&nbsp;</td></tr>
+
+                                  <!-- Customer Metrics -->
+                                  <tr data-metric="AverageContractValueK" data-unit="$ K"><td>Avg Contract Value</td><td data-value="29.4"></td><td data-value="31.6"></td><td data-value="34.0"></td><td data-value="37.0"></td><td data-value="40.0"></td></tr>
+                                  <tr data-metric="EndingCustomers" data-unit="count"><td>Ending Customers</td><td data-value="34"></td><td data-value="98"></td><td data-value="221"></td><td data-value="392"></td><td data-value="625"></td></tr>
+
+                                  <!-- Income Statement -->
+                                  <tr class="group-header"><td colspan="6">Income Statement</td></tr>
+                                  <tr data-metric="Revenue" data-unit="$ MM"><td>Revenue</td><td data-value="0.50"></td><td data-value="2.05"></td><td data-value="5.30"></td><td data-value="11.00"></td><td data-value="19.75"></td></tr>
+                                  <tr data-metric="COGS" data-unit="$ MM"><td style="padding-left: 25px;">COGS</td><td data-value="0.120"></td><td data-value="0.410"></td><td data-value="0.901"></td><td data-value="1.540"></td><td data-value="2.370"></td></tr>
+                                  <tr data-metric="GrossProfit" data-unit="$ MM" class="total-row"><td>Gross Profit</td><td data-value="0.380"></td><td data-value="1.640"></td><td data-value="4.399"></td><td data-value="9.460"></td><td data-value="17.380"></td></tr>
+                                  <tr data-metric="GrossMarginPct" data-unit="%"><td>Gross Margin %</td><td data-value="76.0"></td><td data-value="80.0"></td><td data-value="83.0"></td><td data-value="86.0"></td><td data-value="88.0"></td></tr>
+
+                                   <!-- OpEx -->
+                                  <tr class="total-row"><td colspan="6">Operating Expenses</td></tr>
+                                  <tr data-metric="TotalR&D" data-unit="$ MM"><td style="padding-left: 25px;">Research & Development</td><td data-value="0.37"></td><td data-value="1.39"></td><td data-value="2.87"></td><td data-value="2.94"></td><td data-value="3.96"></td></tr>
+                                  <tr data-metric="TotalS&M" data-unit="$ MM"><td style="padding-left: 25px;">Sales & Marketing</td><td data-value="0.46"></td><td data-value="1.58"></td><td data-value="3.19"></td><td data-value="3.49"></td><td data-value="4.94"></td></tr>
+                                  <tr data-metric="TotalG&A" data-unit="$ MM"><td style="padding-left: 25px;">General & Administrative</td><td data-value="0.14"></td><td data-value="0.45"></td><td data-value="1.18"></td><td data-value="1.73"></td><td data-value="3.18"></td></tr>
+
+                                  <!-- P&L Bottom Line -->
+                                  <tr data-metric="TotalOperatingExp" data-unit="$ MM"><td><strong>Total Operating Expenses</strong></td><td data-value="0.97"></td><td data-value="3.42"></td><td data-value="7.24"></td><td data-value="8.16"></td><td data-value="12.72"></td></tr>
+                                  <tr data-metric="NetIncome" data-unit="$ MM" class="total-row"><td><strong>Net Income</strong></td><td data-value="-0.59"></td><td data-value="-1.78"></td><td data-value="-2.841"></td><td data-value="1.300"></td><td data-value="4.660"></td></tr>
+
+                                   <!-- Additional KPIs -->
+                                  <tr class="group-header"><td colspan="6">Additional KPIs</td></tr>
+                                  <tr data-metric="EndingCash" data-unit="$ MM"><td>Ending Cash</td><td data-value="1.41"></td><td data-value="-0.37"></td><td data-value="-3.211"></td><td data-value="-1.911"></td><td data-value="2.749"></td></tr>
+                                  <tr data-metric="AvgMonthlyBurn" data-unit="$ MM/month"><td>Avg Monthly Burn</td><td data-value="0.049167"></td><td data-value="0.148333"></td><td data-value="0.236750"></td><td data-value="Profitable"></td><td data-value="Profitable"></td></tr>
+                                  <tr data-metric="TotalHeadcount" data-unit="FTE"><td>Total Headcount</td><td data-value="12"></td><td data-value="31"></td><td data-value="58"></td><td data-value="81"></td><td data-value="109"></td></tr>
+                                  <tr data-metric="ARRperHead" data-unit="$"><td>ARR per Head</td><td data-value="0.08"></td><td data-value="0.10"></td><td data-value="0.13"></td><td data-value="0.18"></td><td data-value="0.23"></td></tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <div class="charts">
+                          <div class="chart-container" id="arr-chart">
+                              <h2>Annual Recurring Revenue</h2>
+                              <div class="chart-area">
+                                  <div class="arr-bars"></div>
+                                  <div class="arr-labels chart-labels"></div>
+                              </div>
+                          </div>
+                          <div class="chart-container" id="cashflow-chart">
+                              <h2>Operating Cashflow</h2>
+                              <div class="chart-area">
+                                  <div class="cashflow-bars"></div>
+                                  <div class="cashflow-labels chart-labels"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="service-visualization-content" data-service="fundraising">
+          <h4 class="visualization-sub-header">CFO Advisors x Bessemer Investor Relations Playbook</h4>
+          <a href="https://www.bvp.com/atlas/cfo-playbook-five-elements-of-building-world-class-investor-relations" target="_blank" class="visualization-link">CFO Playbook: Investor Relations</a>
+          <div class="ir-framework-table-container">
+              <table class="ir-framework-table" id="ir-framework-table">
+                  <thead>
+                      <tr>
+                          <th>Core element</th>
+                          <th>Key principle</th>
+                          <th>Success metrics</th>
+                          <th>Common mistakes</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Row 1: Narrative Control -->
+                      <tr>
+                          <td>Narrative control</td>
+                          <td data-label="Key principle">Craft a memorable narrative investors can accurately repeat.</td>
+                          <td data-label="Success metrics">Investors convert based on your story.</td>
+                          <td data-label="Common mistakes">Allowing disconnected executive messaging.</td>
+                      </tr>
+                      <!-- Row 2: Feedback Loops -->
+                      <tr>
+                          <td>Feedback loops</td>
+                          <td data-label="Key principle">Transform investor talks into strategic intelligence & decisions.</td>
+                          <td data-label="Success metrics">Investor questions become more strategic over time.</td>
+                          <td data-label="Common mistakes">Collecting feedback without acting on insights.</td>
+                      </tr>
+                      <!-- Row 3: Crisis Readiness -->
+                      <tr>
+                          <td>Crisis readiness</td>
+                          <td data-label="Key principle">Take control of potential problems months before they surface.</td>
+                          <td data-label="Success metrics">Maintain valuation premium during downturns.</td>
+                          <td data-label="Common mistakes">Waiting for crises to address known concerns.</td>
+                      </tr>
+                      <!-- Row 4: Stage-Appropriate IR -->
+                      <tr>
+                          <td>Stage-Appropriate IR</td>
+                          <td data-label="Key principle">Build IR capabilities like a sales funnel: target, qualify, convert.</td>
+                          <td data-label="Success metrics">Meetings align with next-stage investor profiles.</td>
+                          <td data-label="Common mistakes">Focusing on the same investor profiles as you mature.</td>
+                      </tr>
+                      <!-- Row 5: Technology Leverage -->
+                      <tr>
+                          <td>Use of Technology Leverage</td>
+                          <td data-label="Key principle">Apply AI selectively to external analysis & succinct summaries.</td>
+                          <td data-label="Success metrics">Proactively anticipate & address investor questions.</td>
+                          <td data-label="Common mistakes">Sharing excessive metrics that create noise.</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="service-visualization-content" data-service="operations">
+            <!-- Added FinOps Section -->
+            <div class="finops-container" style="display: flex; gap: 20px; height: 100%;">
+                <div class="finops-left-content" style="flex: 1; color: #e5e7eb; padding-right: 30px; max-width: 500px;">
+                     <p style="font-size: 1.15rem; line-height: 1.65; margin-bottom: 3rem; opacity: 0.9; margin-top: 1rem;">
+                         We help you integrate finance seamlessly, turning data into <strong>decisive action</strong> and <strong>a real competitive edge</strong>.
+                    </p>
+                    <div class="timeline-container" style="position: relative; padding-left: 20px; margin-top: 1rem;">
+                        <div class="timeline-line" style="position: absolute; left: 0px; top: 5px; width: 1px; background-color: rgb(90, 90, 90); height: 267px;"></div>
+                        <div class="timeline-items">
+                            <div class="timeline-item visible" data-index="0" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Centralized spend management</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="1" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Unified headcount planning</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="2" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Revenue Source of Truth</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="3" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Automated Quote to Cash</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="4" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Live P&L</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="5" style="position: relative; margin-bottom: 1.75rem; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">Automated Custom Reporting</span>
+                            </div>
+                            <div class="timeline-item visible" data-index="6" style="position: relative; margin-bottom: 0px; opacity: 1;">
+                                <div class="timeline-dot active" style="position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); transition: background-color 0.4s ease-in-out 0s, border-color 0.4s ease-in-out 0s; background-color: rgb(255, 255, 255);"></div>
+                                <span class="timeline-label" style="font-size: 1.1rem; line-height: 1.6;">AI CFO Slackbot</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="finops-right-visuals" style="flex: 0 0 450px; display: flex; flex-direction: column; gap: 30px;">
+                  <!-- FinOps Slackbot Visuals will go here -->
+                  <div class="slackbot-visual start-animation"> <!-- Added start-animation class -->
+                     <div class="slackbot-header">
+                       <div class="slackbot-app-icon"></div>
+                       <span class="slackbot-app-name">CFO Advisors</span>
+                       <span class="slackbot-app-label">APP</span>
+                       <span class="slackbot-time">6:00 AM</span>
+                     </div>
+                     <div class="slackbot-attachment">
+                       <div class="slackbot-title">📊 Live Pied Piper AI Departmental Budget</div>
+                       <div class="slackbot-timestamp">Data as of 2025-04-28 10:45:03</div>
+                       <button class="slackbot-button">View Full Dashboard</button>
+                       <div>Departmental Budget Summary (42 KB) ▼</div>
+                       <div class="slackbot-chart-area">
+                          <div class="slackbot-chart-bar"></div> <div class="slackbot-chart-bar"></div>
+                          <div class="slackbot-chart-bar"></div> <div class="slackbot-chart-bar"></div>
+                          <div class="slackbot-chart-bar"></div> <div class="slackbot-chart-bar"></div>
+                          <div class="slackbot-chart-bar"></div> <div class="slackbot-chart-bar"></div>
+                       </div>
+                       <div class="slackbot-expenses-title">💡 Notable Expenses over the last 7 Days 💡</div>
+                       <div class="slackbot-expenses-table">
+Date        Amount   Vendor                     Department              Account
+---------- --------- -------------------------- ----------------------- -----------------
+2025-04-07 $ 10,050  ICE Mortgage Techno       General & Administrative Rev Share
+2025-04-09 $  8,625  Depth Public Relati       Marketing               Professional Fees
+2025-04-12 $  6,527  UAB Proprietas            General & Administrative Facilities
+2025-04-11 $  5,000  The Mortgage Collab       Marketing               Advertising
+2025-04-11 $  3,294  Amazon                    Research & Development  Professional Fees
+2025-04-10 $  7,110  CloudFlare Services       Infrastructure          Cloud Services
+2025-04-08 $  4,500  Stripe Payments           Sales                   Payment Processing
+                       </div>
+                     </div>
+                   </div>
+                   <div class="attribute-card" data-attribute="autonomy" style="position: relative; opacity: 1; transform: none; background: none; border: none; padding: 0; backdrop-filter: none;">
+                      <div class="slackbot-visual-container">
+                          <div class="slackbot-visual">
+                              <div class="slackbot-header">
+                                  <div class="slackbot-app-icon"></div>
+                                  <span class="slackbot-app-name">CFO Advisors</span>
+                                  <span class="slackbot-app-label">APP</span>
+                                  <span class="slackbot-time">9:15 AM</span>
+                              </div>
+                              <div class="slackbot-attachment">
+                                  <div class="slackbot-title"><span class="warning-icon">⚠️</span> Marketing Pipeline Alert</div>
+                                  <div class="slackbot-recipient">To: Head of Marketing</div>
+                                  <div class="slackbot-message-content">
+                                      <p>QTD Pipeline Update: Pacing <strong><span class="highlight-warning">$250K Behind Target</span></strong></p>
+                                  </div>
+                                  <div class="slackbot-resources start-resources-animation">
+                                      <div class="slackbot-resources-title">Available Resources</div>
+                                      <p class="headcount">Headcount: <span class="resource-highlight">  2 Open Roles</span></p>
+                                      <p class="budget">Budget: <span class="resource-highlight">  $120K Remaining in the Quarter</span></p>
+                                  </div>
+                                  <a href="#" class="slackbot-button">Review Resourcing Dashboard</a>
+                              </div>
+                          </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <!-- End FinOps Section -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Services Section -->
+
   <section class="section white-section">
     <div id="w-node-bf5a4832-24b2-1d21-aecf-aeae6296d86d-790205b7" data-w-id="bf5a4832-24b2-1d21-aecf-aeae6296d86d" style="opacity:0" class="w-layout-layout quick-stack-2 wf-layout-layout">
       <div class="w-layout-cell">
@@ -1929,908 +755,41 @@ Date        Amount   Vendor                     Department              Account
   <script src="js/webflow.js" type="text/javascript"></script>
 
   <!-- Modal Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.getElementById('contactModal');
-      const overlay = document.getElementById('contactModalOverlay');
-      const openBtn = document.getElementById('openContactModalBtn');
-      const closeBtn = document.getElementById('closeContactModalBtn');
-
-      function openModal() {
-        if (modal && overlay) {
-          modal.style.display = 'block';
-          overlay.style.display = 'block';
-          document.body.classList.add('modal-open');
-        }
-      }
-
-      function closeModal() {
-        if (modal && overlay) {
-          modal.style.display = 'none';
-          overlay.style.display = 'none';
-          document.body.classList.remove('modal-open');
-        }
-      }
-
-      if (openBtn) {
-        openBtn.addEventListener('click', openModal);
-      }
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-      }
-
-      if (overlay) {
-        // Close modal if overlay is clicked
-        overlay.addEventListener('click', function(event) {
-          // Make sure click is on overlay itself and not on modal content
-          if (event.target === overlay) {
-             closeModal();
-          }
-        });
-      }
-
-      // Optional: Close modal on Escape key press
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal && modal.style.display === 'block') {
-          closeModal();
-        }
-      });
-
-      // Handle form submission (Placeholder - will need actual submission logic later)
-      const modalForm = document.getElementById('contact-modal-form');
-      if (modalForm) {
-        modalForm.addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent default form submission for now
-          console.log('Form submitted (placeholder)');
-          // TODO: Implement actual form submission (e.g., AJAX, Formspree)
-
-          // Optionally show success message and close modal after delay
-          const successMessage = modal.querySelector('.w-form-done');
-          const failMessage = modal.querySelector('.w-form-fail');
-          const submitButton = modalForm.querySelector('input[type="submit"]');
-
-          // Hide form elements, show success message
-          // This requires structure change or more complex selection
-          // For now, just log and maybe close
-
-          alert('Thank you! Your submission has been received (Placeholder)');
-          // setTimeout(closeModal, 2000); // Close after 2 seconds
-
-        });
-      }
-
-    });
-  </script>
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Modal) -->
+  <!-- </script> -->
 
   <!-- Set Slackbot Time -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Target both time elements
-      const accountabilityTimeElement = document.querySelector('.attribute-card[data-attribute="accountability"] #slackbot-current-time');
-      const autonomyTimeElement = document.getElementById('slackbot-autonomy-time'); // Target new ID
-      const timestampElement = document.querySelector('.slackbot-attachment .slackbot-timestamp'); // Find the timestamp element
-
-      // Function to format and set time
-      function setTime(element) {
-        if (element) {
-            const now = new Date();
-            const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
-            const formattedTime = now.toLocaleTimeString('en-US', options).replace(" EDT", " EST");
-            element.textContent = formattedTime;
-        }
-      }
-
-      // Set time for accountability bot (if it exists)
-      setTime(accountabilityTimeElement);
-
-      // Set time for autonomy bot (if it exists)
-      setTime(autonomyTimeElement);
-
-      // Set timestamp for accountability bot's budget section (if it exists)
-      if (timestampElement) {
-        const now = new Date();
-        const estOffset = -4 * 60; // EDT offset from UTC in minutes (use -5 for EST if needed)
-        const estNow = new Date(now.getTime() + estOffset * 60000);
-
-        // Format for timestamp element (e.g., Data as of YYYY-MM-DD HH:MM:SS EST)
-        const year = estNow.getFullYear();
-        const month = (estNow.getMonth() + 1).toString().padStart(2, '0');
-        const day = estNow.getDate().toString().padStart(2, '0');
-        const hours = estNow.getHours().toString().padStart(2, '0');
-        const minutes = estNow.getMinutes().toString().padStart(2, '0');
-        const seconds = estNow.getSeconds().toString().padStart(2, '0');
-        const formattedTimestamp = `Data as of ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-        timestampElement.textContent = formattedTimestamp;
-      }
-    });
-  </script>
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Slackbot Time) -->
+  <!-- </script> -->
 
   <!-- Swiper Initialization -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const swiper = new Swiper('.testimonial-swiper', {
-        // Optional parameters
-        slidesPerView: 1.2, // Show fraction on mobile
-        spaceBetween: 15, // Space on mobile
-        centeredSlides: true, // Center slide on mobile
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        // Responsive breakpoints
-        breakpoints: {
-          // when window width is >= 768px
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            centeredSlides: false,
-          },
-          // when window width is >= 1024px
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 16, // Reduced space between slides
-            centeredSlides: false,
-          }
-        }
-      });
-    });
-  </script>
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Swiper Init) -->
+  <!-- </script> -->
 
   <!-- New Hero Interaction Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const attributeItems = document.querySelectorAll('.attribute-item');
-        const attributeCards = document.querySelectorAll('.attribute-card');
-        const actualLine = document.querySelector('.line-graph-actual'); // Get the line element
-
-        // --- Slide Logic Integration ---
-        const slideElements = document.querySelectorAll('#slideshow .slide');
-        let currentSlideIndex = 0;
-        const totalRotationTime = 4500; // Must match the hero rotation interval
-        let slideShowIntervalId = null;
-        const slideshowContainer = document.getElementById('slideshow');
-        const firstSlide = slideElements.length > 0 ? slideElements[0] : null;
-
-        function showNextSlide() {
-            if (slideElements.length === 0) return;
-            const previousSlideIndex = currentSlideIndex;
-            currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
-
-            slideElements.forEach(slide => {
-                slide.classList.remove('active', 'previous');
-            });
-
-            slideElements[previousSlideIndex].classList.add('previous');
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    slideElements[currentSlideIndex].classList.add('active');
-                });
-            });
-        }
-
-        function setContainerHeight() {
-             if (slideshowContainer && firstSlide && firstSlide.naturalWidth > 0) {
-                const containerWidth = slideshowContainer.offsetWidth;
-                const aspectRatio = firstSlide.naturalHeight / firstSlide.naturalWidth;
-                const requiredHeight = containerWidth * aspectRatio;
-                slideshowContainer.style.height = requiredHeight + 'px';
-            } else if (slideshowContainer && firstSlide && firstSlide.naturalWidth === 0) {
-                // If naturalWidth is 0, image might not be loaded yet, try again shortly
-                // console.log('Retrying container height calculation...');
-                // setTimeout(setContainerHeight, 100); // Optionally retry
-            } else {
-                 // console.warn('Could not set slideshow container height. Elements or dimensions missing.');
-            }
-        }
-        // --- End Slide Logic Integration ---
-
-        let rotationInterval;
-        const attributes = ['transparency', 'alignment', 'accountability', 'autonomy', 'velocity'];
-        let currentAttributeIndex = attributes.indexOf('transparency'); // Start with Transparency active
-
-        function activateAttribute(attribute) {
-            // Clear existing slide interval if active
-            console.log('Activating:', attribute, 'Clearing old slide interval:', slideShowIntervalId);
-            if (slideShowIntervalId) {
-                clearInterval(slideShowIntervalId);
-                slideShowIntervalId = null;
-            }
-
-            // --- Reset Specific Animations --- //
-            console.log('Deactivating all items and resetting animations');
-            attributeItems.forEach(item => item.classList.remove('active'));
-            attributeCards.forEach(card => card.classList.remove('active'));
-
-            // Reset Transparency line animation
-            if (actualLine) {
-                actualLine.classList.remove('start-line-animation');
-            }
-
-            // Reset Accountability slackbot animation
-            const accountabilityCard = document.querySelector('.attribute-card[data-attribute="accountability"]');
-            if (accountabilityCard) {
-                const slackbotVisualAcc = accountabilityCard.querySelector('.slackbot-visual');
-                if (slackbotVisualAcc) slackbotVisualAcc.classList.remove('start-animation');
-            }
-
-            // --- Reset Autonomy Resource Animations --- //
-            const autonomyCardReset = document.querySelector('.attribute-card[data-attribute="autonomy"]');
-            const resourcesElementReset = autonomyCardReset?.querySelector('.slackbot-resources');
-            // No need to reset button class here if targetting based on resource class
-            if (resourcesElementReset) {
-                resourcesElementReset.classList.remove('start-resources-animation');
-                console.log('Reset Autonomy resource animations.');
-            }
-            // --- End Reset Autonomy Resource Animations --- //
-
-
-            // Reset Alignment slides to default state (Slide 1)
-            if (slideElements.length > 0) {
-                slideElements.forEach((slide, index) => {
-                    slide.classList.remove('active', 'previous');
-                    if (index === 0) {
-                        slide.classList.add('active');
-                    }
-                });
-                 currentSlideIndex = 0;
-            }
-
-            // Activate selected
-            const selectedItem = document.querySelector(`.attribute-item[data-attribute="${attribute}"]`);
-            const selectedCard = document.querySelector(`.attribute-card[data-attribute="${attribute}"]`);
-
-            if (selectedItem && selectedCard) {
-                selectedItem.classList.add('active');
-                selectedCard.classList.add('active');
-
-                // --- Trigger Specific Animations --- //
-                if (attribute === 'transparency' && actualLine) {
-                    actualLine.classList.remove('start-line-animation');
-                    void actualLine.offsetWidth; // Trigger reflow
-                    actualLine.classList.add('start-line-animation');
-                } else if (attribute === 'accountability') {
-                    const slackbotVisual = selectedCard?.querySelector('.slackbot-visual');
-                    if (slackbotVisual) {
-                        slackbotVisual.classList.remove('start-animation');
-                        void slackbotVisual.offsetWidth; // Trigger reflow
-                        slackbotVisual.classList.add('start-animation');
-                    }
-                } else if (attribute === 'autonomy') {
-                    // --- Trigger Autonomy Resource Animations --- //
-                    const resourcesElement = selectedCard.querySelector('.slackbot-resources');
-                    if (resourcesElement) {
-                        // ClassList remove is already done above during reset
-                        void resourcesElement.offsetWidth; // Trigger reflow
-                        resourcesElement.classList.add('start-resources-animation');
-                        console.log('Added start-resources-animation to resources element');
-                    }
-                    // --- End Trigger Autonomy Resource Animations --- //
-
-                    // Update time for this specific slackbot
-                    const autonomyTimeElement = document.getElementById('slackbot-current-time'); // Corrected ID
-                    setTime(autonomyTimeElement); // Call the global setTime function
-                } else if (attribute === 'alignment' && slideElements.length > 0) {
-                    // --- Start/Reset Alignment Slideshow --- //
-                    currentSlideIndex = 0;
-                    setContainerHeight();
-                    const singleSlideDuration = totalRotationTime / slideElements.length;
-                    slideShowIntervalId = setInterval(showNextSlide, singleSlideDuration);
-                    console.log('Started new slide interval:', slideShowIntervalId, 'Duration:', singleSlideDuration);
-                    // --- End Alignment Slideshow --- //
-                }
-                 // --- End Trigger Specific Animations --- //
-            }
-        }
-
-        function startRotation() {
-            // Clear existing interval before starting a new one
-            console.log('startRotation: Clearing old rotation interval:', rotationInterval);
-            if (rotationInterval) { 
-                clearInterval(rotationInterval); 
-            }
-            rotationInterval = setInterval(autoRotate, totalRotationTime);
-            console.log('startRotation: Started new rotation interval:', rotationInterval);
-        }
-
-        function autoRotate() {
-            // Clear any active slide interval *before* switching attribute
-            console.log('AutoRotate: Clearing slide interval:', slideShowIntervalId);
-            if (slideShowIntervalId) {
-                clearInterval(slideShowIntervalId);
-                slideShowIntervalId = null;
-            }
-            currentAttributeIndex = (currentAttributeIndex + 1) % attributes.length;
-            console.log('AutoRotate: Activating next attribute index:', currentAttributeIndex);
-            activateAttribute(attributes[currentAttributeIndex]);
-        }
-
-        // Add click listeners
-        attributeItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                console.log('Click detected on:', item.getAttribute('data-attribute'));
-                // --- Explicitly clear ALL timers on click --- 
-                if (rotationInterval) {
-                    console.log('Click: Clearing rotation interval:', rotationInterval);
-                    clearInterval(rotationInterval);
-                    rotationInterval = null; // Good practice to nullify after clearing
-                }
-                // The slide interval is cleared within activateAttribute
-
-                const attribute = this.getAttribute('data-attribute');
-                currentAttributeIndex = attributes.indexOf(attribute);
-                activateAttribute(attribute);
-                startRotation(); // Reset timer on manual click
-            });
-        });
-
-        // Global helper function to set time (accessible by activateAttribute)
-        function setTime(element) {
-            if (element) {
-                const now = new Date();
-                const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
-                const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
-                element.textContent = formattedTime;
-            }
-        }
-
-        // Initial activation (redundant if HTML has .active class, but safe)
-        // activateAttribute(attributes[currentIndex]); 
-
-        // Start auto-rotation
-        startRotation(); // Re-enabled auto-rotation
-    });
-  </script>
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Hero Interaction) -->
+  <!-- </script> -->
 
   <!-- Animated ARR Chart Script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Scope this script to the specific chart container
-      const container = document.getElementById('transparency-chart-container');
-      if (!container) {
-          console.error("Transparency chart container not found.");
-          return;
-      }
-
-      // Data (approximated from image)
-      const data = [
-          { month: 'Jan', value: 40 },
-          { month: 'Feb', value: 70 },
-          { month: 'Mar', value: 60, event: 'Paid Ads' }, // Renamed event
-          { month: 'Apr', value: 90 }, // Removed event here
-          { month: 'May', value: 140 },
-          { month: 'Jun', value: 110, event: 'Legacy Churn' }, // Added new event
-          { month: 'Jul', value: 180 }, 
-          { month: 'Aug', value: 170, event: 'Launched Self Serve' }, // Moved event here
-          { month: 'Sep', value: 200 }, 
-          { month: 'Oct', value: 210 }, 
-          { month: 'Nov', value: 230 },
-          { month: 'Dec', value: 250 }
-      ];
-
-      const targetData = [
-          { month: 'Jan', value: 40 },
-          { month: 'Feb', value: 45 },
-          { month: 'Mar', value: 65 },
-          { month: 'Apr', value: 80 },
-          { month: 'May', value: 90 },
-          { month: 'Jun', value: 105 },
-          { month: 'Jul', value: 120 },
-          { month: 'Aug', value: 135 },
-          { month: 'Sep', value: 155 },
-          { month: 'Oct', value: 175 },
-          { month: 'Nov', value: 195 },
-          { month: 'Dec', value: 220 }
-      ];
-
-      const svg = container.querySelector('.chart-svg');
-      if (!svg) {
-           console.error("Chart SVG element not found within container.");
-           return;
-      }
-      const svgWidth = 500; // From viewBox
-      const svgHeight = 300; // From viewBox
-      const margin = { top: 20, right: 10, bottom: 40, left: 30 }; // Reduced L/R margins to widen chart
-      const width = svgWidth - margin.left - margin.right;
-      const height = svgHeight - margin.top - margin.bottom;
-
-      // --- Scales ---
-      const xScale = (index) => margin.left + index * (width / (data.length - 1));
-      const yScale = (value) => margin.top + height - (value / 250) * height; // Max value approx 250M
-
-      // --- Axes ---
-      const xAxisGroup = svg.querySelector('.x-axis');
-      const yAxisGroup = svg.querySelector('.y-axis');
-      const gridGroup = svg.querySelector('.grid');
-
-      // Y-axis line
-      const yAxisLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      yAxisLine.setAttribute('x1', margin.left);
-      yAxisLine.setAttribute('y1', margin.top);
-      yAxisLine.setAttribute('x2', margin.left);
-      yAxisLine.setAttribute('y2', margin.top + height);
-      yAxisGroup.appendChild(yAxisLine);
-
-      // X-axis line
-      const xAxisLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      xAxisLine.setAttribute('x1', margin.left);
-      xAxisLine.setAttribute('y1', margin.top + height);
-      xAxisLine.setAttribute('x2', margin.left + width);
-      xAxisLine.setAttribute('y2', margin.top + height);
-      xAxisGroup.appendChild(xAxisLine);
-
-      // Y-axis labels and grid lines
-      const yTicks = [0, 50, 100, 150, 200, 250];
-      yTicks.forEach(tick => {
-          const y = yScale(tick);
-
-          const gridLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          gridLine.setAttribute('class', 'grid-line');
-          gridLine.setAttribute('x1', margin.left);
-          gridLine.setAttribute('y1', y);
-          gridLine.setAttribute('x2', margin.left + width);
-          gridLine.setAttribute('y2', y);
-          gridGroup.appendChild(gridLine);
-      });
-
-      // X-axis labels
-      data.forEach((d, i) => {
-          if (i % 2 === 0) {
-              const x = xScale(i);
-              const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-              label.setAttribute('x', x);
-              label.setAttribute('y', margin.top + height + 30); // Position below x-axis (moved down 10px)
-              label.setAttribute('text-anchor', 'middle');
-              label.textContent = d.month;
-              // Apply font size for X-axis labels dynamically
-              label.style.fontSize = '24px';
-              xAxisGroup.appendChild(label);
-          }
-      });
-
-      // --- Callout Elements (Line & Text) ---
-      const calloutGroup = svg.querySelector('.callouts');
-      data.forEach((d, i) => {
-          if (d.event) {
-              const startX = xScale(i);
-              const startY = yScale(d.value);
-
-              // Determine direction and position based on event
-              let endYOffset = -40; // Default upwards
-              let textYOffset = -6;  // Default text above line end
-              let textAnchorAdjust = 0; // Default no horizontal shift
-              
-              if (d.event === 'Legacy Churn') {
-                  endYOffset = 40; // Point downwards
-                  textYOffset = 15; // Position text below line end
-              }
-
-              const endX = startX;
-              const endY = startY + endYOffset;
-              const textY = endY + textYOffset; 
-              let textX = endX; 
-
-              const calloutLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-              calloutLine.setAttribute('class', 'callout-line');
-              calloutLine.setAttribute('id', `callout-line-${i}`);
-              calloutLine.setAttribute('x1', startX);
-              calloutLine.setAttribute('y1', startY);
-              calloutLine.setAttribute('x2', startX);
-              calloutLine.setAttribute('y2', startY);
-              calloutGroup.appendChild(calloutLine);
-
-              const calloutText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-              calloutText.setAttribute('class', 'callout');
-              calloutText.setAttribute('id', `callout-${i}`);
-              calloutText.setAttribute('x', textX);
-              calloutText.setAttribute('y', textY);
-              calloutText.textContent = d.event;
-
-              // Adjust last callout anchor (now also checks if it's the very last data point)
-              const lastEventIndex = data.map(item => item.event).lastIndexOf(d.event);
-              if (i === data.length - 1 || (i === lastEventIndex && i > data.length / 2) ) { 
-                    calloutText.setAttribute('text-anchor', 'end'); // Anchor to the right edge of text
-                    textX = endX - 5; // Shift slightly left from line end (re-assign textX)
-                    calloutText.setAttribute('x', textX); // Apply adjusted X
-              }
-
-              calloutGroup.appendChild(calloutText);
-
-              // Prepare line animation (vertical line)
-              const lineLength = Math.abs(endY - startY);
-              calloutLine.setAttribute('x2', endX);
-              calloutLine.setAttribute('y2', endY);
-              calloutLine.style.strokeDasharray = lineLength;
-              calloutLine.style.strokeDashoffset = lineLength;
-              // Animation is applied via CSS using the ID
-          }
-      });
-
-      // --- Target Line Path (Static) ---
-      const targetLinePath = svg.querySelector('.target-line');
-      const targetPathData = targetData.map((d, i) => {
-          const x = xScale(i);
-          const y = yScale(d.value);
-          return (i === 0 ? 'M' : 'L') + x + ',' + y;
-      }).join(' ');
-      targetLinePath.setAttribute('d', targetPathData);
-
-      // --- ARR Line Path (Animated) ---
-      const arrLinePath = svg.querySelector('.arr-line');
-      const pathData = data.map((d, i) => {
-          const x = xScale(i);
-          const y = yScale(d.value);
-          return (i === 0 ? 'M' : 'L') + x + ',' + y;
-      }).join(' ');
-      arrLinePath.setAttribute('d', pathData);
-
-      // --- Animation ---
-      let animationTimeouts = []; // Store timeouts to clear later
-
-      // Function to reset callout animations
-      function resetCalloutAnimations() {
-        const calloutLines = svg.querySelectorAll('.callout-line');
-        const calloutTexts = svg.querySelectorAll('.callout');
-        
-        calloutLines.forEach(line => {
-            line.classList.remove('callout-line-animating'); // Keep class removal just in case
-            line.style.animation = 'none'; // Explicitly remove animation style
-            const lineLength = parseFloat(line.getAttribute('data-line-length') || 0);
-            line.style.strokeDashoffset = lineLength; // Reset draw
-            line.style.opacity = 0; // Ensure hidden initially 
-        });
-        calloutTexts.forEach(text => {
-            text.classList.remove('callout-text-animating'); // Keep class removal just in case
-            text.style.animation = 'none'; // Explicitly remove animation style
-            text.style.opacity = 0; // Ensure hidden
-        });
-
-        // Clear any pending timeouts
-        animationTimeouts.forEach(clearTimeout);
-        animationTimeouts = [];
-        console.log('Callout animations reset.'); // Debug log
-      }
-
-      const lineLength = arrLinePath.getTotalLength();
-      // Add console log to check calculated length
-      console.log('Calculated ARR line length:', lineLength);
-      arrLinePath.style.strokeDasharray = lineLength;
-      arrLinePath.style.strokeDashoffset = lineLength;
-
-      // Function to trigger animation (called when the card becomes active)
-      function startArrAnimation() {
-          console.log('Attempting to start ARR line animation...'); 
-          
-          // 1. Reset ARR Line
-          arrLinePath.style.strokeDashoffset = lineLength;
-          arrLinePath.style.animation = 'none';
-          svg.querySelector('.arr-endpoint').style.opacity = 0; // Hide dot
-
-          // 2. Reset Callouts
-          resetCalloutAnimations(); // Call the reset function
-          
-          // Using requestAnimationFrame for a more reliable reflow trigger and animation start
-          requestAnimationFrame(() => {
-              requestAnimationFrame(() => {
-                  // 3. Apply ARR Line animation
-                  arrLinePath.style.animation = 'drawLine 2s ease-out forwards';
-                  console.log('ARR line animation started via requestAnimationFrame.'); 
-
-                  // 4. Endpoint Dot Animation Handling
-                  const arrEndpoint = svg.querySelector('.arr-endpoint');
-                  const animationEndHandler = () => {
-                      const endPoint = data[data.length - 1];
-                      const endX = xScale(data.length - 1);
-                      const endY = yScale(endPoint.value);
-                      arrEndpoint.setAttribute('cx', endX);
-                      arrEndpoint.setAttribute('cy', endY);
-                      arrEndpoint.style.opacity = 1; // Fade in the dot
-                      console.log('ARR line animation ended, dot shown.'); 
-                      arrLinePath.removeEventListener('animationend', animationEndHandler);
-                  };
-                  arrLinePath.removeEventListener('animationend', animationEndHandler);
-                  arrLinePath.addEventListener('animationend', animationEndHandler, { once: true });
-
-                  // 5. Schedule Callout Animations
-                  const mainAnimationDuration = 2.0; // Duration of drawLine animation in seconds
-                  const tempPath = document.createElementNS('http://www.w3.org/2000/svg', 'path'); // Temp path for calculations
-
-                  data.forEach((d, i) => {
-                      if (d.event) {
-                          const calloutLine = svg.querySelector(`#callout-line-${i}`);
-                          const calloutText = svg.querySelector(`#callout-${i}`);
-
-                          if (calloutLine && calloutText) {
-                              // Calculate segment length of the main ARR line up to this point
-                              const segmentPathData = data.slice(0, i + 1).map((pd, pi) => {
-                                  const x = xScale(pi);
-                                  const y = yScale(pd.value);
-                                  return (pi === 0 ? 'M' : 'L') + x + ',' + y;
-                              }).join(' ');
-                              
-                              tempPath.setAttribute('d', segmentPathData);
-                              const segmentLength = tempPath.getTotalLength();
-                              
-                              // Calculate delay based on proportion of total length
-                              const delay = (segmentLength / lineLength) * mainAnimationDuration;
-                              console.log(`Callout for ${d.event} (index ${i}): segmentLength=${segmentLength.toFixed(2)}, delay=${delay.toFixed(2)}s`);
-
-                              // Ensure initial state is hidden before timeout (Confirm elements exist)
-                              console.log(`   - Found line: ${calloutLine.id}, Found text: ${calloutText.id}`);
-                              calloutLine.style.opacity = 0;
-                              const calloutLineLength = parseFloat(calloutLine.getAttribute('data-line-length') || 0);
-                              calloutLine.style.strokeDashoffset = calloutLineLength;
-                              calloutText.style.opacity = 0;
-
-                              // Schedule the animation style adding
-                              console.log(`   - Scheduling animation style for line ${calloutLine.id} and text ${calloutText.id} with delay ${delay.toFixed(2)}s`);
-                              const timeoutId = setTimeout(() => {
-                                  console.log(`   - Executing setTimeout for: ${d.event} (line ${calloutLine.id}, text ${calloutText.id})`);
-                                  // Apply animations directly via style property
-                                  calloutLine.style.animation = 'drawLine 0.4s ease-out forwards, fadeIn 0.3s ease-in forwards';
-                                  calloutText.style.animation = 'fadeIn 0.5s ease-in forwards';
-                                  // Ensure elements are visible for animation to start
-                                  calloutLine.style.opacity = 1;
-                                  calloutText.style.opacity = 1;
-                              }, delay * 1000); // Convert seconds to milliseconds
-                              animationTimeouts.push(timeoutId);
-                          }
-                      }
-                  });
-              });
-          });
-      }
-
-      // Pre-calculate and store callout line lengths, ensure initial hidden state
-      data.forEach((d, i) => {
-          if (d.event) {
-              const calloutLine = svg.querySelector(`#callout-line-${i}`);
-              if (calloutLine) {
-                  const x1 = parseFloat(calloutLine.getAttribute('x1'));
-                  const y1 = parseFloat(calloutLine.getAttribute('y1'));
-                  const x2 = parseFloat(calloutLine.getAttribute('x2'));
-                  const y2 = parseFloat(calloutLine.getAttribute('y2'));
-                  const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-                  calloutLine.setAttribute('data-line-length', length);
-                  calloutLine.style.strokeDasharray = length;
-                  calloutLine.style.strokeDashoffset = length; // Set initial offset
-                  calloutLine.style.opacity = 0; // Ensure hidden
-              }
-              const calloutText = svg.querySelector(`#callout-${i}`);
-              if(calloutText) calloutText.style.opacity = 0; // Ensure text hidden
-          }
-      });
-
-      // --- Observer to start animation when the card becomes visible ---
-      const cardElement = container.closest('.attribute-card');
-      const observer = new MutationObserver(mutations => {
-          mutations.forEach(mutation => {
-              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                  if (cardElement.classList.contains('active')) {
-                      console.log('Transparency card became active, starting animation.');
-                      startArrAnimation();
-                  } else {
-                       // Optionally reset if needed when card becomes inactive
-                       arrLinePath.style.animation = 'none'; // Stop any running animation
-                       arrLinePath.style.strokeDashoffset = lineLength; // Reset to start state
-                       svg.querySelector('.arr-endpoint').style.opacity = 0; // Hide dot
-                       resetCalloutAnimations(); // Reset callouts when card becomes inactive
-                  }
-              }
-          });
-      });
-
-      if (cardElement) {
-           observer.observe(cardElement, { attributes: true });
-           // Also check initial state in case it's already active on load
-           if (cardElement.classList.contains('active')) {
-               startArrAnimation();
-           }
-      } else {
-           console.error("Could not find parent attribute card for observer.");
-           // Fallback: Start animation immediately if observer setup fails
-           startArrAnimation();
-      }
-
-  });
-  </script>
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (ARR Chart) -->
+  <!-- </script> -->
 
   <!-- Plexus Background Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const canvas = document.getElementById('plexus-canvas');
-        if (!canvas) {
-            console.error("Plexus canvas not found!");
-            return;
-        }
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let animationFrameId;
-        let mouse = { x: null, y: null, radius: 80 }; // Increased radius slightly
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Plexus BG) -->
+  <!-- </script> -->
 
-        // --- Configuration ---
-        const baseParticleColor = '255, 255, 255'; // Base RGB for particles
-        const baseLineColor = '103, 232, 249'; // Base RGB for lines (cyan)
-        const baseParticleRadius = 2.0; // Slightly smaller base size
-        const connectionDistance = 110; // Slightly reduced connection distance
-        const baseParticleSpeed = 0.25; // Slightly slower base speed (WAS 0.25)
-        const depthFactor = 0.6; // How much depth affects size/speed (0-1)
-        const edgeFadeDistance = 50; // How far from edge fading starts
-        const mouseEffectStrength = 0.03; // Very subtle mouse interaction
-        const baseParticleOpacity = 0.15; // Dim base brightness for particles
-        const brightnessBoostFactor = 0.5; // How much close connections boost brightness
-        const baseLineOpacityFactor = 0.3; // Base opacity factor for lines (Increased from 0.1)
-        let particleCount = 100; // Initial estimate
+  <!-- Interactive Services Section Script -->
+  <!-- <script> -->
+  <!-- REMOVED INLINE SCRIPT BLOCK (Interactive Services) -->
+  <!-- </script> -->
 
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            // Adjust particle count - 20% reduction
-            particleCount = Math.max(48, Math.min(144, Math.floor((canvas.width * canvas.height) / 12000 * 0.8))); 
-            initParticles();
-            if (animationFrameId) {
-                startAnimation();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                const yRatio = Math.random(); // Use for depth simulation (0=top, 1=bottom)
-                const speedMultiplier = (1 - yRatio * depthFactor * 0.5); // Slower at bottom
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: yRatio * canvas.height,
-                    baseYRatio: yRatio, // Store original ratio for consistent depth effect
-                    vx: (Math.random() - 0.5) * baseParticleSpeed * speedMultiplier,
-                    vy: (Math.random() - 0.5) * baseParticleSpeed * speedMultiplier,
-                    radius: baseParticleRadius * (1 - yRatio * depthFactor), // Smaller at bottom
-                    opacity: 0, // Base opacity for edge fade calculation
-                    totalDistOpacityBoost: 0 // Accumulator for brightness boost
-                });
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Reset brightness boost for this frame
-            particles.forEach(p => p.totalDistOpacityBoost = 0);
-
-            // First pass: Calculate connections and brightness boost, draw lines
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                for (let j = i + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < connectionDistance) {
-                        const distOpacity = 1 - (dist / connectionDistance); // Brighter for shorter lines
-
-                        // Accumulate boost for connected particles
-                        p.totalDistOpacityBoost += distOpacity;
-                        p2.totalDistOpacityBoost += distOpacity;
-
-                        // --- Draw Lines ---
-                        // Calculate edge fade opacity for *this pair* of particles
-                        let p1EdgeOpacity = 1.0;
-                        if (p.x < edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, p.x / edgeFadeDistance);
-                        else if (p.x > canvas.width - edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, (canvas.width - p.x) / edgeFadeDistance);
-                        if (p.y < edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, p.y / edgeFadeDistance);
-                        else if (p.y > canvas.height - edgeFadeDistance) p1EdgeOpacity = Math.min(p1EdgeOpacity, (canvas.height - p.y) / edgeFadeDistance);
-                        
-                        let p2EdgeOpacity = 1.0;
-                        if (p2.x < edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, p2.x / edgeFadeDistance);
-                        else if (p2.x > canvas.width - edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, (canvas.width - p2.x) / edgeFadeDistance);
-                        if (p2.y < edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, p2.y / edgeFadeDistance);
-                        else if (p2.y > canvas.height - edgeFadeDistance) p2EdgeOpacity = Math.min(p2EdgeOpacity, (canvas.height - p2.y) / edgeFadeDistance);
-                        
-                        const avgEdgeOpacity = (p1EdgeOpacity + p2EdgeOpacity) / 2;
-
-                        const avgDepth = (p.baseYRatio + p2.baseYRatio) / 2;
-                        const depthOpacity = (1 - avgDepth * depthFactor * 0.5); // Fade lines in background
-                        const finalLineOpacity = distOpacity * avgEdgeOpacity * depthOpacity * baseLineOpacityFactor; // Use user's base factor
-
-                        if (finalLineOpacity > 0.01) { // Only draw if reasonably visible
-                            ctx.strokeStyle = `rgba(${baseLineColor}, ${finalLineOpacity})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-            }
-
-            // Second pass: Update positions and draw particles with calculated brightness
-            particles.forEach(p => {
-                 // --- Update Position & Mouse Interaction ---
-                 let influenceX = 0;
-                 let influenceY = 0;
-                 if (mouse.x !== null) {
-                     const dxMouse = p.x - mouse.x;
-                     const dyMouse = p.y - mouse.y;
-                     const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-                     if (distMouse < mouse.radius) {
-                         const force = (mouse.radius - distMouse) / mouse.radius; // Gentle push
-                         influenceX = (dxMouse / distMouse) * force * mouseEffectStrength;
-                         influenceY = (dyMouse / distMouse) * force * mouseEffectStrength;
-                     }
-                 }
-                 p.x += p.vx + influenceX;
-                 p.y += p.vy + influenceY;
- 
-                 // --- Calculate Particle Edge Fade Opacity ---
-                 let edgeOpacity = 1.0;
-                 if (p.x < edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, p.x / edgeFadeDistance);
-                 else if (p.x > canvas.width - edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, (canvas.width - p.x) / edgeFadeDistance);
-                 if (p.y < edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, p.y / edgeFadeDistance);
-                 else if (p.y > canvas.height - edgeFadeDistance) edgeOpacity = Math.min(edgeOpacity, (canvas.height - p.y) / edgeFadeDistance);
-                 p.opacity = edgeOpacity; // Store edge fade for line calculations potentially, though calculated inline now
- 
-                 // Wrap around
-                 if (p.x < 0) p.x = canvas.width;
-                 if (p.x > canvas.width) p.x = 0;
-                 if (p.y < 0) p.y = canvas.height;
-                 if (p.y > canvas.height) p.y = 0;
- 
-                 // --- Calculate Final Particle Opacity ---
-                 // Normalize boost slightly by typical number of connections expected (heuristic)
-                 const averageConnections = connectionDistance / 20; // Rough guess
-                 const boost = (p.totalDistOpacityBoost / averageConnections) * brightnessBoostFactor;
-                 const finalParticleOpacity = Math.min(1, baseParticleOpacity + boost) * p.opacity;
-
-                 // --- Draw Particle ---
-                 ctx.fillStyle = `rgba(${baseParticleColor}, ${finalParticleOpacity})`;
-                 ctx.beginPath();
-                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                 ctx.fill();
-            });
-
-            animationFrameId = requestAnimationFrame(draw);
-        }
-
-        function startAnimation() {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-            animationFrameId = requestAnimationFrame(draw);
-            // console.log("Refined Plexus animation started.");
-        }
-
-        // --- Event Listeners ---
-        window.addEventListener('mousemove', (event) => {
-            // Adjust mouse coordinates relative to the canvas position
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(resizeCanvas, 250);
-        });
-
-        // Initial setup
-        resizeCanvas();
-        startAnimation();
-    });
-  </script>
+  <!-- Link to the new custom JS file -->
+  <script src="js/custom-scripts.js" type="text/javascript"></script>
 </body>
 </html>

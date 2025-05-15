@@ -1,0 +1,2160 @@
+/* Modal Styles */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1001; /* Sit on top of overlay */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white, white); /* Use site variable, fallback to white */
+  padding: 40px 50px; /* Increased padding */
+  border: 1px solid #ccc; /* Slightly softer border */
+  width: 90%; /* Adjust width for responsiveness */
+  max-width: 550px; /* Slightly narrower max-width */
+  border-radius: 8px; /* Consistent radius */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  font-family: Inter, sans-serif; /* Apply base font */
+}
+.modal h2 {
+    font-family: Gilda Display, sans-serif; /* Heading font */
+    color: var(--blue, #22293e); /* Heading color */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 28px; /* Adjust size as needed */
+    line-height: 1.3;
+}
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Style for modal form fields - inheriting from .w-input and .field-label */
+.modal .field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500; /* Slightly bolder */
+  color: var(--blue, #22293e);
+  font-size: 14px;
+}
+.modal .text-field,
+.modal .text-area {
+  margin-bottom: 15px;
+  width: 100%; /* Ensure they take full width */
+  min-height: 48px; /* Match original */
+  border: 1px solid #d1d5db; /* Match original */
+  border-radius: 4px; /* Match original */
+  padding: 8px 12px; /* Standard padding */
+  font-size: 16px; /* Standard font size */
+  color: #333;
+  box-sizing: border-box; /* Include padding/border in width */
+}
+.modal .text-area {
+    min-height: 100px; /* Give textarea more height */
+    resize: vertical; /* Allow vertical resize */
+}
+/* Match .submit-button style */
+.modal .submit-button {
+    margin-top: 20px;
+    width: 100%; /* Make button full width */
+    background-color: #1f2937;
+    border: 1px solid #1f2937;
+    border-radius: 4px;
+    min-height: 48px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.modal .submit-button:hover {
+    background-color: #374151; /* Slightly lighter on hover */
+    border-color: #374151;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+/* Responsive adjustments if needed */
+@media (max-width: 600px) {
+    .modal {
+        width: 90%;
+        padding: 30px 25px;
+    }
+    .modal h2 {
+        font-size: 24px;
+    }
+}
+
+/* Added Style for Navbar Distinction */
+.navbar {
+    background-color: rgba(20, 28, 37, 0.5); /* Slightly lighter, semi-transparent dark blue */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Faint white border */
+    backdrop-filter: blur(5px); /* Optional: Add a blur effect */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
+
+/* Added Core Offerings Styles */
+.core-offerings-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 30px; /* Space between columns */
+    margin-top: 40px; /* Space above the offerings */
+}
+.offering-block {
+    /* background-color: rgba(255, 255, 255, 0.05); Optional: slight background differentiation */
+    /* border: 1px solid rgba(255, 255, 255, 0.1); Optional: subtle border */
+    /* border-radius: 8px; */
+    padding: 20px;
+    text-align: left; /* Align content left */
+}
+.offering-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--white, white); /* Icon color */
+    margin-bottom: 20px;
+}
+.offering-title {
+    font-family: Inter, sans-serif; /* Using Inter for consistency here */
+    font-size: 24px; /* Increased font size */
+    font-weight: 700; /* Bolder title */
+    color: var(--white, white);
+    text-align: center; /* Center align title */
+    margin-top: 0;
+    margin-bottom: 20px; /* Increased spacing */
+}
+.offering-description {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.65; /* Slightly tighter line height */
+    color: #e5e7eb; /* Light gray for description */
+    text-align: left; /* Keep description text left-aligned */
+}
+
+/* Responsive adjustments for offerings */
+@media (max-width: 991px) {
+    .core-offerings-container {
+        grid-template-columns: 1fr; /* Stack columns on tablet */
+        gap: 40px; /* Increase gap when stacked */
+    }
+    .offering-block {
+        text-align: left; /* Align icon/title left when stacked */
+    }
+    .offering-icon svg {
+       margin-bottom: 15px;
+    }
+}
+@media (max-width: 767px) {
+    .core-offerings-container {
+        margin-top: 30px;
+        gap: 30px;
+    }
+    .offering-title {
+        font-size: 18px;
+    }
+    .offering-description {
+        font-size: 15px;
+    }
+}
+
+/* Added Animated Slides Styles */
+.slides-container {
+    position: relative;
+    width: 100%;
+    max-width: 595px; /* Adjust as needed */
+    margin: 0 auto;
+    perspective: 1000px;
+    overflow: hidden; /* Hide potential overflow during calculation */
+    border-radius: 12px; /* Add rounded corners to the container */
+    /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); Remove drop shadow from container */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ensure slides fill the container */
+    object-fit: contain; /* Scale image while maintaining aspect ratio */
+    border-radius: 12px; /* Increased border-radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: rotateY(90deg) translateX(50px); /* Initial state for animation */
+    transform-origin: left center;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    backface-visibility: hidden; /* Hide back during rotation */
+}
+
+.slide.active {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0px);
+    z-index: 1; /* Bring active slide to front */
+}
+
+ .slide.previous {
+    /* State for the slide that is animating out */
+    transform: rotateY(-90deg) translateX(-50px);
+     opacity: 0;
+     z-index: 0;
+}
+
+/* Additional styling to fit within the card */
+.attribute-card[data-attribute="alignment"] .slides-container {
+   margin-bottom: 1.5rem; /* Match spacing of other visual elements */
+   aspect-ratio: 595 / 397; /* Maintain aspect ratio based on typical slide dimensions */
+   height: auto; /* Allow height to adjust based on aspect ratio and width */
+   max-width: 100%; /* Ensure it doesn't overflow the card */
+}
+
+/* New Hero Section Styles (Inspired by example) */
+.hero-section-interactive {
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-blue, #141c25); /* Ensure base color */
+    position: relative; /* Needed for pseudo-elements */
+    overflow: hidden; /* Hide overflowing pseudo-elements */
+    /* Removed grid background-image and subtlePan animation */
+    /* Removed inline padding - will be handled on the section tag */
+}
+
+/* New Background Animation Elements */
+.hero-section-interactive::before,
+.hero-section-interactive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Make sure they don't interfere with clicks */
+    z-index: 0; /* Behind content */
+}
+
+/* Example: Subtle moving vertical lines */
+.hero-section-interactive::before {
+    /* Replaced animated gradient with solid color */
+    /* background: linear-gradient(...) */
+    background-color: #141c25; /* Set solid dark blue */
+    /* background-size: 400% 400%; */ /* Removed size */
+    /* animation: gradientShift 15s ease infinite; */ /* Removed animation */
+}
+/* Example: Fading particles/dots (optional second layer) */
+/* .hero-section-interactive::after { ... Add another animation if desired ... } */
+
+/* Keyframe for gradient animation (No longer used) */
+/* @keyframes gradientShift { ... } */
+
+/* Define accent color variable (can be added to :root if used elsewhere) */
+:root {
+    --accent-highlight: #67e8f9;
+    /* Added Financial Model CSS Variables */
+    --excel-chart-blue: #4472C4;
+    --excel-positive-green: #107C41;
+    --excel-negative-red: #C00000;
+    --excel-gridline-color: #D4D4D4; /* Also add gridline color */
+    --excel-header-bg: #F2F2F2;
+    --excel-text-color: #000000;
+    --excel-bg-color: #FFFFFF;
+}
+
+.operational-tax, .operational-excellence {
+    position: relative;
+    font-weight: inherit;
+    /* Use new accent color */
+    /* color: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
+}
+/* Removed duplicate color definitions */
+.operational-tax {
+    /* color: #ff8c42; */ /* Original orange - Updated below */
+    color: #D95F0E; /* Darker complementary orange */
+}
+.operational-excellence {
+    color: var(--accent-highlight, #67e8f9); /* Keep text color cyan */
+}
+
+/* Removed Underline/Animation Rules Below */
+/* .operational-tax::after, .operational-excellence::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    /* bottom: -0.4rem; */ /* Old underline position */
+/*    width: 0;
+    height: 2px;
+    /* Use new accent color for underline */
+/*    /* background: var(--accent-highlight, #67e8f9); */ /* Color handled individually now */
+/* } */
+/* .operational-tax::after {
+    /* bottom: 0.7rem; */ /* Position for strike-through - Reverted below */
+/*    /* bottom: -0.4rem; */ /* Position for underline - Updated below */
+/*    bottom: -2px; /* Adjusted bottom position */
+/*    /* background: #9ca3af; */ /* Muted grey color - Changed below */
+/*    background: #ff8c42; /* Complementary orange color */
+/*    animation: drawLine 1s forwards 0.5s;
+} */
+/* .operational-excellence::after {
+    /* bottom: -0.4rem; */ /* Position for underline - Updated below */
+/*    bottom: -2px; /* Adjusted bottom position */
+/*    background: var(--accent-highlight, #67e8f9); /* Bright accent color */
+/*    animation: drawLine 1s forwards 1.2s;
+} */
+
+/* @keyframes drawLine { to { width: 100%; } } */ /* REMOVED */
+
+@keyframes moveLines { /* Added animation for vertical lines */
+    from { background-position: 0 0; }
+    to { background-position: 0 -1000px; } /* Adjust distance for speed */
+}
+
+/* main-content styles moved inline */
+
+.attributes-column::before {
+    content: '';
+    position: absolute;
+    left: -0.025rem;
+    /* top: 0; */
+    top: 2.5rem; /* Moved further down */
+    /* height: 100%; */
+    height: 67%; /* Increased height by 20% (from 56%) */
+    /* width: 3px; */
+    width: 2.4px; /* Increased width by 20% (from 2px) */
+    background: linear-gradient(to bottom, var(--blue, #22293e), var(--dark-blue, #141c25));
+    border-radius: 1.8px; /* Increased radius */
+}
+/* attributes-list styles moved inline */
+
+.attribute-item {
+    margin-bottom: 3.5rem; /* Increased margin for more spacing */
+    position: relative;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+.attribute-item:not(.active) { opacity: 0.6; }
+.attribute-item:hover:not(.active) { opacity: 0.8; }
+
+.attribute-item::before {
+    content: '';
+    position: absolute;
+    /* left: -2.4rem; Old value */
+    left: -2.25rem; /* Moved further right */
+    top: 0.7rem;  /* Adjusted: Vertically center */
+    width: 0.72rem; /* Increased width by 20% (from 0.6rem) */
+    height: 0.72rem; /* Increased height by 20% (from 0.6rem) */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+.attribute-item.active::before {
+    background-color: var(--white, #fff);
+    transform: scale(1.56); /* Increased scale by 20% (from 1.3) */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    /* left: -2.45rem; Old value */
+    left: -2.25rem; /* Adjusted for new base position + scale */
+    top: 0.65rem; /* Adjusted: Vertically center when active */
+}
+
+.attribute-title {
+    font-family: 'Gilda Display', serif;
+    font-size: 1.92rem; /* Increased size by 20% (from 1.6rem) */
+    font-weight: 400;
+    color: var(--light-outline, #e5e7eb);
+    margin-bottom: 0.2rem;
+    transition: all 0.3s ease;
+}
+.attribute-item.active .attribute-title {
+    color: var(--white, #fff);
+    font-size: 2.28rem; /* Increased size by 20% (from 1.9rem) */
+}
+
+.attribute-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.14rem; /* Increased size by 20% (from 0.95rem) */
+    color: var(--light-outline, #9ca3af);
+    line-height: 1.5; /* Added line-height for more spacing */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    padding-left: 0.1rem; /* Slight indent */
+}
+.attribute-item.active .attribute-description {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+/* visualization-column styles moved inline */
+
+.attribute-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Reinstated height */
+    /* background: rgba(31, 41, 55, 0.3); */ /* Darker translucent background - Updated alpha below */
+    background: rgba(31, 41, 55, 0.4); /* Made background less transparent (was 0.2) */
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 2.5rem; /* Reduced vertical padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content top */
+    opacity: 0;
+    transform: translateY(10px);
+    z-index: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    line-height: 1.6;
+}
+.attribute-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 2;
+}
+/* Placeholder for chart area */
+.attribute-card-chart-placeholder {
+    width: 100%;
+    height: 150px; /* Example height */
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem; /* Space below chart */
+}
+/* Removed .attribute-card-icon rule */
+.attribute-card-title {
+    font-family: 'Gilda Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--white, #fff);
+}
+.attribute-card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--light-outline, #e5e7eb);
+    line-height: 1.6;
+}
+
+/* Added: Style for highlighted description text */
+.description-highlight {
+    font-weight: bold;
+    color: var(--white, #fff); /* Changed to white */
+}
+
+/* Styles for Slackbot Visual Representation */
+.slackbot-visual {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Slack uses Lato */
+    background-color: #1d1c1d; /* Dark Slack background */
+    border: 1px solid #4a4a4a; /* Subtle border */
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #d1d2d3; /* Slack light text */
+    font-size: 14px;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Hide overflow */
+    flex-grow: 1; /* Allow to grow vertically */
+}
+.slackbot-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.slackbot-app-icon {
+    width: 20px;
+    height: 20px;
+    /* background-color: #3f0f40; /* Placeholder color */
+    background-color: var(--blue, #22293e); /* Use CFO blue */
+    border-radius: 4px;
+    margin-right: 6px;
+    /* Added styles to match Autonomy icon container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white, #fff);
+    font-size: 10px;
+    font-weight: 700;
+}
+/* Added ::before for Accountability icon */
+.slackbot-app-icon::before {
+    content: "CFO";
+}
+.slackbot-app-name {
+    font-weight: 700;
+    color: #fff;
+    margin-right: 4px;
+    /* Note: Font size is implicitly set by .slackbot-visual */
+}
+.slackbot-app-label {
+    background-color: #2e2e2e;
+    color: #b4b4b4;
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-right: 6px;
+    text-transform: uppercase;
+}
+.slackbot-time {
+    font-size: 12px;
+    color: #a8a8a8;
+}
+.slackbot-attachment {
+    border-left: 3px solid #7a5b7a; /* Slack attachment bar color */
+    padding-left: 12px;
+    margin-top: 5px;
+}
+.slackbot-title {
+    font-weight: 700;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+.slackbot-timestamp {
+    font-size: 12px;
+    color: #a8a8a8;
+    margin-bottom: 10px;
+}
+.slackbot-button {
+    display: inline-block;
+    background-color: #007a5a; /* Slack green */
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    margin-bottom: 15px;
+    border: none;
+    cursor: pointer; /* Add cursor */
+}
+.slackbot-chart-area {
+    background-color: #fafafa; /* Eggshell white background */
+    border-radius: 4px;
+    padding: 10px 5px; /* Adjusted padding slightly */
+    margin-bottom: 15px;
+    height: 150px; /* Keep increased height */
+    display: flex;
+    align-items: flex-end; /* Bars grow from bottom */
+    justify-content: space-around;
+    overflow: hidden;
+}
+.slackbot-chart-bar {
+    /* background-color: #8a8a8a; Default bar color - now set by nth-child */
+    width: 10%; /* Adjusted width for pairs */
+    /* animation: growBar 1.5s ease-out forwards; Removed animation from base style */
+    transform-origin: bottom;
+    margin: 0; /* Reset margin, handle with nth-child */
+}
+/* Grouping and Coloring Logic (Pairs: Blue, Grey) */
+.slackbot-chart-bar:nth-child(2n+1) { /* Odd bars (Blue) */
+  background-color: #22293e; /* CFO Blue */
+  height: 55%; /* Example height, shorter in pair */
+  animation-delay: 0.1s;
+  margin-left: 3%; /* Space before pair starts */
+  margin-right: 0.5%; /* Small space within pair */
+}
+.slackbot-chart-bar:nth-child(2n) { /* Even bars (Grey) */
+  background-color: #8a8a8a; /* Dark Grey */
+  height: 90%; /* Example height, taller in pair */
+  animation-delay: 0.3s;
+  margin-left: 0.5%; /* Small space within pair */
+  margin-right: 3%; /* Space after pair ends */
+}
+/* Remove orange bar rule - already removed */
+
+/* Adjust heights for variety for 4 pairs (8 bars) - Blue first, Grey second */
+.slackbot-chart-bar:nth-child(1) { height: 55%; } /* Blue 1 */
+.slackbot-chart-bar:nth-child(2) { height: 90%; } /* Grey 1 */
+.slackbot-chart-bar:nth-child(3) { height: 40%; } /* Blue 2 */
+.slackbot-chart-bar:nth-child(4) { height: 75%; } /* Grey 2 */
+.slackbot-chart-bar:nth-child(5) { height: 60%; } /* Blue 3 */
+.slackbot-chart-bar:nth-child(6) { height: 85%; } /* Grey 3 */
+.slackbot-chart-bar:nth-child(7) { height: 30%; } /* Blue 4 */
+.slackbot-chart-bar:nth-child(8) { height: 65%; } /* Grey 4 */
+
+.slackbot-expenses-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #d1d2d3;
+}
+.slackbot-expenses-table {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 11px;
+    white-space: pre;
+    line-height: 1.5;
+    color: #a8a8a8;
+    overflow: hidden; /* Prevent wrapping/overflow */
+    /* Removed max-height previously */
+}
+
+@keyframes growBar {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+/* Apply animation only when parent has start-animation class */
+.slackbot-visual.start-animation .slackbot-chart-bar {
+    animation: growBar 1.5s ease-out forwards;
+}
+
+/* End Slackbot Styles */
+
+/* Styles for SVG Line Graph */
+.line-graph-visual {
+    /* background-color: #fafafa; Removed background */
+    background-color: transparent; /* Blend with card */
+    border-radius: 4px;
+    padding: 10px 5px; /* Adjusted padding */
+    margin-bottom: 1.5rem; /* Space below graph */
+    /* min-height: 380px; */ /* Removed fixed/min height */
+    width: 100%; /* Make width flexible */
+    height: auto; /* Height determined by aspect ratio */
+    aspect-ratio: 135 / 95; /* Maintain the SVG's intended proportions */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative; /* For potential pseudo-elements */
+}
+.line-graph-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* Allow elements like lines/shadows to be drawn */
+}
+/* Removed .line-graph-axis rules */
+
+.line-graph-target {
+    stroke: rgba(229, 231, 235, 0.7); /* Increased opacity from 0.4 */
+    stroke-width: 1.5;
+    stroke-dasharray: 3, 3; /* Smaller dashes */
+    fill: none;
+    stroke-linecap: round;
+}
+.line-graph-actual {
+    stroke: var(--accent-highlight, #67e8f9); /* Accent color for actual */
+    stroke-width: 2.5; /* Slightly thicker */
+    fill: none;
+    stroke-dasharray: 500; /* Arbitrarily large value */
+    stroke-dashoffset: 500; /* Start fully dashed (invisible) */
+    stroke-linecap: round;
+    stroke-linejoin: round; /* Smoother corners */
+    transition: stroke-width 0.2s ease, filter 0.2s ease; /* Added filter transition */
+}
+.line-graph-actual.start-line-animation { /* Added class for animation */
+    animation: drawLineGraph 3s ease-out 0.2s forwards, pulseGlow 2.5s infinite ease-in-out 3.2s; /* Slower draw, pulse starts after */
+}
+.line-graph-actual:hover {
+  stroke-width: 4; /* Thicken line on hover */
+  filter: drop-shadow(0 0 3px var(--accent-highlight, #67e8f9)); /* Add glow on hover */
+}
+
+@keyframes drawLineGraph {
+    to {
+        stroke-dashoffset: 0; /* Animate to fully drawn */
+    }
+}
+@keyframes pulseGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 1.5px rgba(103, 232, 249, 0.7)); /* Subtle glow */
+        opacity: 0.9;
+    }
+    50% {
+        filter: drop-shadow(0 0 3px rgba(103, 232, 249, 1)); /* Brighter glow */
+        opacity: 1;
+    }
+}
+/* Style for SVG text labels - repurposed for Y-Axis */
+.line-graph-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; /* Increased font size from 7px */
+  fill: #e5e7eb; /* Increased opacity - changed from rgba(229, 231, 235, 0.6) */
+  text-anchor: end; /* Align text end to the coordinate */
+}
+/* Reinstated axis style */
+.line-graph-axis {
+    stroke: rgba(229, 231, 235, 0.5); /* Increased opacity from 0.2 */
+    stroke-width: 0.5;
+}
+/* End SVG Line Graph Styles */
+
+/* Responsive adjustments for chart labels */
+@media (max-width: 767px) {
+    .line-graph-label,
+    .line-graph-x-label,
+    .line-graph-legend-label {
+        font-size: 7px; /* Smaller font size for mobile */
+    }
+}
+@media (max-width: 479px) {
+   .line-graph-label,
+    .line-graph-x-label,
+    .line-graph-legend-label {
+        font-size: 6px; /* Even smaller */
+    }
+}
+
+/* Conclusion box styles moved inline */
+/* Conclusion text/highlight styles moved inline */
+/* CTA Button uses existing .submit-button.w-button styles */
+
+/* Fade animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
+.fade-in-delay-1 { animation: fadeIn 0.8s forwards 0.2s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
+.fade-in-delay-2 { animation: fadeIn 0.8s forwards 0.4s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
+
+/* Responsive */
+@media (max-width: 991px) {
+    .main-content { grid-template-columns: 1fr; gap: 3rem; min-height: auto; }
+    .visualization-column { min-height: 350px; /* Give space for card */ }
+    .attribute-card { position: relative; /* Stack cards below list on tablet */ display: none; }
+    .attribute-card.active { display: flex; }
+}
+ @media (max-width: 767px) {
+     .attributes-list { padding-left: 1.5rem; }
+     /* Adjust dot position for mobile too */
+     .attribute-item::before { left: -1.6rem; top: 0.6rem; /* Adjusted for mobile */ }
+     .attribute-item.active::before { left: -1.65rem; top: 0.55rem; /* Adjusted for mobile */ }
+     .attribute-title { font-size: 1.68rem; /* Increased mobile size by 20% (from 1.4rem) */ }
+     .attribute-item.active .attribute-title { font-size: 1.92rem; /* Increased mobile active size by 20% (from 1.6rem) */ }
+     .attribute-card { padding: 1.5rem 2rem; }
+     .attribute-card-title { font-size: 1.5rem; }
+     .attribute-card-description { font-size: 1rem; }
+ }
+
+.conclusion-highlight {
+   /* color: var(--blue, #22293e); Old value */
+   color: var(--accent-highlight, #67e8f9); /* Use new accent color */
+   font-weight: 700;
+}
+
+/* Added style for larger CTA button */
+#openContactModalBtn.submit-button.w-button {
+    padding: 21px 42px; /* Increased padding by ~30% */
+    font-size: 23px; /* Increased font size by ~30% */
+    min-height: 73px; /* Increased min height by ~30% */
+    /* Added new color styles */
+    background-color: #F8F7F5; /* Light beige background */
+    color: #1f2937; /* Dark blue/grey text */
+    /* border: 1px solid #1f2937; */ /* Dark blue/grey border - Updated below */
+    border: 2px solid #1f2937; /* Increased border width */
+    border-radius: 50px; /* Added large border-radius for rounded shape */
+    margin-top: 2.4rem; /* Increased margin to move button down */
+    margin-bottom: 5.0rem; /* UPDATED margin-bottom to 60px */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Added subtle shadow */
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Added transform to transition */
+}
+
+/* Added hover state for the button */
+#openContactModalBtn.submit-button.w-button:hover {
+    background-color: #F0EDE9; /* Slightly darker beige on hover */
+    color: #1f2937; /* Keep text color */
+    border-color: #1f2937; /* Keep border color */
+    transform: scale(1.03); /* Added scale effect on hover */
+}
+
+/* Added Animated ARR Chart Styles */
+/* Chart Container Styles */
+.chart-container {
+    position: relative;
+    width: 100%;
+    /* max-width: 600px; /* Responsive max width */ /* Removed to allow full width */
+    margin: 0 auto 0 auto; /* Centering and removed bottom margin */
+    background-color: transparent; /* Blend with card background */
+    border-radius: 12px;
+    overflow: hidden; /* Clip contents */
+    /* Removed box-shadow */
+    padding: 0; /* Removed padding */
+    /* border: 1px solid #4a4a4a; /* Added border like slackbot */ /* Removed border */
+    box-sizing: border-box;
+    color: #e5e7eb; /* Match index.html axis label color */
+    min-height: 360px; /* Set min-height to match slackbot visual, reduced by 10% */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack title and svg vertically */
+    text-align: center;
+    font-size: 1.68em; /* Increased font size by 20% */
+    margin-top: 2px; /* Reduced margin top by 50% */
+    margin-bottom: 0; /* Removed margin bottom */
+    font-weight: bold;
+    color: #ffffff; /* Match index.html --white */
+}
+.chart-title {
+    /* display: none; /* Hide default title, use card title */ /* Corrected comment */
+    /* display: none; /* Hide again, use H4 below chart */ /* Removed display:none */
+    text-align: center;
+    font-size: 1.2em; /* Increased font size by 20% */
+    margin-top: 5px; /* Reduced margin top by 50% */
+    margin-bottom: 0; /* Removed margin bottom */
+    font-weight: bold;
+    color: #ffffff; /* Match index.html --white */
+}
+.chart-svg {
+    display: block;
+    width: 100%;
+    /* height: auto; /* Maintain aspect ratio */ /* Replaced by flex-grow */
+    /* aspect-ratio: 500 / 300; /* Define aspect ratio */ /* Removed aspect ratio */
+    transform: scale(0.99); /* Scale down SVG slightly (made 10% wider than 0.9) */
+    transform-origin: center center; /* Scale from the center */
+    flex-grow: 1; /* Allow SVG to fill remaining height */
+    min-height: 0; /* Prevent flex item from overflowing */
+    align-self: center; /* Center scaled SVG horizontally */
+}
+/* SVG Styles */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #718096; /* Match index.html .line-graph-axis approx */
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    fill: #e5e7eb; /* Match index.html .line-graph-label */
+    font-size: 24px; /* Increased font size x2 */
+}
+.grid-line {
+    fill: none;
+    stroke: #718096; /* Match index.html .line-graph-axis approx */
+    stroke-width: 0.5;
+    stroke-dasharray: 2,2; /* Dashed grid lines */
+}
+.arr-line {
+    fill: none;
+    stroke: #67e8f9; /* Match index.html --accent-highlight */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Animation properties will be added via JS */
+}
+.target-line {
+    fill: none;
+    stroke: #a0aec0; /* Approx index.html .line-graph-target rgba */
+    stroke-width: 1.5;
+    stroke-dasharray: 3, 3; /* Make target line dashed */
+}
+.arr-endpoint {
+    fill: #67e8f9; /* Match ARR line color */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out; /* Fade in */
+}
+/* Callout Styles */
+.callout {
+    fill: #e5e7eb; /* Match index.html axis label color */
+    font-size: 20px; /* Reduced font size by ~10% */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Don't interfere with mouse */
+    text-anchor: middle; /* Center text horizontally */
+    font-weight: normal; /* Ensure not bold */
+}
+.callout-line {
+    fill: none;
+    stroke: #a0aec0; /* Match target line color */
+    stroke-width: 1;
+    stroke-dasharray: 2, 2; /* Dotted line */
+    opacity: 0.8;
+}
+
+/* Define the drawLine keyframes specifically for this chart */
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Added classes for dynamic callout animation */
+.callout-line-animating {
+    animation: drawLine 0.4s ease-out forwards, fadeIn 0.3s ease-in forwards;
+}
+.callout-text-animating {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+/* Added Styles for Autonomy Slack Message */
+/* Target the specific card */
+.attribute-card[data-attribute="autonomy"] .slackbot-visual-container {
+    max-width: 100%;
+    width: 100%;
+    opacity: 0;
+    animation: fadeIn 1.0s ease-out forwards 0.2s;
+    /* flex-grow: 1; Removed to prevent extra height */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    /* min-height: 380px; /* REMOVED to allow shrinking */
+    /* Adjusted height: Let content dictate, but ensure flex works */
+    /* Consider adding max-height if needed */
+}
+
+/* Autonomy Specific Overrides / Additions */
+.attribute-card[data-attribute="autonomy"] .slackbot-visual {
+    /* Inherits most styles from general .slackbot-visual */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    /* min-height: 270px; /* REMOVED - Let content determine height */ 
+    /* flex-grow: 1; Removed to prevent extra height */
+    display: flex; /* Ensure flex works for internal elements */
+    flex-direction: column; /* Stack header/attachment */
+}
+
+/* Header uses default styles */
+.attribute-card[data-attribute="autonomy"] .slackbot-app-label {
+     font-weight: 600; /* Slightly bolder label */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-time {
+    font-size: 12px; /* Match Accountability */
+    color: #a8a8a8; /* Match Accountability */
+    /* margin-left: auto; /* Removed to place time next to APP label */
+    margin-left: 8px; /* Add some space after the APP label */
+}
+
+/* Attachment */
+.attribute-card[data-attribute="autonomy"] .slackbot-attachment {
+    border-left-color: var(--warning-border-color, #daa520); /* Use warning color */
+    /* Inherits padding/margin from base */
+    flex-grow: 1; /* Allow attachment to fill space */
+    display: flex; /* Enable flex for child elements */
+    flex-direction: column; /* Stack elements vertically */
+}
+/* ... other attachment styles ... */
+.attribute-card[data-attribute="autonomy"] .slackbot-message-content {
+    margin-bottom: 15px; /* Adjusted margin */
+}
+
+/* Added rule for QTD paragraph size */
+ .attribute-card[data-attribute="autonomy"] .slackbot-message-content p {
+    font-size: 18px; /* Increased by 20% from 15px */
+    margin-top: 10px; /* Added top margin */
+}
+
+
+
+/* Added rule for highlight styling */
+.attribute-card[data-attribute="autonomy"] .highlight-warning {
+    color: #facc15; /* Match warning color variable */
+    font-weight: 600; /* Make bold */
+}
+
+/* Resources Section Styling (Match slack.html) */
+.attribute-card[data-attribute="autonomy"] .slackbot-resources {
+    margin-top: 18px;
+    padding: 18px 15px; /* Match slack.html */
+    border-top: 1px solid transparent; /* For animation */
+    position: relative;
+    background-color: var(--resource-bg, rgba(74, 74, 74, 0.2));
+    border-radius: 4px;
+    overflow: hidden;
+    /* Removed animation from base style */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 0; /* Start at 0 width */
+    background-color: rgba(74, 74, 74, 0.5);
+    /* animation applied via class */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources-title {
+    font-size: 12px; /* Match slack.html */
+    font-weight: 700; /* Match slack.html */
+    color: #a8a8a8; /* Match slack.html */
+    margin-bottom: 10px; /* Match slack.html */
+    text-transform: uppercase; /* Match slack.html */
+    letter-spacing: 0.8px; /* Match slack.html */
+    padding-left: 0; /* Match slack.html */
+    opacity: 0;
+    /* animation applied via class */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources p {
+     margin: 0 0 8px 0; /* Match slack.html */
+     display: flex;
+     align-items: center;
+     font-size: 15px; /* Match slack.html */
+     color: var(--slack-light-text, #d1d2d3);
+     opacity: 0;
+     /* animation applied via class */
+}
+/* Resource Icons (Ensure these are correct) */
+.attribute-card[data-attribute="autonomy"] .slackbot-resources p::before {
+    content: '' ; /* Reset content */
+    display: inline-block;
+    width: 1.2em; /* Width for icon */
+    height: 1em; /* Match line height */
+    margin-right: 8px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    vertical-align: middle; /* Align icon vertically */
+    opacity: 0.8;
+    position: relative;
+    top: -0.05em; /* Fine-tune vertical alignment */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources p.headcount::before { content: '🧑‍💼'; }
+.attribute-card[data-attribute="autonomy"] .slackbot-resources p.budget::before { content: '💰'; }
+
+.attribute-card[data-attribute="autonomy"] .resource-highlight {
+    color: var(--white);
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 0.5em; /* Match slack.html */
+}
+
+/* Button inherits styles, animation applied via class */
+.attribute-card[data-attribute="autonomy"] .slackbot-button {
+    /* Styles inherited or set in base */
+    /* Added styles from slack.html */
+    display: inline-block;
+    background-color: var(--slack-green-button, #007a5a);
+    color: var(--white, #ffffff);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
+    /* opacity: 0; */ /* Changed to 1 for static visibility */
+    opacity: 1;
+    margin-bottom: 0;
+    align-self: flex-start;
+    /* animation: fadeIn 0.8s ease-out forwards 1.9s !important; */ /* REMOVED Animation */
+}
+
+.attribute-card[data-attribute="autonomy"] .slackbot-button:hover {
+     background-color: #148567; /* Darker green on hover */
+}
+
+/* --- Animation Triggers (Remain the same) --- */
+.attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation::before {
+    animation: drawLineAcross 0.8s ease-out forwards 0.5s; /* Start sooner */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation .slackbot-resources-title {
+    animation: fadeIn 0.8s ease-out forwards 0.7s; /* 0.2s after line */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p {
+    animation: fadeInResource 0.8s ease-out forwards;
+    /* Removed opacity: 1 failsafe */ /* <-- Remove this line */
+}
+.attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(1) { animation-delay: 1.1s; } /* 0.4s after title */
+.attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation p:nth-of-type(2) { animation-delay: 1.5s; } /* 0.4s after headcount */
+/* Removed :has() selector for button animation */
+/* --- End animation triggers --- */
+
+/* Variables (Remain the same) */
+/* Keyframes (Remain the same) */
+/* --- Added missing keyframes --- */
+ @keyframes fadeInResource {
+     from { opacity: 0; transform: translateY(5px); }
+     to { opacity: 1; transform: translateY(0); }
+ }
+/* Container animation trigger (Remains the same) */
+
+/* Trigger button fade-in after budget line */
+/* REMOVED Rule below that triggers button animation */
+/* .attribute-card[data-attribute="autonomy"] .slackbot-resources.start-resources-animation + .slackbot-button {
+    animation: fadeIn 0.8s ease-out forwards 1.9s;
+} */
+
+/* Styles for individual testimonial cards (kept from original embed) */
+/* Custom styling for the cards themselves */
+.carousel-parent-container {
+  /* max-width: none !important; /* Removed override */
+  /* width: 100%; /* Ensure it spans width */ /* REMOVED */
+  /* padding: 0 120px; /* Increased horizontal padding for wider margins */ /* REMOVED */
+  box-sizing: border-box; /* Include padding in width */
+  /* ADDED */
+  max-width: 1400px; /* Match hero section width */
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Removed .carousel-container rule as width is now controlled by parent */
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 28px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 36px 40px; /* Increased horizontal padding for thinner content */
+    height: 100%; /* Make card take full height of its container (swiper-slide) */
+    min-height: 500px;  /* Removed to allow cards to fully adapt to tallest slide */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 40px; /* Add space below cards for pagination */
+}
+.quote-mark {
+    font-size: 56px; /* Slightly smaller quote mark */
+    line-height: 1;
+    color: #111827;
+    font-family: 'Georgia', serif;
+    margin-bottom: 2px; /* Very close to text */
+    margin-top: 0; /* Ensure no top margin */
+    display: block;
+    height: 40px;
+}
+.testimonial-text {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: #4A5568;
+    flex-grow: 1;
+    margin-bottom: 32px;
+}
+.person-container {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #F0F4F8;
+    margin-bottom: 10px;
+}
+.initials {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    /* display: flex; */ /* No longer needed for img */
+    /* align-items: center; */ /* No longer needed for img */
+    /* justify-content: center; */ /* No longer needed for img */
+    /* font-weight: 500; */ /* No longer needed for img */
+    /* font-size: 16px; */ /* No longer needed for img */
+    /* color: #4A5568; */ /* No longer needed for img */
+    /* background-color: #EDF2F7; */ /* No longer needed for img if it has a src */
+    margin-right: 16px;
+    object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
+}
+.person-name {
+    font-weight: 600;
+    color: #2D3748;
+    font-size: 1rem;
+}
+.person-title {
+    color: #718096;
+    font-size: 0.875rem;
+}
+/* Style pagination dots */
+.testimonial-pagination {
+    position: relative; /* Position below the swiper */
+    bottom: 10px; /* Adjust as needed */
+    margin-top: 20px; /* Space above dots */
+}
+.swiper-pagination-bullet {
+    background-color: #ccc; /* Inactive dot color */
+    opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+    background-color: var(--blue, #22293e); /* Active dot color - use site variable */
+    opacity: 1;
+}
+/* Ensure swiper slides have appropriate styling */
+.swiper-slide {
+  height: auto; /* Allow slides to determine height based on content */
+  display: flex; /* Helps with vertical alignment if needed */
+  align-items: stretch; /* Make slides stretch to same height if desired */
+}
+.testimonial-swiper {
+    padding-bottom: 50px; /* Ensure space for pagination dots */
+}
+/* Added styles for category header */
+.testimonial-category {
+    font-family: Inter, sans-serif;
+    font-size: 16px; /* Adjusted size */
+    font-weight: 700; /* Bolder */
+    color: #adb5bd; /* Lighter grey color */
+    text-transform: uppercase; /* Uppercase for distinction */
+    letter-spacing: 1px; /* More spacing */
+    margin-top: 0; /* Remove default h4 margin */
+    margin-bottom: 15px; /* Increased space below category */
+}
+
+/* Added Stacked Advantage Widget Styles */
+#stacked-advantage-widget {
+    /* --- Configuration Variables --- */
+    --dark-background: #0d1117;
+    --text-blue: #67e8f9;
+    --arrow-gradient-start: #1F7A8C;
+    --arrow-gradient-end: #67e8f9;
+    --text-light: #e5e7eb;
+    --arrow-animation-duration: 1.5s;
+    --arrow-delay-compete: 0.5s; /* Start delay for first arrow */
+    --arrow-delay-innovate: 0.8s; /* Delay for second, relative to first */
+    --arrow-delay-hire: 0.8s; /* Delay for third, relative to second */
+    --initial-delay: 0.2s; /* Overall delay before first animation starts */
+    
+    /* --- Container Styles --- */
+    font-family: 'Inter', sans-serif;
+    /* background-color: var(--dark-background); */ /* Removed - inherits from card */
+    border-radius: 12px;
+    /* padding: 40px 50px; */ /* Removed - inherits from card */
+    padding: 0; /* Reset padding, rely on card padding */
+    width: 100%; /* Take full width of card */
+    /* max-width: 450px; */ /* Removed max-width */
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */ /* Removed shadow */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box; /* Include padding/border in element's total width and height */
+    margin-bottom: 1.5rem; /* Add space below widget */
+}
+
+#stacked-advantage-widget .advantage-visual {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    min-height: 280px; /* Adjusted height */
+    position: relative;
+    margin-top: 10px; /* Added top margin */
+}
+
+#stacked-advantage-widget .advantage-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+#stacked-advantage-widget .advantage-step.compete {
+    left: calc(50% - 71.2px); /* Adjusted for 80px width */
+    z-index: 3;
+}
+#stacked-advantage-widget .advantage-step.innovate {
+    left: calc(50% - 40px); /* Adjusted for 80px width */
+    z-index: 2;
+ }
+#stacked-advantage-widget .advantage-step.hire {
+    left: calc(50% - 8px); /* Adjusted for 80px width */
+    z-index: 1;
+}
+
+#stacked-advantage-widget .advantage-arrow {
+    width: 80px; /* Adjusted arrow width */
+    margin-bottom: 0px;
+    position: relative;
+    transform-origin: bottom center;
+    opacity: 0;
+    transition: bottom 1.5s ease-out;
+}
+
+#stacked-advantage-widget .advantage-arrow svg {
+    display: block;
+}
+
+@keyframes growFromBottom {
+    0% {
+        transform: scaleY(0.12); 
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* Apply animations - Adjusted delays */
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-arrow {
+    animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
+    fill: url(#stacked-advantage-competeGradient);
+}
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-arrow {
+    animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
+    fill: url(#stacked-advantage-innovateGradient);
+}
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-arrow {
+    animation: growFromBottom var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
+    fill: url(#stacked-advantage-hireGradient);
+}
+
+#stacked-advantage-widget .advantage-label {
+    display: block;
+    color: white;
+    font-size: 14px; /* Adjusted font size */
+    font-weight: 500; /* Slightly lighter weight */
+    position: absolute;
+    z-index: 10;
+    white-space: nowrap;
+    opacity: 0;
+    transition: bottom 1.5s ease-out;
+}
+
+/* Adjusted Initial Label Positioning */
+#stacked-advantage-widget .advantage-step.compete .advantage-label {
+    left: -55px; /* Adjusted */
+    bottom: 0px;
+}
+#stacked-advantage-widget .advantage-step.innovate .advantage-label {
+    left: -80px; /* Adjusted */
+    bottom: 0px;
+}
+#stacked-advantage-widget .advantage-step.hire .advantage-label {
+    left: -85px; /* Adjusted */
+    bottom: 0px;
+}
+
+/* Adjusted Label Animations */
+@keyframes moveLabelCompete {
+    0% { opacity: 0; bottom: 0px; }
+    100% { opacity: 1; bottom: 40px; /* Adjusted final position */ }
+}
+@keyframes moveLabelInnovate {
+    0% { opacity: 0; bottom: 0px; }
+    100% { opacity: 1; bottom: 100px; /* Adjusted final position */ }
+}
+@keyframes moveLabelHire {
+    0% { opacity: 0; bottom: 0px; }
+    100% { opacity: 1; bottom: 200px; /* Adjusted final position */ }
+}
+
+/* Apply label animations - Adjusted delays */
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
+    animation: moveLabelCompete var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete));
+}
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
+    animation: moveLabelInnovate var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate));
+}
+.attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
+    animation: moveLabelHire var(--arrow-animation-duration) ease-out forwards calc(var(--initial-delay) + var(--arrow-delay-compete) + var(--arrow-delay-innovate) + var(--arrow-delay-hire));
+}
+
+#stacked-advantage-widget .foundation-label {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: var(--text-blue);
+    font-weight: 500; /* Slightly lighter */
+    font-size: 15px; /* Adjusted size */
+    padding: 8px 0 0 0; /* Adjusted padding */
+    z-index: 4;
+}
+
+#stacked-advantage-widget .foundation-line {
+    position: relative;
+    height: 1px; /* Thinner line */
+    width: 85%; /* Slightly narrower line */
+    background-color: var(--text-blue);
+    z-index: 4;
+    margin-bottom: 5px; /* Adjusted margin */
+}
+
+/* Simplified Responsive Adjustments for integration */
+@media (max-width: 480px) {
+    #stacked-advantage-widget .advantage-visual {
+         min-height: 200px;
+    }
+    #stacked-advantage-widget .advantage-arrow {
+         width: 60px; /* Smaller arrows on mobile */
+    }
+     #stacked-advantage-widget .advantage-label {
+         font-size: 12px;
+     }
+
+     /* Adjust mobile positioning */
+     #stacked-advantage-widget .advantage-step.compete {
+         left: calc(50% - 60px);
+     }
+     #stacked-advantage-widget .advantage-step.innovate {
+         left: calc(50% - 30px);
+     }
+     #stacked-advantage-widget .advantage-step.hire {
+         left: calc(50% - 0px);
+     }
+
+     /* Mobile label keyframes (adjust final position) */
+     @keyframes moveLabelCompeteMobile {
+        0% { opacity: 0; bottom: 0px; }
+        100% { opacity: 1; bottom: 20px; }
+     }
+     @keyframes moveLabelInnovateMobile {
+        0% { opacity: 0; bottom: 0px; }
+        100% { opacity: 1; bottom: 65px; }
+     }
+     @keyframes moveLabelHireMobile {
+        0% { opacity: 0; bottom: 0px; }
+        100% { opacity: 1; bottom: 115px; }
+     }
+     
+     /* Apply mobile label animations */
+     .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.compete .advantage-label {
+         animation-name: moveLabelCompeteMobile;
+         left: -50px; /* Adjust label position */
+     }
+     .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.innovate .advantage-label {
+         animation-name: moveLabelInnovateMobile;
+         left: -70px; /* Adjust label position */
+     }
+     .attribute-card[data-attribute="velocity"].active #stacked-advantage-widget .advantage-step.hire .advantage-label {
+         animation-name: moveLabelHireMobile;
+         left: -70px; /* Adjust label position */
+     }
+     
+     #stacked-advantage-widget .foundation-label {
+        font-size: 13px;
+    }
+}
+
+/* Styles for Interactive Services Section */
+#service-selectors .offering-block {
+    cursor: pointer;
+    opacity: 0.6; /* Dimmed further */
+    transition: opacity 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease; /* Added border transition */
+    border-radius: 6px; /* Added for background */
+    padding: 20px; /* Ensure padding for background */
+    border-bottom: 2px solid transparent; /* Re-add transparent border for spacing */
+}
+#service-selectors .offering-block:hover {
+    opacity: 0.8; /* Adjusted hover opacity */
+}
+#service-selectors .offering-block.active {
+    opacity: 1;
+    border-bottom: 2px solid var(--accent-highlight, #67e8f9); /* Re-add active border */
+    background-color: rgba(46, 58, 74, 0.7); /* More contrast background (lighter, more opaque) */
+    padding-bottom: 18px; /* Adjust padding slightly for border */
+}
+/* Added: Highlight active title */
+#service-selectors .offering-block.active .offering-title {
+    color: var(--white, #fff);
+}
+#service-visualization-area {
+    margin-top: 40px;
+    min-height: 600px;
+    max-width: 1440px; /* Make container wider */
+    margin-left: auto; /* Center the wider container */
+    margin-right: auto; /* Center the wider container */
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    background-color: rgba(31, 41, 55, 0.2);
+    overflow: hidden;
+    transition: min-height 0.5s ease; /* Add transition for smooth height change */
+}
+
+#service-visualization-area.planning-active {
+    min-height: 1020px; /* Increased by 20% from 880px */
+}
+
+/* Added rule for Fundraising height */
+#service-visualization-area.fundraising-active {
+    min-height: 670px; /* Base 600px + 10% */
+}
+
+/* Added rule for Operations height */
+#service-visualization-area.operations-active {
+    min-height: 820px; /* Set appropriate height for operations content */
+}
+
+.service-visualization-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px; /* Match padding */
+    /* Optional: Add flex for centering if needed */
+    /* display: flex; align-items: center; justify-content: center; */
+    color: var(--white, #fff); /* Text color for placeholders */
+    font-size: 1.2rem;
+}
+.service-visualization-content.active {
+    display: block; /* Changed from flex if not using centering */
+    opacity: 1;
+    background-color: rgba(31, 41, 55, 0.4); /* Slightly more opaque background for active content */
+    /* Match container padding and positioning exactly */
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 30px; /* Re-apply padding inside the absolute positioned element */
+    border-radius: 8px; /* Match container radius */
+    overflow-y: hidden; /* Hide vertical scrolling */
+}
+/* Responsive adjustments for services */
+@media (max-width: 991px) {
+    #service-visualization-area {
+        min-height: 300px; /* Reduce height on tablet */
+    }
+     /* Stack selectors vertically if needed */
+    /* #service-selectors {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+     } */
+}
+ @media (max-width: 767px) {
+     #service-visualization-area {
+        min-height: 250px; /* Further reduce height */
+        padding: 20px;
+    }
+     .service-visualization-content {
+         top: 20px; left: 20px; right: 20px; bottom: 20px;
+         font-size: 1rem;
+    }
+     #service-selectors .offering-block {
+         padding-bottom: 10px;
+         padding: 15px; /* Adjust padding for mobile */
+     }
+ }
+
+/* Financial Model Component Styles */
+#embedded-financial-model {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: Calibri, Arial, 'Segoe UI', sans-serif;
+    font-size: 13pt; /* Increased base font size by 2pt */
+    color: #000000;
+    line-height: 1.4;
+    overflow: hidden; /* Keep overflow hidden */
+    /* transform: scale(0.75); /* REMOVED scaling from parent */
+    /* transform-origin: top left; /* REMOVED scaling from parent */
+}
+
+#embedded-financial-model * {
+    box-sizing: border-box;
+    /* margin: 0; /* Be careful with blanket resets, may conflict */
+    /* padding: 0; */
+}
+
+#embedded-financial-model .dashboard {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--excel-bg-color, #FFFFFF); /* Keep white background */
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Contain the scaled content-wrapper */
+}
+
+#embedded-financial-model h1.dashboard-title {
+    font-family: var(--heading-font-family, Calibri, Arial, 'Segoe UI', sans-serif);
+    font-size: 18pt; /* Increased by 2pt */
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    color: var(--excel-text-color, #000000);
+    padding-left: 1rem;
+    flex-shrink: 0; /* Prevent title from shrinking */
+}
+
+#embedded-financial-model .financial-summary {
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Keep horizontal scroll for table */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    flex-shrink: 0; /* Prevent summary from shrinking excessively */
+}
+
+#embedded-financial-model .financial-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13pt; /* Increased by 2pt */
+    /* min-width: 800px; /* REMOVED min-width */
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+    table-layout: fixed;
+}
+
+#embedded-financial-model .financial-summary th,
+#embedded-financial-model .financial-summary td {
+    padding: 4px 8px;
+    text-align: left;
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+    color: var(--excel-text-color, #000000);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+#embedded-financial-model .financial-summary th {
+    background-color: var(--excel-header-bg, #F2F2F2);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Specific overrides for Actual/Forecast header cells */
+#embedded-financial-model .financial-summary th.th-actual {
+    background-color: #2F5597;
+    color: #FFFFFF;
+    border-color: #2F5597;
+}
+
+#embedded-financial-model .financial-summary th.th-forecast {
+    background-color: #5B9BD5;
+    color: #FFFFFF;
+    border-color: #5B9BD5;
+}
+
+#embedded-financial-model .financial-summary thead th {
+     /* width: 14%; /* REMOVED default, handled below */
+     /* Default styles for all th in thead - potentially overridden below */
+     font-size: 13pt; /* Increased by 2pt */
+}
+
+#embedded-financial-model .financial-summary thead th:first-child {
+     width: 33%; /* Decreased width by 2% (from 35%) */
+     text-align: left;
+     background-color: var(--excel-header-bg, #F2F2F2);
+     color: var(--excel-text-color, #000000);
+     border-color: var(--excel-gridline-color, #D4D4D4);
+     font-size: 15pt; /* Increased by 2pt */
+}
+
+/* Target year headers specifically (exclude first) */
+#embedded-financial-model .financial-summary thead th:not(:first-child) {
+    width: 13%; /* Decreased width */
+    font-size: 15pt; /* Increased by 2pt */
+    /* Keep existing background/color overrides */
+}
+
+#embedded-financial-model .financial-summary tbody tr:last-child td {
+     border-bottom: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+/* Specific Row Styling */
+#embedded-financial-model .financial-summary .header-row th {
+    background-color: var(--excel-header-bg, #F2F2F2);
+    color: var(--excel-text-color, #000000);
+    font-size: 10pt;
+    text-align: center;
+    padding: 4px 8px;
+    border: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+#embedded-financial-model .financial-summary .total-row td {
+    font-weight: bold;
+    background-color: #F8F8F8;
+}
+
+#embedded-financial-model .financial-summary .growth-row td {
+    color: var(--excel-text-color, #000000);
+    font-style: italic;
+}
+
+#embedded-financial-model .financial-summary td[data-value] {
+   text-align: right;
+   font-variant-numeric: tabular-nums;
+   font-size: 13pt; /* Increased by 2pt */
+}
+
+/* Negative value colors applied by JS */
+#embedded-financial-model tr:has(td:first-child:contains("Churned")) td[data-value] {
+     color: var(--excel-negative-red, #C00000);
+}
+
+/* Grouping Row Styles */
+#embedded-financial-model .group-header td {
+    font-weight: bold;
+    background-color: #D9E1F2;
+    color: #000000;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 2px solid var(--excel-gridline-color, #D4D4D4);
+    font-size: 15pt; /* Increased by 2pt */
+}
+
+#embedded-financial-model .group-separator td {
+    border: none;
+    height: 5px; /* Halved from 10px */
+    padding-top: 10px;
+    padding-bottom: 0;
+    background-color: transparent;
+    /* Force line-height to be small to prevent extra space */
+    line-height: 1px; 
+    font-size: 1px; /* Keep font size negligible */
+}
+
+/* New Content Wrapper for Layout */
+#embedded-financial-model .content-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    flex-grow: 1;
+    /* overflow: hidden; /* Removed, parent handles clipping */
+    padding-bottom: 1rem;
+    /* Add scaling and compensation */
+    transform: scale(0.75);
+    transform-origin: top left;
+    width: 133.33%; /* Compensate for scaling (1 / 0.75) */
+    /* height: 133.33%; /* REMOVED Compensate for scaling (1 / 0.75) */
+    /* Ensure content inside scales nicely */
+    box-sizing: border-box;
+}
+
+/* Charts Section - Update layout */
+#embedded-financial-model .charts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 0;
+    overflow-y: auto; /* Allow charts area to scroll if needed */
+    max-height: 100%; /* Ensure it doesn't overflow wrapper */
+}
+
+#embedded-financial-model .chart-container {
+    background-color: transparent;
+    padding: 1.5rem; /* Increased padding */
+    border-radius: 0;
+}
+
+#embedded-financial-model .chart-container h2 {
+    font-family: var(--heading-font-family, Calibri, Arial, 'Segoe UI', sans-serif);
+    text-align: center;
+    font-size: 21pt; /* Increased by another 2pt */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--excel-text-color, #000000);
+}
+
+#embedded-financial-model .chart-area {
+    height: 250px;
+    position: relative; /* Keep this for labels */
+    border-left: 1px solid var(--excel-text-color, #000000);
+    border-bottom: 1px solid var(--excel-text-color, #000000);
+    margin-bottom: 2.5rem;
+    background-color: var(--excel-bg-color, #FFFFFF);
+    overflow: visible; /* Ensure bars aren't clipped here */
+}
+
+/* Common bar styles */
+#embedded-financial-model .bar {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--excel-chart-blue, #4472C4);
+    border-radius: 0;
+    opacity: 1;
+    /* transition: height 0.4s ease-out, top 0.4s ease-out, bottom 0.4s ease-out; /* Original */
+    transition: height 0.6s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother transition specifically for height */
+    will-change: height; /* Hint browser for performance */
+}
+
+/* ARR Chart Specifics */
+#embedded-financial-model #arr-chart .arr-bars {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    position: relative; /* Ensure positioning context */
+}
+
+/* Cashflow Chart Specifics */
+#embedded-financial-model #cashflow-chart .cashflow-bars {
+    position: relative; /* Ensure positioning context */
+    height: 100%;
+    width: 100%;
+}
+
+#embedded-financial-model #cashflow-chart .bar.positive {
+    background-color: var(--excel-positive-green, #107C41);
+    /* Keep transition inherited from .bar */
+}
+
+#embedded-financial-model #cashflow-chart .bar.negative {
+    background-color: var(--excel-negative-red, #C00000);
+    /* Keep transition inherited from .bar */
+    /* Ensure negative bars also animate height correctly */
+    /* If negative bars animate from top, transition 'height' and 'top' */
+    transition: height 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), top 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* X-axis labels */
+#embedded-financial-model .chart-labels {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    font-size: 11pt; /* Increased by 2pt */
+    color: var(--excel-text-color, #000000);
+    overflow: visible;
+    white-space: nowrap;
+    margin-top: 0px;
+}
+
+#embedded-financial-model .chart-labels span {
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    color: var(--excel-text-color, #000000);
+    font-size: 13pt; /* Increased by 2pt */
+}
+
+/* Added: Fix first label cutoff */
+#embedded-financial-model .chart-labels span:first-child {
+    text-anchor: start; /* Align text start to the left position */
+    transform: translateY(100%); /* Keep vertical alignment */
+    left: 5px; /* Add slight left padding */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    #embedded-financial-model .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    #embedded-financial-model .charts {
+        gap: 1.5rem;
+    }
+    #embedded-financial-model .chart-area { height: 200px; margin-bottom: 2rem; }
+    #embedded-financial-model .chart-labels { font-size: 12pt; bottom: -20px; } /* Increased mobile by 2pt */
+    #embedded-financial-model .chart-labels span { font-size: 12pt; } /* Increased mobile by 2pt */
+    #embedded-financial-model .chart-container h2 { font-size: 18pt; } /* Increased mobile by another 2pt */
+    #embedded-financial-model .financial-summary th:first-child, 
+    #embedded-financial-model .financial-summary thead th:not(:first-child), /* Target year headers on mobile */
+    #embedded-financial-model .financial-summary tbody td:first-child,
+    #embedded-financial-model .group-header td /* Target group headers on mobile */ {
+        font-size: 13pt; /* Increased mobile by 2pt */
+    }
+     #embedded-financial-model .financial-summary td[data-value] {
+         font-size: 12pt; /* Increased mobile by 2pt */
+     }
+}
+
+@media (max-width: 768px) {
+    #embedded-financial-model {
+        /* Adjust container font size if needed for mobile */
+        /* font-size: 10pt; */
+    }
+    #embedded-financial-model h1.dashboard-title { font-size: 16pt; padding-left: 0.5rem;} /* Increased mobile by 2pt */
+    #embedded-financial-model .financial-summary th,
+    #embedded-financial-model .financial-summary td {
+        padding: 3px 5px;
+    }
+    #embedded-financial-model .chart-area { height: 200px; margin-bottom: 2rem; }
+    #embedded-financial-model .chart-labels { font-size: 12pt; bottom: -20px; } /* Increased mobile by 2pt */
+    #embedded-financial-model .chart-labels span { font-size: 12pt; } /* Increased mobile by 2pt */
+    #embedded-financial-model .chart-container h2 { font-size: 16pt; } /* Increased mobile by 2pt */
+    #embedded-financial-model .financial-summary th:first-child, 
+    #embedded-financial-model .financial-summary thead th:not(:first-child), /* Target year headers on mobile */
+    #embedded-financial-model .financial-summary tbody td:first-child,
+    #embedded-financial-model .group-header td /* Target group headers on mobile */ {
+        font-size: 13pt; /* Increased mobile by 2pt */
+    }
+     #embedded-financial-model .financial-summary td[data-value] {
+         font-size: 12pt; /* Increased mobile by 2pt */
+     }
+}
+
+/* Add standard left border BETWEEN 25/26 and 26/27 */
+#embedded-financial-model .financial-summary th:nth-child(5),
+#embedded-financial-model .financial-summary td:nth-child(5),
+#embedded-financial-model .financial-summary th:nth-child(6),
+#embedded-financial-model .financial-summary td:nth-child(6) {
+    border-left: 1px solid var(--excel-gridline-color, #D4D4D4);
+}
+
+/* Ensure the last column also has a right border matching the table */
+#embedded-financial-model .financial-summary th:last-child,
+#embedded-financial-model .financial-summary td:last-child {
+     border-right: 1px solid var(--excel-gridline-color, #D4D4D4);
+} 
+
+#embedded-financial-model .financial-summary tbody td:first-child {
+    /* Rule specifically for the first column in the body */
+    font-size: 15pt !important; /* Increased size by 2pt */
+    /* Add other styles if needed, e.g., font-weight */
+}
+
+/* Added Styles for Planning Visualization Header/Link */
+.visualization-sub-header {
+    font-family: 'Gilda Display', serif;
+    font-size: 2.0rem; /* Reduced size by 20% from 2.5rem */
+    color: var(--white, #fff);
+    text-align: center;
+    margin-top: 1rem; /* Add some space above */
+    margin-bottom: 0.75rem; /* Reduced space below header */
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.visualization-link {
+    display: block;
+    text-align: center;
+    color: var(--light-outline, #e5e7eb);
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem; /* Increased size by 50% from 1rem */
+    margin-bottom: 2.5rem; /* Increased space before financial model */
+    transition: color 0.2s ease;
+}
+
+.visualization-link:hover {
+    color: var(--white, #fff); /* Brighter on hover */
+}
+
+/* Adjust Financial Model Top Margin when Header/Link are present */
+.service-visualization-content[data-service="planning"] #embedded-financial-model {
+    margin-top: 0; /* Remove any default top margin if needed */
+}
+
+/* Hide the Plexus Background Canvas */
+#plexus-canvas {
+    display: none;
+}
+
+/* Added Styles for IR Framework Table (Copied/Adapted from IR.html) */
+.ir-framework-table-container {
+    width: 100%;
+    /* Removed max-width: 1100px to fit container */
+    overflow-x: auto;
+    margin-top: 2rem; /* Added margin above table */
+}
+
+.ir-framework-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--row-border-inactive, rgba(255, 255, 255, 0.15));
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05); /* Subtle inner white glow */
+}
+
+.ir-framework-table th,
+.ir-framework-table td {
+    padding: 18px 15px; /* Increased vertical padding for more spacing */
+    text-align: left;
+    border-bottom: 1px solid var(--row-border-inactive, rgba(255, 255, 255, 0.15));
+    vertical-align: middle; /* Changed from top to middle for fixed height */
+    height: 65px; /* Added fixed height */
+}
+
+.ir-framework-table th {
+    /* background-color: var(--header-bg, rgba(31, 41, 55, 0.3)); */ /* Original */
+    /* background-color: rgba(46, 58, 74, 0.7); */ /* Previous attempt */
+    background-color: #2D3748; /* Solid, slightly lighter grey-blue */
+    font-size: 1.25rem; /* Increased by another 2pt (from 1.1rem) */
+    font-weight: 700; /* Increased weight */
+    color: var(--white, #fff); /* Changed to white */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* border-bottom-width: 2px; */ /* Original */
+    border-bottom-width: 3px; /* Increased width */
+    border-bottom-color: var(--accent-highlight, #67e8f9); /* Changed to accent color */
+}
+
+.ir-framework-table tbody tr {
+    transition: background-color 0.4s ease, opacity 0.4s ease;
+    /* opacity: 0.5; */ /* Original */
+    opacity: 0.40; /* Increased opacity for inactive rows */
+    cursor: pointer;
+}
+
+.ir-framework-table tbody tr:last-child td {
+     border-bottom: none;
+}
+
+.ir-framework-table tbody tr.active {
+    background-color: var(--row-bg-active, rgba(31, 41, 55, 0.6));
+    opacity: 1;
+}
+
+.ir-framework-table td {
+    font-size: 1.15rem; /* Increased by 3pt (from 0.95rem) */
+    color: var(--light-outline, #e5e7eb);
+    transition: color 0.3s ease, background-color 0.4s ease;
+}
+
+.ir-framework-table td:first-child {
+    font-weight: 600;
+    width: 18%;
+    color: var(--white, #fff);
+    font-size: 1.2rem; /* Increased by 3pt (from 1.0rem) */
+    background-color: var(--header-bg, rgba(31, 41, 55, 0.3));
+}
+
+/* Removed active state override for first cell color */
+/* .ir-framework-table tbody tr.active td:first-child {
+     color: var(--accent-highlight);
+} */
+
+.ir-framework-table td:nth-child(2) { width: 32%; }
+.ir-framework-table td:nth-child(3) { width: 25%; font-style: italic; color: var(--medium-grey, #9ca3af); }
+.ir-framework-table td:nth-child(4) { width: 25%; color: var(--medium-grey, #9ca3af); font-style: italic; }
+
+/* Responsive styles for IR Table */
+@media (max-width: 991px) {
+    .ir-framework-table th,
+    .ir-framework-table td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+     .ir-framework-table td:first-child { font-size: 0.95rem; }
+}
+
+@media (max-width: 767px) {
+    .ir-framework-table th { display: none; }
+    .ir-framework-table td {
+        display: block;
+        width: 100% !important;
+        text-align: left !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-bottom: none;
+        position: relative;
+    }
+    .ir-framework-table td:first-child {
+        background-color: rgba(31, 41, 55, 0.2);
+        padding-top: 12px;
+        padding-bottom: 10px;
+        margin-left: -15px;
+        margin-right: -15px;
+        font-size: 1.3rem; /* Increased mobile by 3pt (from 1.1rem) */
+        color: var(--white);
+    }
+    .ir-framework-table tr.active td:first-child {
+        display: block;
+        font-weight: 600;
+        color: var(--medium-grey);
+        font-size: 1.0rem; /* Increased mobile label by 3pt (from 0.8rem) */
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        margin-top: 8px;
+    }
+    .ir-framework-table td:not(:first-child)::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        color: var(--medium-grey);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        margin-top: 8px;
+    }
+    .ir-framework-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid var(--row-border-inactive);
+        border-radius: 6px;
+        padding-bottom: 5px;
+    }
+     .ir-framework-table tbody tr.active {
+          border-color: var(--row-border-active);
+     }
+     .ir-framework-table td:last-child { padding-bottom: 12px; }
+}
+/* End IR Table Styles */
+
+/* Added: Increase width of services container */
+#services .w-container {
+    max-width: 1197px; /* Increased by ~5% from assumed 1140px */
+}
+
+/* Responsive adjustments for services */
+@media (max-width: 991px) {
+    #service-visualization-area {
+        min-height: 300px; /* Reduce height on tablet */
+    }
+     /* Stack selectors vertically if needed */
+    /* #service-selectors {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+     } */
+}
+
+/* Added to standardize "Backed By" client logo sizes */
+.logo-row .logo-image.client {
+    /* REMOVED fixed height: 50px; */
+    /* REMOVED width: auto; */
+    max-width: 100%; /* Prevent overflow if original image is very wide */
+    object-fit: contain; /* Ensures the entire logo is visible and scaled down if necessary */
+    margin: 20px; /* Add some spacing around logos */
+    vertical-align: middle; /* Helps with alignment within flex container */
+}
+
+/* Specific adjustments for each logo */
+.logo-row img[src="images/Backed By/Sequoia_Capital_logo.svg"] {
+    max-height: 45px;
+    max-width: 170px;
+}
+.logo-row img[src="images/Backed By/bessemer.svg"] {
+    max-height: 50px;
+    max-width: 160px;
+}
+.logo-row img[src="images/Backed By/a16z.svg"] {
+    max-height: 40px;
+    max-width: 180px;
+}
+.logo-row img[src="images/Backed By/first-round.svg"] {
+    max-height: 55px;
+    max-width: 110px;
+}
+.logo-row img[src="images/Backed By/general-catalyst.svg"] {
+    max-height: 30px; /* 10% smaller */
+    max-width: 90px; /* 10% smaller */
+}
+.logo-row img[src="images/Backed By/insight.svg"] {
+    max-height: 80px; /* 30% larger */
+    max-width: 150px; /* 30% larger */
+}
+.logo-row img[src="images/Backed By/basis-set.svg"] {
+    max-height: 30px; /* 10% smaller */
+    max-width: 144px; /* 10% smaller */
+}
+.logo-row img[src="images/Backed By/Sam-altman.svg"] {
+    max-height: 40px;
+    max-width: 170px;
+}
+
+/* Ensure logo containers align items to center for better visual balance */
+.logo-row .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ... existing code ... */
+.finops-right-visuals .slackbot-visual {
+    min-height: 350px; /* Add fixed height to match the top slackbot */
+    display: flex;
+    flex-direction: column;
+}
+/* ... existing code ... */
+
+
+/* Make sure both slackbots have consistent styling */
+.finops-right-visuals .slackbot-visual {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add space between slackbots */
+}
+/* ... existing code ... */
