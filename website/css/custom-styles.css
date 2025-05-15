@@ -2137,9 +2137,10 @@ body.body {
     max-height: 80px; /* 30% larger */
     max-width: 150px; /* 30% larger */
 }
-.logo-row img[src="images/Backed By/basis-set.svg"] {
-    max-height: 30px; /* 10% smaller */
-    max-width: 144px; /* 10% smaller */
+.logo-row img[src="images/Backed By/Y-Combinator.svg"] {
+    max-height: 520px; /* 10% smaller */
+    width: 200px; /* 10% smaller */
+    margin: 10px; /* Reduced margin specifically for Y Combinator logo */
 }
 .logo-row img[src="images/Backed By/Sam-altman.svg"] {
     max-height: 40px;
